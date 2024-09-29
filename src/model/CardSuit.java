@@ -1,4 +1,4 @@
-package org.practica.model;
+package model;
 
 /**
  * Enum representando los distintos palos que puede tener una carta.

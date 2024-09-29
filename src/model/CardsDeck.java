@@ -1,4 +1,4 @@
-package org.practica.model;
+package model;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,7 @@ import java.util.ArrayList;
      *
      * @return --> Carta donada
      */
-    public org.practica.model.Card getCardFromDeck(){
+    public Card getCardFromDeck(){
         Card cartadonada;
         int numcarta = comprovarNumCartes();
 

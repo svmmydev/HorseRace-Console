@@ -1,4 +1,4 @@
-package org.practica.model;
+package model;
 
 /**
  * La clase FacedCard representa cualquier carta con figura/cara de cualquier palo. Extiende a Card

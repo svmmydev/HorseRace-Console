@@ -1,4 +1,4 @@
-package org.practica.model;
+package model;
 
 //jack(sota), knight(caballo) y king(rey)
 

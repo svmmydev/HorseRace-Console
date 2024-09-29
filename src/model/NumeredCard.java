@@ -1,4 +1,4 @@
-package org.practica.model;
+package model;
 
 /**
  * La clase NumeredCard representa cualquier carta con número de cualquier palo. Extiende a Card

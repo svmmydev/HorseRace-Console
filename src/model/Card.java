@@ -1,4 +1,4 @@
-package org.practica.model;
+package model;
 
 /**
  * Clase abstracta Card que representa una carta en un juego de naipes.
