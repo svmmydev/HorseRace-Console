@@ -1,6 +1,3 @@
-package model;
-
-
 import org.practica.model.Card;
 import org.practica.model.CardsDeck;
 
