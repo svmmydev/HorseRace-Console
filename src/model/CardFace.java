@@ -5,7 +5,7 @@ package model;
 /**
  * Enum representando las distintas figuras/caras que puede tener una carta.
  */
-public enum CardFace { // Falta QUEEN porque no se usará en el juego
+public enum CardFace {
     JACK,
     KNIGHT,
     KING
