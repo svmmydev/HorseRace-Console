@@ -1,16 +1,16 @@
 package model;
 
 /**
- * La clase NumeredCard representa cualquier carta con número de cualquier palo. Extiende a Card
+ * Class NumeredCard represent a card of any card´s suit with any number. Extend Card
  */
 public class NumeredCard extends Card{
 
     private int num;
     /**
-     * Constructor para crear las cartas con su palo y su valor. El valor será igual al número de la carta.
+     * Constructor to create Cards with his suit and his number. the card value is the same like a number.
      *
-     * @param num int: Numero de carta
-     * @param cardSuit CardSuit: Palo de la carta
+     * @param num int: card number
+     * @param cardSuit the suit of the card
      */
     public NumeredCard(int num, CardSuit cardSuit) {
         this.num = num;
@@ -19,13 +19,14 @@ public class NumeredCard extends Card{
     }
 
     /**
-     *  ToString method to display card data
-     * @return --> Num, Pal i valor
+     *  ToString method to display card data(Number , Suit , Value)
+     * @return String with  Num, suit and value of the card
      */
     @Override
     public String toString() {
         return super.toString(String.valueOf(this.num));
     }
+
 
     @Override
     public String getCardCode() {

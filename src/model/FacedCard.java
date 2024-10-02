@@ -1,17 +1,17 @@
 package model;
 
 /**
- * La clase FacedCard representa cualquier carta con figura/cara de cualquier palo. Extiende a Card
+ * FacedCard Class represent any card with a figure of the deck. Extend to Card.
  */
 public class FacedCard extends Card{
 
     private CardFace face;
 
     /**
-     * Constructor para crear las cartas con su palo y su valor. El valor será siempre 0.5f.
      *
-     * @param cardFace CardFace: Figura/cara de carta
-     * @param pal CardSuit: Palo de la carta
+     * Constructor to creat the card with his suit and his value, who is 0.5 always.
+     * @param cardFace CardFace: Figure/ face of the card.
+     * @param pal CardSuit: The suit of the card
      */
     public FacedCard(CardFace cardFace, CardSuit pal) {
         super.value = 0.5f;
@@ -20,13 +20,14 @@ public class FacedCard extends Card{
     }
 
     /**
-     *  ToString method to display card data
-     * @return --> Num, Pal i valor
+     *  ToString method to display card data(Number , Suit , Value)
+     * @return String with  Num, suit and value of the card
      */
     @Override
     public String toString() {
         return super.toString(this.face.toString());
     }
+
 
     @Override
     public String getCardCode() {
