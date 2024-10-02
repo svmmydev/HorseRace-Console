@@ -30,4 +30,11 @@ public abstract class Card {
 
     public abstract String getCardCode();
 
+    /**
+     * Returns a String with a Card description.
+     * Examples: 4 of CUPS - KNIGHT of GOLD - 2 of SWORDS
+     * @return String: Description format: "*face/number* of *suit*"
+     */
+    public abstract String getDescription();
+
 }

@@ -19,6 +19,10 @@ public class FacedCard extends Card{
         this.face = cardFace;
     }
 
+    public String getDescription() {
+        return this.face + " of " + super.suit;
+    }
+
     /**
      *  ToString method to display card data
      * @return --> Num, Pal i valor

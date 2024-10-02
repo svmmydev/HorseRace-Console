@@ -18,6 +18,10 @@ public class NumeredCard extends Card{
         super.value = num;
     }
 
+    public String getDescription() {
+        return this.num + " of " + super.suit;
+    }
+
     /**
      *  ToString method to display card data
      * @return --> Num, Pal i valor
