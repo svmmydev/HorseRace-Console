@@ -3,15 +3,15 @@ package model;
 import java.util.ArrayList;
 
     public class CardsDeck {
-        private ArrayList<Card> cardsDeck = new ArrayList<>(); // La baraja en sí
-        private int [] num = {1, 2, 3, 4, 5, 6, 7}; // Los números que se usaran para crearla
-        private CardSuit[] cardSuits = {CardSuit.GOLD, CardSuit.CLUBS, CardSuit.CUPS, CardSuit.SWORDS}; // Los palos que se usaran para crearla
-        private CardFace[] cardFaces = {CardFace.JACK, CardFace.KNIGHT, CardFace.KING}; // Las figuras/rostros que se usaran para crearla
-        private Card card; // Usada para guardar temporalmente una carta cuando realizamos operaciones con ella
-        private ArrayList<Integer> numCartes; // Almacena los índices de las cartas que ya han sido repartidas del mazo
+        private ArrayList<Card> cardsDeck = new ArrayList<>(); // The Deck himself
+        private int [] num = {1, 2, 3, 4, 5, 6, 7}; // The numbers who use to create Deck
+        private CardSuit[] cardSuits = {CardSuit.GOLD, CardSuit.CLUBS, CardSuit.CUPS, CardSuit.SWORDS}; // The suits to create Deck
+        private CardFace[] cardFaces = {CardFace.JACK, CardFace.KNIGHT, CardFace.KING}; // Figures/face to create Deck
+        private Card card; //  Object to safe a Card temporarily to use after
+        private ArrayList<Integer> numCartes; //  To store the index of card who has been distribute yet
 
         /**
-         * Method to create the cards deck every time you want to play
+         * Constructor to create the cards deck every time you want to play
          * Create Cards from two vectors (number and suit) and add them to the deck ArrayList
          */
         public CardsDeck () {
@@ -37,9 +37,10 @@ import java.util.ArrayList;
         }
 
     /**
-     * Metode per repartir un nova carta aleatoria a la ma
+     * Method Return a card from the card deck
      *
-     * @return --> Carta donada
+     *
+     * @return A card  from the deck
      */
     public Card getCardFromDeck(){
         Card cartadonada;
@@ -49,14 +50,11 @@ import java.util.ArrayList;
         return cartadonada;
     }
 
-    /*
-    Opiniones sobre este método:
-        - Si se terminan las cartas a sacar entra en bucle infinito. Entiendo que no se contempla porque el juego debería terminar antes
-        - No veo la ventaja en usar +1 en el Random, sin él podríamos devolver numcarta sin el -1 y funcionaría igual
-     */
+
+
     /**
      * Helper method that returns a random card from Deck that has not been given before
-     * @return --> Card not given before
+     * @return A int number that represent the index from the deck
      */
     private int comprovarNumCartes (){
         boolean trobada ;

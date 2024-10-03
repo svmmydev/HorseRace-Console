@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Enum representando los distintos palos que puede tener una carta.
+ * Enum who represent the diferents Cardsuit.
  */
 public enum CardSuit {
     GOLD,
