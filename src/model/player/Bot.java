@@ -4,7 +4,7 @@ import model.Bet;
 
 public class Bot extends Player {
 
-    public Bot(String userName, Bet bet) {
-        super(userName, bet);
+    public Bot(String userName) {
+        super(userName);
     }
 }

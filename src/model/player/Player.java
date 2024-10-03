@@ -5,9 +5,9 @@ public abstract class Player {
     private String userName;
     private Bet bet;
 
-    public Player(String userName, Bet bet) {
+    public Player(String userName) {
         this.userName = userName;
-        this.bet = bet;
+        this.bet = null;
     }
 
     public String getUserName() {
