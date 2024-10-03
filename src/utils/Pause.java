@@ -1,5 +1,7 @@
 package utils;
 
+import org.w3c.dom.ls.LSOutput;
+
 /**
  * Class created to make dramatic/pragmatic pauses when displaying information through the console.
  */
@@ -18,6 +20,7 @@ public class Pause {
             // Leave catch block empty intentionally
         }
     }
+
 
     /**
      * Pause the execution of the current thread for the specified number of seconds.

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
     public class CardsDeck {
         private ArrayList<Card> cardsDeck = new ArrayList<>(); // The Deck himself
-        private int [] num = {1, 2, 3, 4, 5, 6, 7}; // The numbers who use to create Deck
+        private int [] num = {1, 2, 3, 4, 5, 6, 7, 8, 9}; // The numbers who use to create Deck
         private CardSuit[] cardSuits = {CardSuit.GOLD, CardSuit.CLUBS, CardSuit.CUPS, CardSuit.SWORDS}; // The suits to create Deck
         private CardFace[] cardFaces = {CardFace.JACK, CardFace.KNIGHT, CardFace.KING}; // Figures/face to create Deck
         private Card card; //  Object to safe a Card temporarily to use after
@@ -61,7 +61,7 @@ import java.util.ArrayList;
         int numcarta;
         do{
             trobada = false;
-            numcarta = (int) (Math.random() * 40 + 1);
+            numcarta = (int) (Math.random() * 48 + 1);
             if (numCartes.isEmpty()){
                 trobada = false;
             }else {
