@@ -37,6 +37,7 @@ public class GameManager {
 
             if (players.isEmpty()) {
                 ConsoleInOut.print("All players have lost and the game is over. Better Luck next time");
+                break;
             } else if (players.size() == 1) {
                 ConsoleInOut.print("We have a definitive winner! "+players.getFirst().getUserName()+ " won with a total of "+players.getFirst().getBankroll()+" chips!");
                 break;
