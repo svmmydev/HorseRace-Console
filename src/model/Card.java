@@ -17,6 +17,10 @@ public abstract class Card {
         return value;
     }
 
+    public CardSuit getSuit() {
+        return suit;
+    }
+
     /**
      * Return formatted String that show the card number/figure of the card, his suit and his value.
      * <p>Designed to be used by the subclasss to overwritte himself.</p>

@@ -19,6 +19,10 @@ public class FacedCard extends Card{
         this.face = cardFace;
     }
 
+    public CardFace getFace() {
+        return face;
+    }
+
     public String getDescription() {
         return this.face + " of " + super.suit;
     }
