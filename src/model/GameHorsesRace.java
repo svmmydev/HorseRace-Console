@@ -22,27 +22,30 @@ public class GameHorsesRace {
         obtenerCartasCaballo();
         mostrarCartasCaballos();
         colocarCaballosTablero();
-        //iniciarPartida();
-        sacarCarta();
+        iniciarPartida();
+
     }
 
     public void iniciarPartida() {
+        for (int i = 0; i < cardsDeck.getDeckSize(); i++) {
+             Card cardWin = sacarCarta();
+            System.out.println("Ronda: " + (i + 1));
+            System.out.println("El crupier ha sacado: ");
+            System.out.println(cardWin);
+            input.nextLine();
 
-            //Card cardWin = sacarCarta();
-            //moverCaballo(cardWin);
+        }
+
+        //moverCaballo(cardWin);
     }
 
     //Método para sacar cartas del mazo
     public Card sacarCarta() {
-        for (int i = 0; i < cardsDeck.getDeckSize(); i++) {
             card = cardsDeck.getCardFromDeck();
-            System.out.println("Ronda: " + (i + 1));
-            System.out.println("El crupier ha sacado: ");
-            System.out.println(card);
             return card;
         }
-        return null;
-    }
+
+
 
     //Método para obtener las cartas del tipo Caballo y guardarlas en un array
     public void obtenerCartasCaballo() {
@@ -94,6 +97,7 @@ public class GameHorsesRace {
         return -1;
     }
 
+    //TODO agregar la metodo otra parámetro +1 o -1 que indique cuantas posiciones avanzar o retroceder
     //Mètodo para hacer avanzar o retroceder caballo
     public Card avanzarRetrocederCaballo(int row, int columnActual) {
         if (columnActual < board[row].length - 1) {
@@ -118,8 +122,7 @@ public class GameHorsesRace {
 //array de objetos?
 
     /*
-    Llamar a metodo que generera mazo
-    Metodo que inserta a elementos caballos y reyes en el array que controla que cartas salieron del mazo
+
 
     Bucle
     Llamar a metodo que saca carta ganadora por cada ronda
