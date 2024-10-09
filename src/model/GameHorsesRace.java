@@ -1,9 +1,12 @@
 package model;
 
 
+import utils.ConsoleInOut;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static model.CardFace.KING;
 import static model.CardFace.KNIGHT;
 
 //Clase que gestiona el juego
@@ -18,9 +21,22 @@ public class GameHorsesRace {
 
     public void gameRaceLogic() {
 
+        //Creando baraja y mostrándola (Está completa)
         cardsDeck = new CardsDeck();
-        obtenerCartasCaballo();
+        System.out.println();
+        cardsDeck.getCardsDeck();
+
+        //Guardando caballos en arraylist y mostrándola (4 caballos)
+        //Eliminando caballos y reyes de la baraja deseada para el juego
+        modificarBaraja();
+        System.out.println();
+
+        //Mostrando de nuevo la baraja para comprobar que ya no tienen las cartas no deseadas
         mostrarCartasCaballos();
+        System.out.println();
+
+        //Colocando caballos en el tablero
+        cardsDeck.getCardsDeck();
         colocarCaballosTablero();
         iniciarPartida();
 
@@ -28,14 +44,10 @@ public class GameHorsesRace {
 
     public void iniciarPartida() {
         for (int i = 0; i < cardsDeck.getDeckSize(); i++) {
-             Card cardWin = sacarCarta();
-            System.out.println("Ronda: " + (i + 1));
-            System.out.println("El crupier ha sacado: ");
-            System.out.println(cardWin);
+            Card cardWin = sacarCarta();
+            System.out.println("Crupier: " + cardWin);
             input.nextLine();
-
         }
-
         //moverCaballo(cardWin);
     }
 
@@ -46,14 +58,23 @@ public class GameHorsesRace {
         }
 
 
-
-    //Método para obtener las cartas del tipo Caballo y guardarlas en un array
-    public void obtenerCartasCaballo() {
+    /**
+     * Modifica la baraja según las reglas del juego "GameHorsesRace".
+     * Este método realiza las siguientes acciones:
+     * <ul>
+     *   <li>Mueve todas las cartas de caballos (KNIGHT) a una lista separada para su uso en el juego.</li>
+     *   <li>Elimina todas las cartas de reyes (KING) de la baraja, ya que no se necesitan en este juego.</li>
+     * </ul>
+     */
+    public void modificarBaraja() {
         cardsKnight = new ArrayList<>();
-        for (int i = 0; i < cardsDeck.getDeckSize(); i++) {
+        for (int i = cardsDeck.getDeckSize() - 1; i >= 0 ; i--) {
             Card card = cardsDeck.getCardAt(i);
             if (card instanceof FacedCard && ((FacedCard) card).getFace() == KNIGHT) {
                 cardsKnight.add(card);
+                cardsDeck.removeCard(card);
+            } else if (card instanceof FacedCard && ((FacedCard) card).getFace() == KING) {
+                cardsDeck.removeCard(card);
             }
         }
     }

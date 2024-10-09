@@ -15,7 +15,6 @@ public class CardsDeck {
      * Create Cards from two vectors (number and suit) and add them to the deck ArrayList
      */
 
-    //TODO metodo para extrar caballos y reyes
     public CardsDeck() {
         for (int i = 0; i < num.length; i++) {
             for (int j = 0; j < cardSuits.length; j++) {
@@ -25,19 +24,12 @@ public class CardsDeck {
         }
         for (CardFace face : cardFaces) {
             for (int j = 0; j < cardSuits.length; j++) {
-                if (face != CardFace.KING) {
-                    card = new FacedCard(face, cardSuits[j]);
-                    cardsDeck.add(card);
-                }
+                card = new FacedCard(face, cardSuits[j]);
+                cardsDeck.add(card);
             }
         }
 
         numCartes = new ArrayList<>();
-        // display deck
-        /*for (Card i: cardsDeck){
-            System.out.println(i);
-        }*/
-
     }
 
     /**
@@ -49,14 +41,21 @@ public class CardsDeck {
         return cardsDeck.size();
     }
 
+
     public CardFace[] getCardFaces() {
         return cardFaces;
     }
+
+    public void removeCard(Card card) {
+        cardsDeck.remove(card);
+    }
+
 
     //Metodo para agregar los caballos al array de cartas que ya salieron
     public void setNumCartes(ArrayList<Integer> numCartes) {
         this.numCartes = numCartes;
     }
+
 
     //TODO realizar bucle < numero de cartas del mazo, devuelve carta que saco el crupier
 
@@ -66,7 +65,6 @@ public class CardsDeck {
      * @return A card  from the deck
      */
     public Card getCardFromDeck() {
-
         Card cartadonada;
         int numcarta = comprovarNumCartes();
 
@@ -81,29 +79,32 @@ public class CardsDeck {
      * @return A int number that represent the index from the deck
      */
     private int comprovarNumCartes() {
-        boolean trobada;
+        boolean found;
         int numcarta;
         do {
-            trobada = false;
-            numcarta = (int) (Math.random() * cardsDeck.size() + 1);
-            if (numCartes.isEmpty()) {
-                trobada = false;
-            } else {
+            found = false;
+            numcarta = (int) (Math.random() * cardsDeck.size());
+            if (!numCartes.isEmpty()) {
                 for (Integer x : numCartes) {
                     if (numcarta == x) {
-                        //System.out.println("carta"+x+" cartaRandom"+numcarta);
-                        trobada = true;
+                        found = true;
+                        break;
                     }
                 }
             }
-            //System.out.println(numcarta);
-        } while (trobada);
-        numCartes.add(numcarta - 1);
-        return numcarta - 1;
+        } while (found);
+        numCartes.add(numcarta);
+        return numcarta;
     }
 
     //Metodo que devuelve la carta del indice indicado
     public Card getCardAt(int i) {
         return cardsDeck.get(i);
+    }
+
+    public void getCardsDeck() {
+        for (Card i: cardsDeck){
+            System.out.println(i);
+        }
     }
 }
