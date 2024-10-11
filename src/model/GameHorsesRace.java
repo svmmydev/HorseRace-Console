@@ -14,6 +14,7 @@ import static model.deck.CardFace.KNIGHT;
 
 //Clase que gestiona el juego
 public class GameHorsesRace {
+    private final int raceLenght = 8;
     private CardsDeck cardsDeck;
     private Card card;
     private int rondas;
@@ -46,10 +47,17 @@ public class GameHorsesRace {
     }
 
     public void iniciarPartida() {
+        Card[] contestants = new Card[cardsKnight.size()]; // Set up a new array where the horses will be allocated
+        contestants = cardsKnight.toArray(contestants); // fill the array with the horses that were in an ArrayList
+        GameBoard gameBoard = new GameBoard(contestants, raceLenght); // Create a new GameBoard
         for (int i = 0; i < cardsDeck.getDeckSize(); i++) {
             Card cardWin = sacarCarta();
-            System.out.println("Crupier: " + cardWin);
             input.nextLine();
+            System.out.println("Crupier: " + cardWin);
+
+            if (gameBoard.executeMovement(cardWin, i%5!=4)) { // (i%5!=4) will return false at i=4,9,14...
+                break; // breaks loop if we have a winner horse
+            }
         }
         //moverCaballo(cardWin);
     }
