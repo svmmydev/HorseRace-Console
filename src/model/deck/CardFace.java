@@ -1,4 +1,4 @@
-package model;
+package model.deck;
 
 //jack(sota), knight(caballo) y king(rey)
 

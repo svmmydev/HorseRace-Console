@@ -1,9 +1,9 @@
-package model;
+package model.deck;
 
 /**
  * Class NumeredCard represent a card of any card´s suit with any number. Extend Card
  */
-public class NumeredCard extends Card{
+public class NumeredCard extends Card {
 
     private int num;
     /**

@@ -1,5 +1,9 @@
-package model;
-
+import model.GameHorsesRace;
+import model.deck.Card;
+import model.deck.CardFace;
+import model.deck.CardSuit;
+import model.deck.FacedCard;
+import model.player.Bet;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;

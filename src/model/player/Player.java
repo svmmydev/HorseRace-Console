@@ -1,5 +1,4 @@
 package model.player;
-import model.Bet;
 
 public abstract class Player {
     private String userName;

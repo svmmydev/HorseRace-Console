@@ -1,9 +1,9 @@
-package model;
+package model.deck;
 
 /**
  * FacedCard Class represent any card with a figure of the deck. Extend to Card.
  */
-public class FacedCard extends Card{
+public class FacedCard extends Card {
 
     private CardFace face;
 

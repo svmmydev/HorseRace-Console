@@ -1,4 +1,4 @@
-package model;
+package model.deck;
 
 import java.util.ArrayList;
 

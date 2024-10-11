@@ -1,5 +1,7 @@
 package model;
 
+import model.deck.Card;
+
 public class GameBoard {
     //fields
     private Card[][] board;

@@ -1,7 +1,4 @@
-import model.Card;
-import model.CardsDeck;
 import model.GameHorsesRace;
-import model.GameManager;
 
 public class Main {
         public static void main(String[] args) {

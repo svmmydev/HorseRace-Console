@@ -1,4 +1,4 @@
-package model;
+package model.deck;
 
 /**
  * Enum who represent the diferents Cardsuit.

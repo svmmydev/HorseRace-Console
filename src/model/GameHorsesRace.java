@@ -1,13 +1,16 @@
 package model;
 
 
-import utils.ConsoleInOut;
+import model.deck.Card;
+import model.deck.CardSuit;
+import model.deck.CardsDeck;
+import model.deck.FacedCard;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static model.CardFace.KING;
-import static model.CardFace.KNIGHT;
+import static model.deck.CardFace.KING;
+import static model.deck.CardFace.KNIGHT;
 
 //Clase que gestiona el juego
 public class GameHorsesRace {

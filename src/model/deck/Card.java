@@ -1,4 +1,4 @@
-package model;
+package model.deck;
 
 /**
  * Class abstract that represent a card in a card game.

@@ -1,4 +1,6 @@
-package model;
+package model.player;
+
+import model.deck.Card;
 
 public class Bet {
     private int bet;
