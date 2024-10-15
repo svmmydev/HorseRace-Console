@@ -1,4 +1,5 @@
-import model.GameHorsesRace;
+package model;
+
 import model.deck.Card;
 import model.deck.CardFace;
 import model.deck.CardSuit;
@@ -245,5 +246,54 @@ public class GameManager {
             ConsoleInOut.print(player.getUserName()+" has "+player.getBankroll()+" chips.");
         }
         ConsoleInOut.print(""); // newline
+    }
+
+    public void setupPlayers(String[] humanNames, int numberOfBots) { //TODO
+    }
+
+    public int playerCount() {
+        return players.size();
+    }
+
+    public boolean indexPlayerIsHuman(int i) {
+        return players.get(i) instanceof Human;
+    }
+    public int getIndexPlayerBankroll(int i) {
+        return players.get(i).getBankroll();
+    }
+
+    public int getMIN_BET() {
+        return MIN_BET;
+    }
+
+    public int getMAX_BET() {
+        return MAX_BET;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return new ArrayList<>(players);
+    }
+
+    public void indexPlayerMakeBet(int i, int betAmount, Card betCard) {
+        Player player = players.get(i);
+        player.setBet(new Bet(betAmount, betCard));
+    }
+
+    public void indexPlayerMakeBet(int i, GameHorsesRace gameHorsesRace) {
+        Player player = players.get(i);
+        ((Bot)player).makeBet(this, gameHorsesRace);
+    }
+
+    public boolean isGameOver() {
+        int humans=0;
+        int bots=0;
+        for (Player player : players) {
+            if (player instanceof Human) humans++;
+            else if (player instanceof Bot) bots++;
+        }
+
+        if (humans > 1 || bots > 0) return false;
+
+        return (humans==0)||(humans==1&&bots==0);
     }
 }

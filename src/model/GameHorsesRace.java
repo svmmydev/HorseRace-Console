@@ -147,6 +147,13 @@ public class GameHorsesRace {
             System.out.println(caballo);
         }
     }
+
+    public ArrayList<Card> getHorses() {
+        return new ArrayList<>(cardsKnight);
+    }
+
+    public void getReady() { // TODO
+    }
 }
 
 
