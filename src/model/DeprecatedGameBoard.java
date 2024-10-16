@@ -3,14 +3,14 @@ package model;
 import model.deck.Card;
 import model.deck.CardSuit;
 
-public class GameBoard {
+public class DeprecatedGameBoard {
     //fields
     private Card[][] board;
     private Card lastCard;
 
 
     //constructor
-    public GameBoard(Card[] cards, int rows) {
+    public DeprecatedGameBoard(Card[] cards, int rows) {
 
         board = new Card[cards.length][rows];
         for (int i = 0; i < cards.length; i++) {

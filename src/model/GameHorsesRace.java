@@ -14,12 +14,14 @@ import static model.deck.CardFace.KNIGHT;
 
 //Clase que gestiona el juego
 public class GameHorsesRace {
+    private Board board;
+    private Card drawnCard;
     private final int raceLenght = 8;
     private CardsDeck cardsDeck;
     private Card card;
     private int rondas;
     private ArrayList<Card> cardsKnight;
-    private Card[][] board = new Card[4][9];
+    private Card[][] oldBoard = new Card[4][9];
     Scanner input = new Scanner(System.in);
 
 
@@ -49,13 +51,13 @@ public class GameHorsesRace {
     public void iniciarPartida() {
         Card[] contestants = new Card[cardsKnight.size()]; // Set up a new array where the horses will be allocated
         contestants = cardsKnight.toArray(contestants); // fill the array with the horses that were in an ArrayList
-        GameBoard gameBoard = new GameBoard(contestants, raceLenght); // Create a new GameBoard
+        DeprecatedGameBoard deprecatedGameBoard = new DeprecatedGameBoard(contestants, raceLenght); // Create a new DeprecatedGameBoard
         for (int i = 0; i < cardsDeck.getDeckSize(); i++) {
             Card cardWin = sacarCarta();
             input.nextLine();
             System.out.println("Crupier: " + cardWin);
 
-            if (gameBoard.executeMovement(cardWin, i%5!=4)) { // (i%5!=4) will return false at i=4,9,14...
+            if (deprecatedGameBoard.executeMovement(cardWin, i%5!=4)) { // (i%5!=4) will return false at i=4,9,14...
                 break; // breaks loop if we have a winner horse
             }
         }
@@ -93,7 +95,7 @@ public class GameHorsesRace {
     //Método para colocar los caballos al principio del tablero
     public void colocarCaballosTablero() {
         for (int i = 0; i < cardsKnight.size(); i++) {
-            board[i][0] = cardsKnight.get(i);
+            oldBoard[i][0] = cardsKnight.get(i);
         }
     }
 
@@ -121,8 +123,8 @@ public class GameHorsesRace {
 
     //Metodo para recuperar posicion del caballo
     public int posicionActual(int row) {
-        for (int i = 0; i < board[row].length; i++) {
-            if (board[row][i] != null) {
+        for (int i = 0; i < oldBoard[row].length; i++) {
+            if (oldBoard[row][i] != null) {
                 return i;
             }
         }
@@ -132,12 +134,12 @@ public class GameHorsesRace {
     //TODO agregar la metodo otra parámetro +1 o -1 que indique cuantas posiciones avanzar o retroceder
     //Mètodo para hacer avanzar o retroceder caballo
     public Card avanzarRetrocederCaballo(int row, int columnActual) {
-        if (columnActual < board[row].length - 1) {
-            board[row][columnActual + 1] = board[row][columnActual];
-            board[row][columnActual] = null;
+        if (columnActual < oldBoard[row].length - 1) {
+            oldBoard[row][columnActual + 1] = oldBoard[row][columnActual];
+            oldBoard[row][columnActual] = null;
             return null;
         } else {
-            return board[row][columnActual];
+            return oldBoard[row][columnActual];
         }
     }
 
@@ -153,6 +155,22 @@ public class GameHorsesRace {
     }
 
     public void getReady() { // TODO
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public Card getDrawnCard() {
+        return drawnCard;
+    }
+
+    public void takeTurn() { // TODO
+    }
+
+    public Card getWinner() { // TODO
+        // returns the winning Card/Horse of the race or null if no card has won yet
+        return null;
     }
 }
 

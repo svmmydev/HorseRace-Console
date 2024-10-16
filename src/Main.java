@@ -1,5 +1,5 @@
 import model.GameHorsesRace;
-import model.GameManager;
+import model.PlayerManager;
 
 public class Main {
         public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class Main {
 
             gameRace.gameRaceLogic();
 
-            GameManager game = new GameManager();
+            PlayerManager game = new PlayerManager();
             //game.gameMenu();
 
         }

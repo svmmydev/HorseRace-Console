@@ -1,6 +1,6 @@
 package utils;
 
-import org.w3c.dom.ls.LSOutput;
+import java.util.Scanner;
 
 /**
  * Class created to make dramatic/pragmatic pauses when displaying information through the console.
@@ -30,5 +30,15 @@ public class Pause {
      */
     public static void seconds(long value) {
         milliseconds(value * 1000); // Convert seconds to milliseconds
+    }
+
+    /**
+     * Pauses the program execution until the user presses Enter.
+     * Displays a message indicating the user should press Enter to continue.
+     */
+    public static void untilEnter() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Press Enter to continue...");
+        input.nextLine(); // Wait for the user to press Enter
     }
 }

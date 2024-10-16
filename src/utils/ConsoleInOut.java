@@ -65,13 +65,4 @@ public class ConsoleInOut {
         System.out.println(message);
     }
 
-    /**
-     * Pauses the program execution until the user presses Enter.
-     * Displays a message indicating the user should press Enter to continue.
-     */
-    public static void pauseUntilEnter() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Press Enter to continue...");
-        input.nextLine(); // Wait for the user to press Enter
-    }
 }

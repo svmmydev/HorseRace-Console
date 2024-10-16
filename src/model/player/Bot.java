@@ -1,7 +1,5 @@
 package model.player;
 
-import model.GameHorsesRace;
-import model.GameManager;
 import model.deck.Card;
 
 import java.util.ArrayList;
@@ -12,14 +10,13 @@ public class Bot extends Player {
         super(userName, bankroll);
     }
 
-    public void makeBet(GameManager gameManager, GameHorsesRace gameHorsesRace) {
-        ArrayList<Card> availableCards = gameHorsesRace.getHorses();
-        Card chosenCard = availableCards.get((int) (Math.random() * availableCards.size()));
-        int maxBet = Math.min(gameManager.getMAX_BET(), this.getBankroll());
-        int betAmount = generateRandomBetAmount(gameManager.getMIN_BET(), maxBet);
+    public void makeBet(ArrayList<Card> betOptions, int maxBet, int minBet ) {
+        Card chosenCard = betOptions.get(generateRandomChoice(0, betOptions.size()-1));
+        maxBet = Math.min(maxBet, this.getBankroll());
+        int betAmount = generateRandomChoice(minBet, maxBet);
         setBet(new Bet(betAmount, chosenCard));
     }
-    private int generateRandomBetAmount(int min, int max) {
+    private int generateRandomChoice(int min, int max) {
         return min + (int)(Math.random() * (max - min + 1));
     }
 }

@@ -14,13 +14,13 @@ Date:   Fri Oct 4 10:38:23 2024 +0200
 Author: Roger <belegund@gmail.com>
 Date:   Thu Oct 3 16:04:34 2024 +0200
 
-    Adds Javadocs to most of the methods in model.GameManager
+    Adds Javadocs to most of the methods in model.PlayerManager
 
 [33mcommit 9ee6ca98ea923621a7cfef93cb6d1f5160b199a4[m
 Author: Roger <belegund@gmail.com>
 Date:   Thu Oct 3 15:39:16 2024 +0200
 
-    Adds model.GameManager class to manage the starting players/horses/bets and gets ready to start a horse race
+    Adds model.PlayerManager class to manage the starting players/horses/bets and gets ready to start a horse race
 
 [33mcommit 539a951197c06f5ec48982026f298df2d145bd17[m
 Author: LeanEmanuel <leandrostruni@gmail.com>
