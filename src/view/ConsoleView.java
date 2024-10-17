@@ -23,10 +23,6 @@ public class ConsoleView {
         return 0;
     }
 
-    public int getNumberOfBots() { //TODO
-        return 0;
-    } //TODO
-
     public Card askForBetCard(ArrayList<Card> horsesArray) { //TODO
         return null;
     } //TODO
