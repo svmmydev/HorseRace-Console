@@ -258,7 +258,36 @@ public class PlayerManager {
         ConsoleInOut.print(""); // newline
     }
 */
-    public void setupPlayers(String[] humanNames, int numberOfBots) { //TODO
+    /**
+     * Sets up the players for the game by creating human and bot players
+     * @param humanNames A String array with the names of the human players
+     * @param numberOfBots The amount of bots to be created
+     */
+    public void setupPlayers(String[] humanNames, int numberOfBots) {
+        int numberOfHumans = humanNames.length;
+        int totalPlayers = numberOfHumans+numberOfBots;
+        int bots = 1;
+
+        // Basic check of the amount of players
+        if (numberOfHumans<1 || totalPlayers>MAX_PLAYERS) {
+            /*
+            // Throw an exception once we studied exceptions
+            throw new IllegalArgumentException("Invalid number of players: must have at least 1 human and not exceed max players.");
+             */
+            return; // Exit if the amount of players/humans is invalid
+            }
+
+        // Create players
+        for (int i=0; i<totalPlayers; i++) {
+            if (i<numberOfHumans) { // if there are still Human Players to create:
+                String humanName = humanNames[i];
+                players.add(new Human(humanName, INITIAL_BANKROLL));
+            } else { // Otherwise create a Bot
+                players.add(new Bot("Bot "+bots, INITIAL_BANKROLL));
+                bots++;
+            }
+        }
+
     }
 
     public int playerCount() {
