@@ -30,7 +30,6 @@ public class GameHorsesRace {
         mostrarCartasCaballos();
         board = new Board(cardsKnight, raceLenght);
         currentTurn = 1;
-        takeTurn();
     }
 
     /**
@@ -39,7 +38,6 @@ public class GameHorsesRace {
      * Incrementa el contador del turno.
      */
     public void takeTurn() {
-        // TODO
         drawnCard = sacarCarta();
         moverCaballo(drawnCard);
         System.out.println(drawnCard);
