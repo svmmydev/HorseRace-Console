@@ -4,51 +4,61 @@ import model.deck.Card;
 import model.deck.CardSuit;
 import model.deck.CardsDeck;
 import model.deck.FacedCard;
+
 import java.util.ArrayList;
+
 import static model.deck.CardFace.KING;
 import static model.deck.CardFace.KNIGHT;
 
-//Clase que gestiona el juego
+/**
+ * /**
+ * * This class manages the horses race game.
+ * * It controls the board, the cards, and the current turn of the game.
+ * * It also handles the card deck and the knights' cards.
+ */
+
 public class GameHorsesRace {
     private Board board;
     private Card drawnCard;
-    private final int raceLenght = 9;
     private CardsDeck cardsDeck;
-    private Card card;
     private int currentTurn;
     private ArrayList<Card> cardsKnight;
+    private final int RACE_LENGTH = 9;
+
 
 
     /**
-     * Prepara el juego para comenzar un nueva partida.
-     *Este mét-odo inicializa la baraja de cartas, modifica el mazo según las reglas
-     * Configura el tablero para el juego, inicia el primer turno en 1
+     * Prepares the game to start a new round.
+     * This method initializes the card deck, modifies the deck according to the rules,
+     * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
         cardsDeck = new CardsDeck();
-        modificarBaraja();
-        mostrarCartasCaballos();
-        board = new Board(cardsKnight, raceLenght);
+        modifyDeck();
+        showKnightCards();
+        board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
+        takeTurn();
     }
 
+
     /**
-     * Este mét-odo saca una carta del mazo, mueve el caballo correspondiente al palo de la carta
-     * extraída.
-     * Incrementa el contador del turno.
+     * This method draws a card from the deck, moves the horse corresponding to the suit of the drawn card,
+     * and increments the turn counter.
      */
     public void takeTurn() {
-        drawnCard = sacarCarta();
-        moverCaballo(drawnCard);
+        drawnCard = drawCard();
+        moveHorse(drawnCard);
         System.out.println(drawnCard);
         currentTurn++;
     }
 
+
     /**
-     * Obtiene el estado del juego y dtermina si hay un ganador.
-     * Si hay un ganador devuelve la carta ganadora.
+     * Gets the state of the game and determines if there is a winner.
+     * If there is a winner, it returns the winning card.
      *
-     * @return La carta ganadora si existe, null si no hay ganador.
+     * @return The winning card if it exists, null if there is no winner.
      */
     public Card getWinner() {
         return board.checkWinner();
@@ -56,24 +66,24 @@ public class GameHorsesRace {
 
 
     /**
-     * Saca una carta de la baraja.
-     * La carta extraída se devuelve para ser utilizada en el juego.
+     * Draws a card from the deck.
+     * The drawn card is returned for use in the game.
      *
-     * @return Card La carta extraída del mazo.
+     * @return Card The card drawn from the deck.
      */
-    public Card sacarCarta() {
-        card = cardsDeck.getCardFromDeck();
-        return card;
+    public Card drawCard() {
+        return cardsDeck.getCardFromDeck();
     }
 
+
     /**
-     *Mueve el caballo correspondiente según la carta extraída.
-     * Este mét-odo determina el caballo a mover basado en el palo de la carta extraída.
-     * Dependiendo de si el turno implica avanzar o retroceder, llama al mét-odo adecuado.
+     * Moves the corresponding horse based on the drawn card.
+     * This method determines which horse to move based on the suit of the drawn card.
+     * Depending on whether the turn involves advancing or retreating, it calls the appropriate method.
      *
-     * @param drawnCard La carta que se ha extraído.
+     * @param drawnCard The card that has been drawn.
      */
-    public void moverCaballo(Card drawnCard) {
+    public void moveHorse(Card drawnCard) {
         CardSuit suit = drawnCard.getSuit();
         int horseIndex = -1;
         switch (suit) {
@@ -94,21 +104,22 @@ public class GameHorsesRace {
             }
         }
         if (horseIndex != -1) {
-            if (seRetrocede()) {
-                board.retrocederCaballo(horseIndex);
+            if (isRetreating()) {
+                board.retreatHorse(horseIndex);
             } else {
-                board.avanzarCaballo(horseIndex);
+                board.advanceHorse(horseIndex);
             }
         }
     }
 
+
     /**
-     * Modifica la baraja según las reglas del juego "GameHorsesRace".
-     * Este mét-odo realiza las siguientes acciones:
-     * Mueve todas las cartas de caballos (KNIGHT) a una lista separada para su uso en el juego.
-     * Elimina todas las cartas de reyes (KING) de la baraja, ya que no se necesitan en este juego.
+     * Modifies the deck according to the rules of the "GameHorsesRace".
+     * This method performs the following actions:
+     * Moves all knight cards (KNIGHT) to a separate list for use in the game.
+     * Removes all king cards (KING) from the deck, as they are not needed in this game.
      */
-    public void modificarBaraja() {
+    public void modifyDeck() {
         cardsKnight = new ArrayList<>();
         for (int i = cardsDeck.getDeckSize() - 1; i >= 0; i--) {
             Card card = cardsDeck.getCardAt(i);
@@ -123,29 +134,51 @@ public class GameHorsesRace {
 
 
     /**
-     * Determina si es el turno en el cual se debe retroceder.
+     * Determines if it is the turn in which retreating should occur.
      *
-     * @return boolean True si es el quinto turno, false en caso conrtario.
+     * @return boolean True if it is the fifth turn, false otherwise.
      */
-    public boolean seRetrocede() {
+    public boolean isRetreating() {
         return (currentTurn % 5 == 0);
     }
 
-    //Mostrar cartas de caballo
-    public void mostrarCartasCaballos() {
-        for (Card caballo : cardsKnight) {
-            System.out.println(caballo);
+
+    /**
+     * Displays all knight cards in the knight cards list.
+     * TODO mover sout a clase ConsoleView
+     */
+    public void showKnightCards() {
+        for (Card horse : cardsKnight) {
+            System.out.println(horse);
         }
     }
 
+
+    /**
+     * Gets a copy of the list of knight cards.
+     *
+     * @return A list of knight cards.
+     */
     public ArrayList<Card> getHorses() {
         return new ArrayList<>(cardsKnight);
     }
 
+
+    /**
+     * Get the game board.
+     *
+     * @return The current board.
+     */
     public Board getBoard() {
         return board;
     }
 
+
+    /**
+     * Gets the card that has been draw in the current turn.
+     *
+     * @return The drawn card.
+     */
     public Card getDrawnCard() {
         return drawnCard;
     }
