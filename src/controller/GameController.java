@@ -82,7 +82,7 @@ public class GameController {
      * Prepares the players for the game by gathering input through the console for human and bot players.
      * Ensures there is enough players to play a game but not more that the maximum allowed.
      */
-    public void preparePlayers() {
+    private void preparePlayers() {
         // Get an array with the names of the Human players from user input
         String[] humanNames = consoleView.getHumanNames(playerManager.getMIN_HUMANS(),playerManager.getMAX_PLAYERS());
 
