@@ -5,6 +5,7 @@ import model.deck.Card;
 import model.player.Human;
 import model.player.Player;
 import utils.ConsoleInOut;
+import utils.Pause;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -150,7 +151,58 @@ public class ConsoleView {
     public void displayPlayersRanking(ArrayList<Player> players) { // TODO
     }
 
-    public void displayBoard(Board board, Card drawnCard) { // TODO
+    /**
+     * Displays the current state of the board with the positions of the horses and the last drawn card.
+     * @param board Board: represents the current state of the board.
+     * @param drawnCard Card: represents the card that was drawn if there is any.
+     */
+    public void displayBoard(Board board, Card drawnCard) {
+        Card[][] boardArray = board.getBoard();
+        int trackLength = board.getTrackLength();
+        StringBuilder boardToPrint = new StringBuilder();
+
+        for (int row=0; row<boardArray.length; row++) {
+            for (int col=0; col<trackLength; col++) {
+                if (boardArray[row][col]!=null) {
+                    boardToPrint.append(
+                            getRow(boardArray[row][col], col, trackLength)
+                    ).append("\n");
+                    break;
+                }
+            }
+        }
+
+        // If a drawn card is provided, display a message indicating what it was
+        if (drawnCard != null) {
+            boardToPrint.append("Drawn card: ").append(drawnCard.getDescription()).append("\n");
+        }
+
+        System.out.println(boardToPrint);
+
+        Pause.untilEnter();  // Pauses until the user presses Enter
+    }
+
+    /**
+     * Constructs a string representation of a specific row in the board,
+     * including the horse's description and its position on the track.
+     *
+     * @param card Card: represents the card that races (usually a Knight).
+     * @param col int: the current position of the card on the track.
+     * @param trackLength int: the total length of the track.
+     * @return StringBuilder: contains the formatted row representation ready to be printed.
+     */
+    private StringBuilder getRow(Card card, int col, int trackLength) {
+
+        StringBuilder rowToPrint = new StringBuilder(String.format("%-20s", card.getDescription()));
+        for (int i=0; i<trackLength; i++) {
+            if (i==col) {
+                rowToPrint.append(" [X]");
+            } else {
+                rowToPrint.append(" [ ]");
+            }
+
+        }
+        return rowToPrint;
     }
 
     public boolean askIfKeepPlaying() { // TODO
