@@ -366,4 +366,8 @@ public class PlayerManager {
     public Player getIndexPlayer(int i) {
         return players.get(i);
     }
+
+    public int getPot() {
+        return pot;
+    }
 }

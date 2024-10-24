@@ -220,20 +220,53 @@ public class ConsoleView {
         return YES_CHARACTERS.contains(answer);
     }
 
-    public void displayNoWinningBets() { // TODO
+    /**
+     * Displays a message indicating that no player guessed the winning horse.
+     * The message also states that the current pot of chips will carry over to the next round.
+     * @param pot int: the amount of chips in the pot that will stay for the next round.
+     */
+    public void displayNoWinningBets(int pot) {
+        System.out.println("Nobody guessed the winning Horse, that means that the pot of "+pot+" chips stays for the next round!!");
+        Pause.untilEnter();
     }
 
-    public void displaySomePlayersLostMessage() { // TODO
+    /**
+     * Displays a message indicating that at least one player does not have enough chips to place a bet in the next round.
+     * The message informs that the leaderboard will be updated accordingly.
+     */
+    public void displaySomePlayersLostMessage() {
+        System.out.println("It seems that at least one player doesn't have enough chips to bet in the next round.\n" +
+                "The leader board will be updated accordingly.");
     }
 
-    public void sayGoodBye() { // TODO
+    /**
+     * Displays a farewell message to the player upon exiting the game.
+     * This method thanks the player for participating and expresses hope
+     * that they had an enjoyable experience.
+     */
+    public void sayGoodBye() {
+        System.out.println("Thank you for playing.\n" +
+                "We hope you had fun. \n" +
+                "TJS:CS Team");
     }
 
-    public void announceDefeatAndSayGoodbye() { // TODO
+    /**
+     * Announces that all human players have been eliminated and that the game is over.
+     * Displays a farewell message to the players.
+     */
+    public void announceDefeatAndSayGoodbye() {
+        System.out.println("All human players have been eliminated!\n" +
+                "This is GAME OVER");
         sayGoodBye();
     }
 
-    public void announceWinnerAndSayGoodbye(Human winner) { // TODO
+    /**
+     * Announces the winner of the game and displays a congratulatory message.
+     * @param winner Human: the human player who won the game.
+     */
+    public void announceWinnerAndSayGoodbye(Human winner) {
+        System.out.println("Congratulations "+winner.getUserName()+"!!\n" +
+                "You defeated all your opponents and emerged victorious!!");
         sayGoodBye();
     }
 }

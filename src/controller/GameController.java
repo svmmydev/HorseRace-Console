@@ -128,7 +128,7 @@ public class GameController {
         ConsoleView.displayRaceWinner(winner); // Display the winning horse to the players.
 
         // Distribute bets based on the winner, also display if there are no winning bets.
-        if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets();
+        if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets(playerManager.getPot());
         // removes players with not enough bankroll to keep playing and display remaining players.
         if (playerManager.removeLosers()) consoleView.displaySomePlayersLostMessage();
         consoleView.displayPlayersRanking(playerManager.getPlayers());
