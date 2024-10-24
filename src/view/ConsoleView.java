@@ -22,7 +22,7 @@ public class ConsoleView {
      */
     public static void showPlayerBet(Player player) {
         System.out.println(
-                player.getUserName()+" bid "+player.getBet().getBet()+" chips to the "+player.getBet().getHorseBet().getDescription()+"."
+                player.getUserName()+" bid "+player.getBet().getBetAmount()+" chips to the "+player.getBet().getHorseBet().getDescription()+"."
         );
     }
 

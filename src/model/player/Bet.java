@@ -11,7 +11,7 @@ public class Bet {
         this.horseBet = horseBet;
     }
 
-    public int getBet() {
+    public int getBetAmount() {
         return bet;
     }
 
