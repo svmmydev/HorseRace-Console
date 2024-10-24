@@ -41,6 +41,7 @@ public class GameController {
         preparePlayers();
 
         while (!playerManager.isGameOver()) {
+            gameHorsesRace.prepareDeck(); // Prepares deck and possible bets por the players
             setUpBets(); // set up the bets for current round.
             consoleView.displayPlayersRanking(playerManager.getPlayers());
 
@@ -65,13 +66,14 @@ public class GameController {
 
             if (playerManager.indexPlayerIsHuman(i)) {// if player is Human, ask por user input to set his bet.
 
-                Card betCard = consoleView.askForBetCard(gameHorsesRace.getHorses());
+                Card betCard = consoleView.askForBetCardToPlayer(gameHorsesRace.getHorses(),playerManager.getIndexPlayer(i));
                 int maxBet = Math.min(playerManager.getMAX_BET(), playerManager.getIndexPlayerBankroll(i));
-                int betAmount = consoleView.askForBetAmount(playerManager.getMIN_BET(), maxBet);
+                int betAmount = consoleView.askForBetAmountToPlayer(playerManager.getIndexPlayer(i), playerManager.getMIN_BET(), maxBet);
                 playerManager.indexHumanPlayerMakeBet(i, betAmount, betCard);
 
             } else { // If the player is Bot, pass down info, so it can make a bet
                 playerManager.indexBotPlayerMakeBet(i, gameHorsesRace.getHorses());
+                ConsoleView.showPlayerBet(playerManager.getIndexPlayer(i));
             }
         }
     }

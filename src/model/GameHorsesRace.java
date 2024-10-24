@@ -29,16 +29,21 @@ public class GameHorsesRace {
 
     /**
      * Prepares the game to start a new round.
-     * This method initializes the card deck, modifies the deck according to the rules,
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
-        cardsDeck = new CardsDeck();
-        modifyDeck();
         showKnightCards();
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
         takeTurn();
+    }
+
+    /**
+     * This method initializes the card deck, modifies the deck according to the rules.
+     */
+    public void prepareDeck() {
+        cardsDeck = new CardsDeck();
+        modifyDeck();
     }
 
 
@@ -119,7 +124,7 @@ public class GameHorsesRace {
      * Moves all knight cards (KNIGHT) to a separate list for use in the game.
      * Removes all king cards (KING) from the deck, as they are not needed in this game.
      */
-    public void modifyDeck() {
+    private void modifyDeck() {
         cardsKnight = new ArrayList<>();
         for (int i = cardsDeck.getDeckSize() - 1; i >= 0; i--) {
             Card card = cardsDeck.getCardAt(i);

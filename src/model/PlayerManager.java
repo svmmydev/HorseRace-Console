@@ -23,7 +23,7 @@ public class PlayerManager {
     private final int MIN_BOTS = 0;
     private final int MIN_PLAYERS = 2;
     private final int MAX_PLAYERS = 6;
-    private ArrayList<Player> players; // The active players for the game
+    private ArrayList<Player> players = new ArrayList<>(); // The active players for the game
     private int pot = 0; // The sum of all the players' bets in a given moment
     /**
      * Manages the main game loop, allowing players to place bets, race horses,
@@ -361,5 +361,9 @@ public class PlayerManager {
 
     public Human getHumanWinner() { // TODO
         return null;
+    }
+
+    public Player getIndexPlayer(int i) {
+        return players.get(i);
     }
 }
