@@ -205,8 +205,19 @@ public class ConsoleView {
         return rowToPrint;
     }
 
-    public boolean askIfKeepPlaying() { // TODO
-        return true;
+    /**
+     * Prompts the user to decide if he wants to keep playing the game.
+     * If he inputs Y/y/S/s it means "yes" N/n means "no",
+     * @return boolean: true if the user answer yes, false otherwise,
+     */
+    public boolean askIfKeepPlaying() {
+        final String YES_CHARACTERS = "YySs";
+        final String NO_CHARACTERS = "Nn";
+        String answer = ConsoleInOut.getStringWithRegex(
+                        "Do you want to keep playing the game? [Y] Yes [N] No",
+                        "[" + YES_CHARACTERS + NO_CHARACTERS + "]");
+
+        return YES_CHARACTERS.contains(answer);
     }
 
     public void displayNoWinningBets() { // TODO
