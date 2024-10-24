@@ -297,6 +297,7 @@ public class PlayerManager {
     public boolean indexPlayerIsHuman(int i) {
         return players.get(i) instanceof Human;
     }
+
     public int getIndexPlayerBankroll(int i) {
         return players.get(i).getBankroll();
     }
@@ -312,6 +313,7 @@ public class PlayerManager {
     public int getMIN_HUMANS() {
         return MIN_HUMANS;
     }
+
     public int getMIN_BOTS() {
         return MIN_BOTS;
     }
@@ -355,8 +357,21 @@ public class PlayerManager {
         return true;
     }
 
-    public boolean removeLosers() { // TODO
-        return true;
+    /**
+     * Checks if any player's bankroll is out of range (MIN_BET), in that case it removes
+     * him from the 'players' list.
+     *
+     * @return boolean result of 'players' being modified
+     */
+    public boolean removeLosers() {
+        ArrayList<Player> losers = new ArrayList<>();
+        for(Player player : players) {
+            if (player.getBankroll() < MIN_BET) {
+                losers.add(player);
+            }
+        }
+
+        return players.removeAll(losers);
     }
 
     public Human getHumanWinner() { // TODO
