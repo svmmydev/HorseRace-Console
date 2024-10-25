@@ -47,7 +47,12 @@ public class Board {
      * @param row The row of the horse to be retreated.
      */
     public void retreatHorse(int row) {
-        for (int col = 0; col < trackLength - 1; col++) {
+        // Check if the horse is in the first position
+        if (board[row][0] != null) {
+            return;
+        }
+
+        for (int col = 1; col < trackLength; col++) {
             if (board[row][col] != null) {
                 board[row][col - 1] = board[row][col];
                 board[row][col] = null;
