@@ -112,7 +112,7 @@ public class GameController {
         do {
 
             gameHorsesRace.takeTurn(); // take a turn and make the necessary changes to the state of the game.
-            consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getDrawnCard());
+            consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getLastDrawnCard());
 
             winner = gameHorsesRace.getWinner(); // Checks if there is a winner after the turn.
 

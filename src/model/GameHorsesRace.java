@@ -19,7 +19,7 @@ import static model.deck.CardFace.KNIGHT;
 
 public class GameHorsesRace {
     private Board board;
-    private Card drawnCard;
+    private Card lastDrawnCard;
     private CardsDeck cardsDeck;
     private int currentTurn;
     private ArrayList<Card> cardsKnight;
@@ -32,6 +32,7 @@ public class GameHorsesRace {
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
+        prepareDeck();
         showKnightCards();
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
@@ -52,9 +53,8 @@ public class GameHorsesRace {
      * and increments the turn counter.
      */
     public void takeTurn() {
-        drawnCard = drawCard();
-        moveHorse(drawnCard);
-        System.out.println(drawnCard);
+        lastDrawnCard = drawCard();
+        moveHorse(lastDrawnCard);
         currentTurn++;
     }
 
@@ -184,8 +184,8 @@ public class GameHorsesRace {
      *
      * @return The drawn card.
      */
-    public Card getDrawnCard() {
-        return drawnCard;
+    public Card getLastDrawnCard() {
+        return lastDrawnCard;
     }
 }
 
