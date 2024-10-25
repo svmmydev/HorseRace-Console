@@ -36,7 +36,6 @@ public class GameHorsesRace {
         showKnightCards();
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
-        takeTurn();
     }
 
     /**
