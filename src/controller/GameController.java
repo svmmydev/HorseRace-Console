@@ -8,8 +8,8 @@ import model.deck.Card;
 
 /**
  * The GameController class serves as the main controller for the horses racing game.
- *  It coordinates interactions between the model classes (PlayerManager, GameHorsesRace) and the view classes (ConsoleView).
- *  This class follows the Model-View-Controller (MVC) design pattern.
+ * It coordinates interactions between the model classes (PlayerManager, GameHorsesRace) and the view classes (ConsoleView).
+ * This class follows the Model-View-Controller (MVC) design pattern.
  */
 public class GameController {
     private PlayerManager playerManager;
@@ -62,7 +62,7 @@ public class GameController {
      */
     private void setUpBets() {
         // Iterate through all the players
-        for (int i = 0; i< playerManager.playerCount(); i++) {
+        for (int i = 0; i< playerManager.getNumPlayers(); i++) {
 
             if (playerManager.indexPlayerIsHuman(i)) {// if player is Human, ask por user input to set his bet.
 
