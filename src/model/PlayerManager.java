@@ -1,18 +1,22 @@
 package model;
 
 import model.deck.Card;
-import model.deck.CardFace;
-import model.deck.CardSuit;
-import model.deck.FacedCard;
 import model.player.Bet;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
-import utils.ConsoleInOut;
 
 import java.util.ArrayList;
-import java.util.Random;
 
+/**
+ * Manages the players involved in the game, including Humans and Bots, their bankrolls, bets,
+ * and other game rules. The class includes methods to configure players, track bets,
+ * and determine winners.
+ * <p>
+ * Contains constants for game configuration, such as initial bankrolls, minimum/maximum
+ * bets, and player limits.
+ * </p>
+ */
 public class PlayerManager {
     private final int INITIAL_BANKROLL = 100; // The initial bankroll when creating a player
     private final int MIN_BET = 2; // Minimum bet a player can place
@@ -24,52 +28,115 @@ public class PlayerManager {
     private ArrayList<Player> players = new ArrayList<>(); // The active players for the game
     private int pot = 0; // The sum of all the players' bets in a given moment
 
-    public int playerCount() {
+    /**
+     * Gets the number of active players in the players list.
+     *
+     * @return int the total number of players in the list
+     */
+    public int getNumPlayers() {
         return players.size();
     }
 
+    /**
+     * Checks if the player at the specified index is a human player.
+     *
+     * @param i the index of the player in the players list
+     * @return boolean true if the player at the given index is a Human, false otherwise
+     */
     public boolean indexPlayerIsHuman(int i) {
         return players.get(i) instanceof Human;
     }
 
+    /**
+     * Retrieves the bankroll of the player at the specified index.
+     *
+     * @param i the index of the player in the players list
+     * @return int the bankroll amount of the player at the given index
+     */
     public int getIndexPlayerBankroll(int i) {
         return players.get(i).getBankroll();
     }
 
+    /**
+     * Get access to 'MIN_BET'.
+     *
+     * @return int minimum bet in the game
+     */
     public int getMIN_BET() {
         return MIN_BET;
     }
 
+    /**
+     * Get access to 'MAX_BET'.
+     *
+     * @return int maximum bet in the game
+     */
     public int getMAX_BET() {
         return MAX_BET;
     }
 
+    /**
+     * Get access to 'MIN_HUMANS'.
+     *
+     * @return int minimum of humans to set players
+     */
     public int getMIN_HUMANS() {
         return MIN_HUMANS;
     }
 
+    /**
+     * Get access to 'MIN_BOTS'.
+     *
+     * @return int minimum of bots to set players
+     */
     public int getMIN_BOTS() {
         return MIN_BOTS;
     }
 
+    /**
+     * Get access to 'MIN_PLAYERS'.
+     *
+     * @return int minimum players the game needs
+     */
     public int getMIN_PLAYERS() {
         return MIN_PLAYERS;
     }
 
+    /**
+     * Get access to 'MAX_PLAYERS'.
+     *
+     * @return int maximum players the game can handle
+     */
     public int getMAX_PLAYERS() {
         return MAX_PLAYERS;
     }
 
+    /**
+     * Get access to 'pot'.
+     *
+     * @return int total of the game pot
+     */
+    public int getPot() {
+        return pot;
+    }
+
+    /**
+     * Creates a new arraylist of players.
+     *
+     * @return arraylist List of players created
+     */
     public ArrayList<Player> getPlayers() {
         return new ArrayList<>(players);
     }
 
+    /**
+     * Retrieves the player at the specified index.
+     *
+     * @param i the index of the player in the players list
+     * @return Player the player linked to the specified index
+     */
     public Player getIndexPlayer(int i) {
         return players.get(i);
-    }
-
-    public int getPot() {
-        return pot;
     }
 
     /**
@@ -202,7 +269,8 @@ public class PlayerManager {
      */
     public void indexHumanPlayerMakeBet(int i, int betAmount, Card betCard) {
         Player player = players.get(i);
-        player.setBet(new Bet(betAmount, betCard));
+        player.setBet(new Bet(betAmount, betCard)); // Sets the bet for the 'Human' player
+        pot += betAmount; // Increase the pot value
     }
 
     /**
@@ -214,6 +282,8 @@ public class PlayerManager {
     public void indexBotPlayerMakeBet(int i, ArrayList<Card> betOptions) {
         Player player = players.get(i);
         ((Bot)player).makeBet(betOptions, this.MAX_BET, this.MIN_BET); // Randomly calculates the bets and options
+        int betAmount = player.getBet().getBetAmount();
+        pot += betAmount; // Increase the pot value
     }
 
     /**
