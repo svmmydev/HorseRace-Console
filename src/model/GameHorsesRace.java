@@ -33,8 +33,6 @@ public class GameHorsesRace {
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
-        cardsDeck = new CardsDeck();
-        modifyDeck();
         showKnightCards();
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
@@ -94,19 +92,19 @@ public class GameHorsesRace {
         CardSuit suit = drawnCard.getSuit();
         int horseIndex = -1;
         switch (suit) {
-            case GOLD: {
+            case SWORDS: {
                 horseIndex = 0;
                 break;
             }
-            case SWORDS: {
+            case CUPS: {
                 horseIndex = 1;
                 break;
             }
-            case CUPS: {
+            case CLUBS: {
                 horseIndex = 2;
                 break;
             }
-            case CLUBS: {
+            case GOLD: {
                 horseIndex = 3;
                 break;
             }
