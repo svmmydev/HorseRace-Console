@@ -51,10 +51,11 @@ public class GameHorsesRace {
      * This method draws a card from the deck, moves the horse corresponding to the suit of the drawn card,
      * and increments the turn counter.
      */
-    public void takeTurn() {
+    public boolean takeTurn() {
         lastDrawnCard = drawCard();
-        moveHorse(lastDrawnCard);
+        boolean directionMove = moveHorse(lastDrawnCard);
         currentTurn++;
+        return directionMove;
     }
 
 
@@ -87,7 +88,7 @@ public class GameHorsesRace {
      *
      * @param drawnCard The card that has been drawn.
      */
-    public void moveHorse(Card drawnCard) {
+    public boolean moveHorse(Card drawnCard) {
         CardSuit suit = drawnCard.getSuit();
         int horseIndex = -1;
         switch (suit) {
@@ -105,15 +106,16 @@ public class GameHorsesRace {
             }
             case CLUBS: {
                 horseIndex = 3;
+                break;
             }
         }
-        if (horseIndex != -1) {
-            if (isRetreating()) {
+        if (isRetreating()) {
                 board.retreatHorse(horseIndex);
-            } else {
-                board.advanceHorse(horseIndex);
-            }
+                return false;
         }
+
+        board.advanceHorse(horseIndex);
+        return true;
     }
 
 
