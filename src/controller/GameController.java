@@ -105,14 +105,15 @@ public class GameController {
      */
     private Card playRace() {
         Card winner;
+        boolean movesForward=true;
 
         gameHorsesRace.getReady(); // Set up the Board and the Deck.
-        consoleView.displayBoard(gameHorsesRace.getBoard(), null);
-
+        consoleView.raceStartAnnouncement();
+        consoleView.displayBoard(gameHorsesRace.getBoard(), null, movesForward);
         do {
 
-            gameHorsesRace.takeTurn(); // take a turn and make the necessary changes to the state of the game.
-            consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getLastDrawnCard());
+            movesForward = gameHorsesRace.takeTurn(); // take a turn and make the necessary changes to the state of the game.
+            consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getLastDrawnCard(), movesForward);
 
             winner = gameHorsesRace.getWinner(); // Checks if there is a winner after the turn.
 
