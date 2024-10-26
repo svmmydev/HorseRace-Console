@@ -1,21 +1,23 @@
 package model;
 
 import model.deck.Card;
-import model.deck.CardFace;
-import model.deck.CardSuit;
-import model.deck.FacedCard;
 import model.player.Bet;
 import model.player.Bot;
 import model.player.Human;
 import model.player.Player;
-import utils.ConsoleInOut;
 
 import java.util.ArrayList;
-import java.util.Random;
 
+/**
+ * Manages the players involved in the game, including Humans and Bots, their bankrolls, bets,
+ * and other game rules. The class includes methods to configure players, track bets,
+ * and determine winners.
+ * <p>
+ * Contains constants for game configuration, such as initial bankrolls, minimum/maximum
+ * bets, and player limits.
+ * </p>
+ */
 public class PlayerManager {
-//    private ArrayList<Card> horses; // The horse cards that will be racing
-//    private Card winnerHorse; // The horse card that won the last race
     private final int INITIAL_BANKROLL = 100; // The initial bankroll when creating a player
     private final int MIN_BET = 2; // Minimum bet a player can place
     private final int MAX_BET = 20; // Maximum bet a player can place
@@ -23,243 +25,123 @@ public class PlayerManager {
     private final int MIN_BOTS = 0;
     private final int MIN_PLAYERS = 2;
     private final int MAX_PLAYERS = 6;
-    private ArrayList<Player> players; // The active players for the game
+    private ArrayList<Player> players = new ArrayList<>(); // The active players for the game
     private int pot = 0; // The sum of all the players' bets in a given moment
-    /**
-     * Manages the main game loop, allowing players to place bets, race horses,
-     * distribute winnings, and determine game termination conditions.
-     */
-/*    public void gameMenu() {
-
-        createRaceHorses();
-        createPlayers();
-
-        do {
-            placeBets();
-            GameHorsesRace gameHorsesRace = new GameHorsesRace();
-            //Card winnerHorse = gameHorsesRace.¿¿getWinner??();
-            winnerHorse = horses.get(new Random().nextInt(horses.size())); // temporary until GameHorsesRace class is implemented
-            ConsoleInOut.print(winnerHorse.getDescription() + " has won the race!! Let's check the rewards!");
-            distributeBets();
-            disposeOfLosers();
-
-            if (players.isEmpty()) {
-                ConsoleInOut.print("All players have lost and the game is over. Better Luck next time");
-                break;
-            } else if (players.size() == 1) {
-                ConsoleInOut.print("We have a definitive winner! "+players.getFirst().getUserName()+ " won with a total of "+players.getFirst().getBankroll()+" chips!");
-                break;
-            }
-
-            char confirmation = ConsoleInOut.getStringWithRegex("Do you want to keep playing? [Y]es [N]o", "[YySsNn]").charAt(0);
-
-            if (confirmation == 'N' || confirmation == 'n') break;
-            else {
-                ConsoleInOut.print("Lets prepare a new game, get ready to bet...\n");
-                displayGameStatus();
-            }
-        } while (true);
-
-        ConsoleInOut.print("Thank You for playing");
-    }
-*/
 
     /**
-     * Creates the race horses for the game.
-     * Each horse is represented as a FacedCard with a KNIGHT face and different suits.
+     * Gets the number of active players in the players list.
+     *
+     * @return int the total number of players in the list
      */
-/*    private void createRaceHorses() {
-        horses = new ArrayList<>();
-        for (CardSuit suit : CardSuit.values()) {
-            horses.add(new FacedCard(CardFace.KNIGHT,suit));
-        }
+    public int getNumPlayers() {
+        return players.size();
     }
- */
 
     /**
-     * Creates players for the game.
-     * Players can be human or bot players.
-     * The number of players and human players is determined through user input.
+     * Checks if the player at the specified index is a human player.
+     *
+     * @param i the index of the player in the players list
+     * @return boolean true if the player at the given index is a Human, false otherwise
      */
-/*    private void createPlayers() {
-
-        players = new ArrayList<>();
-        int playerAmount = ConsoleInOut.getIntegerInRange("How many players will be betting? (2-8)",2,8); // maximum 8 bidders
-        int maxHumans = Math.min(playerAmount, 4);
-        int humans = ConsoleInOut.getIntegerInRange("How many players will be human? (1-"+maxHumans+")",1,maxHumans);
-
-        int bots = 1;
-        for (int i=1; i<=playerAmount; i++) {
-            String playerName;
-            int bet;
-            if (humans>0) {
-                playerName = ConsoleInOut.getStringWithRegex(
-                        "Please enter player "+i+" nickname (Length 4-15, letters, numbers, \".\" and \"_\")",
-                        "[0-9A-Za-z._]{4,15}"
-                );
-                players.add(new Human(playerName, INITIAL_BANKROLL));
-                humans--;
-            } else {
-                players.add(new Bot("Bot "+bots++, INITIAL_BANKROLL));
-            }
-        }
+    public boolean indexPlayerIsHuman(int i) {
+        return players.get(i) instanceof Human;
     }
-*/
 
     /**
-     * Places bets for all players in the game.
-     * It distinguishes between human and bot players.
+     * Retrieves the bankroll of the player at the specified index.
+     *
+     * @param i the index of the player in the players list
+     * @return int the bankroll amount of the player at the given index
      */
-/*    private void placeBets() {
-        for (Player player : players) {
-            if (player instanceof Human) {
-                placeHumanBet((Human) player);
-            } else {
-                placeRandomBet((Bot) player);
-            }
-        }
-        ConsoleInOut.print("\nThe total pot is "+pot+" chips.\n");
+    public int getIndexPlayerBankroll(int i) {
+        return players.get(i).getBankroll();
     }
-*/
 
     /**
-     * Extracts the winner players taking into account their bets and the winner horse and distributes the bet using a rule of three
-     * The division is made with integers and the remaining chips stays in the por for the next race/game.
+     * Get access to 'MIN_BET'.
+     *
+     * @return int minimum bet in the game
      */
-/*    public void distributeBets() {
-        ArrayList<Player> winners = getWinners();
-        if (winners.isEmpty()) {
-            ConsoleInOut.print("No one bid for the "+winnerHorse.getDescription()+". The pot of "+pot+" chips stays for the next game");
-            return;
-        }
-        // Calculate the total bets from winners.
-        int totalBetsFromWinners = 0;
-        for (Player player : winners) {
-            totalBetsFromWinners += player.getBet().getBet();
-        }
-        int chipsDistributed = 0;
-        for (Player player : winners) {
-            int playerBet = player.getBet().getBet();
-
-            // Calculate and hand over the winning based on each player bet proportion.
-            int winnings = (pot * playerBet) / totalBetsFromWinners; // Rule of three
-            player.addToBankroll(winnings);
-            chipsDistributed += winnings;
-
-            // Display the winnings
-            ConsoleInOut.print(player.getUserName()+" won "+winnings+" chips!");
-        }
-        pot -= chipsDistributed;
-        ConsoleInOut.print("Any remaining chips due to impossible divisions will be carried over to the next game.\nPOT: "+pot);
+    public int getMIN_BET() {
+        return MIN_BET;
     }
-*/
-    /**
-     * Removes players who do not have enough chips (less than the minimum bet) from the game.
-     * It also informs the player and the remaining number of players after eliminations.
-     */
-        /*
-        Since we cant remove element from an ArrayList during a for (it could cause a ConcurrentModificationException),
-        we will create a new list to get all the players to remove from the global player list and remove them afterward.
-        A more efficient solution could be to use Iterator, but we still have to learn how to use it
-        TODO: Learn to use Iterators
-        */
-/*    private void disposeOfLosers() {
-
-        ArrayList<Player> playersToRemove = new ArrayList<>();
-        for (Player player : players) {
-            if (player.getBankroll() < MIN_BET) {
-                playersToRemove.add(player);
-                ConsoleInOut.print(player.getUserName()+" doesn't have enough chips for the next game and it is disqualified.");
-            }
-        }
-        players.removeAll(playersToRemove);
-        ConsoleInOut.print(players.size()+" players remaining...");
-    }
-*/
 
     /**
-     * Places a random bet for a bot player.
-     * The bot selects a random horse and bet amount in the range specified by the global variable MIN_BET and maxBet.
-     * maxBet will be the minimum between MAX_BET and the player bankroll.
-     * @param player Bot: The bot player placing the bet.
+     * Get access to 'MAX_BET'.
+     *
+     * @return int maximum bet in the game
      */
-/*    private void placeRandomBet(Bot player) {
-        Random random = new Random();
-        int choosenHorseIndex = random.nextInt(horses.size());
-        int maxBet = Math.min(MAX_BET, player.getBankroll()); // Sets the maxBet bet in case the player don't have enough chips
-        int betAmount = random.nextInt(maxBet - MIN_BET + 1) + MIN_BET; // random number from MIN_BET to maxBet
-        Bet bet = new Bet(betAmount,horses.get(choosenHorseIndex));
-        player.setBet(bet);
-        player.subtractFromBankroll(betAmount);
-        pot += betAmount;
-
-        ConsoleInOut.print(player.getUserName()+" placed a bet of "+bet.getBet()+ " chips on "+bet.getHorseBet().getDescription());
+    public int getMAX_BET() {
+        return MAX_BET;
     }
-*/
 
     /**
-     * Prompts a human player to place a bet.
-     * The player chooses a horse and enters a bet amount in the range specified by the global variable MIN_BET and maxBet.
-     * maxBet will be the minimum between MAX_BET and the player bankroll.
-     * @param player Human: The human player placing the bet.
+     * Get access to 'MIN_HUMANS'.
+     *
+     * @return int minimum of humans to set players
      */
-/*    private void placeHumanBet(Human player) {
-        int choosenHorseIndex = -1 + ConsoleInOut.getIntegerInRange(
-                "Choose the winner horse, " + player.getUserName() + ":\n"+displayRaceHorses(),
-                1,
-                horses.size()
-        );
-        int maxBet = Math.min(MAX_BET, player.getBankroll()); // Sets the maxBet bet in case the player don't have enough chips
-        int betAmount = ConsoleInOut.getIntegerInRange("Enter your bet amount, " + player.getUserName() + ": ", MIN_BET, maxBet);
-        player.setBet(new Bet(betAmount,horses.get(choosenHorseIndex)));
-        player.subtractFromBankroll(betAmount);
-        pot += betAmount;
+    public int getMIN_HUMANS() {
+        return MIN_HUMANS;
     }
-*/
 
     /**
-     * Returns an ArrayList of players who correctly guessed the winning horse based on their bets.
-     * The method compares each player's bet with the winning horse and adds the players who guessed correctly to the list.
-     * @return ArrayList of players who guessed the correct winning horse.
+     * Get access to 'MIN_BOTS'.
+     *
+     * @return int minimum of bots to set players
      */
-/*    private ArrayList<Player> getWinners () {
-        ArrayList<Player> winnersList = new ArrayList<>();
-        for (Player player : players) {
-            // TODO:
-            //  Mejorar esta condición de if, ya que seguro que hay formas más eficientes de hacer la comparación.
-            //  Para hacerlo hay que implementar equals en la clase card
-            if (player.getBet().getHorseBet().getDescription().equals(winnerHorse.getDescription())) {
-                winnersList.add(player);
-            }
-        }
-        return winnersList;
+    public int getMIN_BOTS() {
+        return MIN_BOTS;
     }
-*/
+
     /**
-     * Displays the list of race horses with their respective indices +1.
-     * @return String: A numbered list of the available race horses.
+     * Get access to 'MIN_PLAYERS'.
+     *
+     * @return int minimum players the game needs
      */
-/*    private String displayRaceHorses() {
-        StringBuilder racehorses = new StringBuilder();
-        for (int i=1; i<= horses.size();i++) {
-            racehorses.append("[").append(i).append("] ").append(horses.get(i - 1).getDescription()).append("\n");
-        }
-        return racehorses.toString();
+    public int getMIN_PLAYERS() {
+        return MIN_PLAYERS;
     }
-*/
+
     /**
-     * Displays the current game status, showing each player's username and their total chips.
+     * Get access to 'MAX_PLAYERS'.
+     *
+     * @return int maximum players the game can handle
      */
-/*    private void displayGameStatus() {
-        ConsoleInOut.print("Game stats:");
-        for (Player player : players) {
-            ConsoleInOut.print(player.getUserName()+" has "+player.getBankroll()+" chips.");
-        }
-        ConsoleInOut.print(""); // newline
+    public int getMAX_PLAYERS() {
+        return MAX_PLAYERS;
     }
-*/
+
+    /**
+     * Get access to 'pot'.
+     *
+     * @return int total of the game pot
+     */
+    public int getPot() {
+        return pot;
+    }
+
+    /**
+     * Creates a new arraylist of players.
+     *
+     * @return arraylist List of players created
+     */
+    public ArrayList<Player> getPlayers() {
+        return new ArrayList<>(players);
+    }
+
+    /**
+     * Retrieves the player at the specified index.
+     *
+     * @param i the index of the player in the players list
+     * @return Player the player linked to the specified index
+     */
+    public Player getIndexPlayer(int i) {
+        return players.get(i);
+    }
+
     /**
      * Sets up the players for the game by creating human and bot players
+     *
      * @param humanNames A String array with the names of the human players
      * @param numberOfBots The amount of bots to be created
      */
@@ -275,7 +157,7 @@ public class PlayerManager {
             throw new IllegalArgumentException("Invalid number of players: must have at least 1 human and not exceed max players.");
              */
             return; // Exit if the amount of players/humans is invalid
-            }
+        }
 
         // Create players
         for (int i=0; i<totalPlayers; i++) {
@@ -287,79 +169,129 @@ public class PlayerManager {
                 bots++;
             }
         }
-
     }
 
-    public int playerCount() {
-        return players.size();
-    }
-
-    public boolean indexPlayerIsHuman(int i) {
-        return players.get(i) instanceof Human;
-    }
-    public int getIndexPlayerBankroll(int i) {
-        return players.get(i).getBankroll();
-    }
-
-    public int getMIN_BET() {
-        return MIN_BET;
-    }
-
-    public int getMAX_BET() {
-        return MAX_BET;
-    }
-
-    public int getMIN_HUMANS() {
-        return MIN_HUMANS;
-    }
-    public int getMIN_BOTS() {
-        return MIN_BOTS;
-    }
-
-    public int getMIN_PLAYERS() {
-        return MIN_PLAYERS;
-    }
-
-    public int getMAX_PLAYERS() {
-        return MAX_PLAYERS;
-    }
-
-    public ArrayList<Player> getPlayers() {
-        return new ArrayList<>(players);
-    }
-
-    public void indexHumanPlayerMakeBet(int i, int betAmount, Card betCard) {
-        Player player = players.get(i);
-        player.setBet(new Bet(betAmount, betCard));
-    }
-
-    public void indexBotPlayerMakeBet(int i, ArrayList<Card> betOptions) {
-        Player player = players.get(i);
-        ((Bot)player).makeBet(betOptions, this.MAX_BET, this.MIN_BET);
-    }
-
+    /**
+     * Calculates the amount of 'Human' and 'Bot' objects of the players list.
+     *
+     * @return bool If there are still more than one 'Human' or any 'Bot'.
+     */
     public boolean isGameOver() {
         int humans=0;
         int bots=0;
+
+        // Calculates the amount of each type of players
         for (Player player : players) {
             if (player instanceof Human) humans++;
             else if (player instanceof Bot) bots++;
         }
 
-        if (humans > 1 || bots > 0) return false;
+        if (humans > 1 || bots > 0) return false; // More than one 'Human' or at least one 'Bot'
 
-        return (humans==0)||(humans==1&&bots==0);
+        return (humans==0)||(humans==1&&bots==0); // no 'Human' left or only one without 'Bot'
     }
 
-    public boolean distributeBetsAfterRace(Card winner) { // TODO
+    /**
+     * If there ir any winner, it redistribute the earnings depending on each player's bet. It also updates the pot.
+     *
+     * @param winner The winner card of the game.
+     * @return bool If pot has been distributed or not.
+     */
+    public boolean distributeBetsAfterRace(Card winner) {
+        int totalWinningBets = getWinningBetsAmount(winner); // Calculates how many bets won
+        int totalEarnings = 0;
+
+        if (totalWinningBets == 0) return false;
+
+        // Calculates each earning depending on each bet
+        for(Player player : players) {
+            if (player.getBet().getHorseBet().equals(winner)) {
+                int playerBet = player.getBet().getBetAmount();
+                int winnings = (playerBet * pot) / totalWinningBets;
+                player.addToBankroll(winnings);
+                totalEarnings += winnings; // Accumulates the winnings
+            }
+        }
+        pot -= totalEarnings; // Adjust the pot
+        if (pot < 0) pot = 0; // Taking care of possible errors/truncated values
+
         return true;
     }
 
-    public boolean removeLosers() { // TODO
-        return true;
+    /**
+     * @param winner Winner card of the game.
+     * @return int The amount of bets (each 'Player') which has won the game.
+     */
+    public int getWinningBetsAmount(Card winner) {
+        int winnerCount = 0;
+
+        // Calculates how many bets won
+        for(Player player : players) {
+            if (player.getBet().getHorseBet().equals(winner)) {
+                winnerCount++;
+            }
+        }
+        return winnerCount;
     }
 
-    public Human getHumanWinner() { // TODO
+    /**
+     * Checks if any player's bankroll is out of range (MIN_BET), in that case it removes
+     * him from the 'players' list.
+     *
+     * @return boolean If the list has been modified or not.
+     */
+    public boolean removeLosers() {
+        ArrayList<Player> losers = new ArrayList<>(); // Losers list
+
+        // Takes the losers
+        for(Player player : players) {
+            if (player.getBankroll() < MIN_BET) { // Checks minimum bet
+                losers.add(player);
+            }
+        }
+
+        return players.removeAll(losers); // Removes losers from original list
+
+        /*
+        Since we cant remove elements from an ArrayList during a for (it could cause a ConcurrentModificationException),
+        we will create a new list to get all the players (to remove) from the global player list and remove them afterward.
+        A more efficient solution could be to use an Iterator, but we still have to learn how to use it.
+        TODO: Learn to use Iterators
+        */
+    }
+
+    /**
+     * It sets the bet for the 'Human' player.
+     *
+     * @param i Index of the 'Human' player in the list.
+     * @param betAmount Bet amount established by the 'Human' player.
+     * @param betCard Card indicated by the 'Human' player (bet).
+     */
+    public void indexHumanPlayerMakeBet(int i, int betAmount, Card betCard) {
+        Player player = players.get(i);
+        player.setBet(new Bet(betAmount, betCard)); // Sets the bet for the 'Human' player
+        pot += betAmount; // Increase the pot value
+    }
+
+    /**
+     * It randomly sets the bet for the 'Bot' players.
+     *
+     * @param i Index of the 'Bot' player in the list.
+     * @param betOptions List of cards option to bet for.
+     */
+    public void indexBotPlayerMakeBet(int i, ArrayList<Card> betOptions) {
+        Player player = players.get(i);
+        ((Bot)player).makeBet(betOptions, this.MAX_BET, this.MIN_BET); // Randomly calculates the bets and options
+        int betAmount = player.getBet().getBetAmount();
+        pot += betAmount; // Increase the pot value
+    }
+
+    /**
+     * @return bool If the only last element is 'Human' or not.
+     */
+    public Human getHumanWinner() {
+        Player player = players.getFirst();
+        if (player instanceof Human) return (Human) player;
         return null;
     }
 }

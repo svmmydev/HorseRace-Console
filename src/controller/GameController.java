@@ -8,8 +8,8 @@ import model.deck.Card;
 
 /**
  * The GameController class serves as the main controller for the horses racing game.
- *  It coordinates interactions between the model classes (PlayerManager, GameHorsesRace) and the view classes (ConsoleView).
- *  This class follows the Model-View-Controller (MVC) design pattern.
+ * It coordinates interactions between the model classes (PlayerManager, GameHorsesRace) and the view classes (ConsoleView).
+ * This class follows the Model-View-Controller (MVC) design pattern.
  */
 public class GameController {
     private PlayerManager playerManager;
@@ -41,6 +41,7 @@ public class GameController {
         preparePlayers();
 
         while (!playerManager.isGameOver()) {
+            gameHorsesRace.prepareDeck(); // Prepares deck and possible bets por the players
             setUpBets(); // set up the bets for current round.
             consoleView.displayPlayersRanking(playerManager.getPlayers());
 
@@ -61,17 +62,18 @@ public class GameController {
      */
     private void setUpBets() {
         // Iterate through all the players
-        for (int i = 0; i< playerManager.playerCount(); i++) {
+        for (int i = 0; i< playerManager.getNumPlayers(); i++) {
 
             if (playerManager.indexPlayerIsHuman(i)) {// if player is Human, ask por user input to set his bet.
 
-                Card betCard = consoleView.askForBetCard(gameHorsesRace.getHorses());
+                Card betCard = consoleView.askForBetCardToPlayer(gameHorsesRace.getHorses(),playerManager.getIndexPlayer(i));
                 int maxBet = Math.min(playerManager.getMAX_BET(), playerManager.getIndexPlayerBankroll(i));
-                int betAmount = consoleView.askForBetAmount(playerManager.getMIN_BET(), maxBet);
+                int betAmount = consoleView.askForBetAmountToPlayer(playerManager.getIndexPlayer(i), playerManager.getMIN_BET(), maxBet);
                 playerManager.indexHumanPlayerMakeBet(i, betAmount, betCard);
 
             } else { // If the player is Bot, pass down info, so it can make a bet
                 playerManager.indexBotPlayerMakeBet(i, gameHorsesRace.getHorses());
+                ConsoleView.showPlayerBet(playerManager.getIndexPlayer(i));
             }
         }
     }
@@ -80,7 +82,7 @@ public class GameController {
      * Prepares the players for the game by gathering input through the console for human and bot players.
      * Ensures there is enough players to play a game but not more that the maximum allowed.
      */
-    public void preparePlayers() {
+    private void preparePlayers() {
         // Get an array with the names of the Human players from user input
         String[] humanNames = consoleView.getHumanNames(playerManager.getMIN_HUMANS(),playerManager.getMAX_PLAYERS());
 
@@ -110,7 +112,7 @@ public class GameController {
         do {
 
             gameHorsesRace.takeTurn(); // take a turn and make the necessary changes to the state of the game.
-            consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getDrawnCard());
+            consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getLastDrawnCard());
 
             winner = gameHorsesRace.getWinner(); // Checks if there is a winner after the turn.
 
@@ -126,7 +128,7 @@ public class GameController {
         ConsoleView.displayRaceWinner(winner); // Display the winning horse to the players.
 
         // Distribute bets based on the winner, also display if there are no winning bets.
-        if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets();
+        if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets(playerManager.getPot());
         // removes players with not enough bankroll to keep playing and display remaining players.
         if (playerManager.removeLosers()) consoleView.displaySomePlayersLostMessage();
         consoleView.displayPlayersRanking(playerManager.getPlayers());

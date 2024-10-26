@@ -54,15 +54,4 @@ public class ConsoleInOut {
             }
         } while (true);
     }
-
-    /**
-     * Prints a message to the console.
-     * This method allows easy modifications in the future if the output methods are changed (changing formats,
-     * using a different output stream, etc).
-     * @param message The message to be printed to the console.
-     */
-    public static void print(String message) {
-        System.out.println(message);
-    }
-
 }

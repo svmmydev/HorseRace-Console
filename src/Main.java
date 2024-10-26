@@ -1,13 +1,18 @@
+import controller.GameController;
 import model.GameHorsesRace;
 import model.PlayerManager;
+import view.ConsoleView;
 
 public class Main {
         public static void main(String[] args) {
-            GameHorsesRace gameRace = new GameHorsesRace();
 
-            //gameRace.getReady();
+            PlayerManager playerManager = new PlayerManager();
+            GameHorsesRace gameHorsesRace = new GameHorsesRace();
+            ConsoleView consoleView = new ConsoleView();
 
-            PlayerManager game = new PlayerManager();
-            //game.gameMenu();
+            GameController gameController = new GameController(playerManager, gameHorsesRace, consoleView);
+
+            gameController.init();
+
         }
 }
