@@ -1,6 +1,6 @@
 package model.player;
 
-public abstract class Player {
+public abstract class Player implements Comparable<Player> {
     private String userName;
     private int bankroll;
     private Bet bet;
@@ -9,6 +9,21 @@ public abstract class Player {
         this.userName = userName;
         this.bankroll = bankroll;
         this.bet = null;
+    }
+
+    /**
+     * Compares this Player with argumentPlayer for order.
+     * First it compares them for their bankroll in ascending order, and if equals, compares them by alphabetical order.
+     * @param argumentPlayer the Player to be compared to.
+     * @return int: positive value if this Player goes first, negative the other way around, and 0 if equals
+     */
+    @Override
+    public int compareTo(Player argumentPlayer) {
+        if (this.bankroll != argumentPlayer.getBankroll()) {
+            return Integer.compare(this.bankroll, argumentPlayer.getBankroll());
+        } else {
+            return this.userName.compareTo(argumentPlayer.getUserName());
+        }
     }
 
     public String getUserName() {
@@ -54,13 +69,5 @@ public abstract class Player {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "userName='" + userName + '\'' +
-                ", bet=" + bet +
-                '}';
     }
 }

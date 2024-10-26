@@ -9,13 +9,15 @@ import utils.ConsoleInOut;
 import utils.Pause;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 
 public class ConsoleView {
 
 
-    public static void displayRaceWinner(Card winner) { // TODO
+    public static void displayRaceWinner(Card winner) {
+        System.out.println("And the winner is... the mighty " + winner.getDescription() + "! 🏆 Congratulations!");
     }
 
     /**
@@ -150,7 +152,18 @@ public class ConsoleView {
         );
     }
 
-    public void displayPlayersRanking(ArrayList<Player> players) { // TODO
+    /**
+     * Display the current ranking of players by their bankroll.
+     * @param players The list of players to be displayed in the ranking.
+     */
+    public void displayPlayersRanking(ArrayList<Player> players) {
+        System.out.println("This is the actual leaderboard:");
+        Collections.sort(players);
+        int i=1;
+        for (Player player : players){
+
+            System.out.println("["+(i++)+"] "+player.getUserName()+". Bankroll: "+player.getBankroll()+" chips.");
+        }
     }
 
     /**
