@@ -2,6 +2,7 @@ package view;
 
 import model.Board;
 import model.deck.Card;
+import model.deck.CardSuit;
 import model.player.Human;
 import model.player.Player;
 import utils.ConsoleInOut;
@@ -9,6 +10,7 @@ import utils.Pause;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 
 public class ConsoleView {
 
@@ -152,37 +154,6 @@ public class ConsoleView {
     }
 
     /**
-     * Displays the current state of the board with the positions of the horses and the last drawn card.
-     * @param board Board: represents the current state of the board.
-     * @param drawnCard Card: represents the card that was drawn if there is any.
-     */
-    public void displayBoard(Board board, Card drawnCard) {
-        Card[][] boardArray = board.getBoard();
-        int trackLength = board.getTrackLength();
-        StringBuilder boardToPrint = new StringBuilder();
-
-        for (int row=0; row<boardArray.length; row++) {
-            for (int col=0; col<trackLength; col++) {
-                if (boardArray[row][col]!=null) {
-                    boardToPrint.append(
-                            getRow(boardArray[row][col], col, trackLength)
-                    ).append("\n");
-                    break;
-                }
-            }
-        }
-
-        // If a drawn card is provided, display a message indicating what it was
-        if (drawnCard != null) {
-            boardToPrint.append("Drawn card: ").append(drawnCard.getDescription()).append("\n");
-        }
-
-        System.out.println(boardToPrint);
-
-        Pause.untilEnter();  // Pauses until the user presses Enter
-    }
-
-    /**
      * Constructs a string representation of a specific row in the board,
      * including the horse's description and its position on the track.
      *
@@ -269,4 +240,177 @@ public class ConsoleView {
                 "You defeated all your opponents and emerged victorious!!");
         sayGoodBye();
     }
+
+    /**
+     * Displays the current state of the board with the positions of the horses and the last drawn card.
+     * @param board        Board: represents the current state of the board.
+     * @param drawnCard    Card: represents the card that was drawn if there is any.
+     * @param movesForward boolean: true if the movement of the last drawn card is forward, false otherwise.
+     */
+    public void displayBoard(Board board, Card drawnCard, boolean movesForward) {
+        Card[][] boardArray = board.getBoard();
+        int trackLength = board.getTrackLength();
+        boolean isInFirstPosition;
+        StringBuilder boardToPrint = new StringBuilder();
+
+        for (int row=0; row<boardArray.length; row++) {
+            for (int col=0; col<trackLength; col++) {
+                if (boardArray[row][col]!=null) {
+                    boardToPrint.append(
+                            getRow(boardArray[row][col], col, trackLength)
+                    ).append("\n");
+                    break;
+                }
+            }
+        }
+
+        // If a drawn card is provided, display a message indicating what it was
+        if (drawnCard != null) {
+            boardToPrint.append("The crupier draws the ").append(drawnCard.getDescription()).append("!!\n");
+            isInFirstPosition = isHorseInFirstPosition(drawnCard, board);
+            boardToPrint.append(narrateTurnResult(drawnCard, movesForward, isInFirstPosition)).append("\n");
+        }
+
+        System.out.println(boardToPrint);
+
+        Pause.untilEnter();  // Pauses until the user presses Enter
+    }
+
+    /**
+     * Checks if the horse with the same suit as the drawnCard is in the first position of the board.
+     * @param drawnCard Card: The last drawn card
+     * @param board Board: the board containing the state of the race.
+     * @return boolean: true if the horse with the same suit as drawnCard is in the first position, false otherwise.
+     */
+    private boolean isHorseInFirstPosition(Card drawnCard, Board board) {
+        CardSuit suit = drawnCard.getSuit();
+        Card[][] boardArray = board.getBoard();
+
+        // checks if there is a card with the same suit in the first column
+        for (int row = 0; row < boardArray.length; row++) {
+            if (boardArray[row][0] != null && boardArray[row][0].getSuit() == suit) {
+                return true;  // the horse of the same suit as the las drawn card is in the first position
+            }
+        }
+        return false;  // the horse is not in the first position
+    }
+
+
+    /**
+     * Generates the narration of the horse's movement based on the drawn card and its position.
+     * @param drawnCard Card: The last drawn card indicating which horse moves.
+     * @param movesForward boolean: Indicates if the horse moves forward or backward.
+     * @param isInFirstPosition boolean: Indicates if the horse is in the first position.
+     * @return StringBuilder: contains the narration of the turn result.
+     */
+    private StringBuilder narrateTurnResult(Card drawnCard, boolean movesForward, boolean isInFirstPosition) {
+        StringBuilder narration = new StringBuilder();
+        String suitName = drawnCard.getSuit().name();  // Get the name of the suit
+
+        if (movesForward) {
+            if (isInFirstPosition) {
+                narration.append(forwardFromFirstPosition());
+            } else {
+                narration.append(forwardNormal());
+            }
+        } else {
+            if (isInFirstPosition) {
+                narration.append(backwardsFromFirstPosition());
+            } else {
+                narration.append(backwardsNormal());
+            }
+        }
+        return narration;
+    }
+
+    /**
+     * Generates a narration indicating that a horse has moved forward from the first position on the board.
+     * The narration will be chosen randomly from a predefined set of phrases.
+     * @return StringBuilder containing a random narration about the horse's movement.
+     */
+    private StringBuilder forwardFromFirstPosition() {
+        String[] phrases = {
+                "The horse leaps forward from the starting line!",
+                "Off to a great start, the horse moves ahead!",
+                "The horse charges forward from its initial spot!",
+                "With a burst of speed, the horse races ahead from the first position!",
+                "The horse has broken free from the starting gate!"
+        };
+        Random random = new Random();
+        int index = random.nextInt(phrases.length);
+        return new StringBuilder(phrases[index]);
+    }
+
+    /**
+     * Generates a narration indicating that a horse has moved forward normally on the board.
+     * The narration will be chosen randomly from a predefined set of phrases.
+     * @return StringBuilder containing a random narration about the horse's movement.
+     */
+    private StringBuilder forwardNormal() {
+        String[] phrases = {
+                "The horse moves steadily forward.",
+                "With determination, the horse advances.",
+                "The horse continues its journey, moving forward.",
+                "A smooth stride forward for the horse.",
+                "The horse picks up speed as it moves ahead."
+        };
+        Random random = new Random();
+        int index = random.nextInt(phrases.length);
+        return new StringBuilder(phrases[index]);
+    }
+
+    /**
+     * Generates a narration indicating that the horse is attempting to move backward from the first position,
+     * but cannot move because it is already at the start.
+     * @return StringBuilder containing a random narration about the horse's movement.
+     */
+    private StringBuilder backwardsFromFirstPosition() {
+        String[] phrases = {
+                "The horse is at the starting line and cannot move backward.",
+                "The horse tries to move backward but remains at the first position.",
+                "The horse cannot retreat from the first position; it stays put.",
+                "The horse attempts to go backward, but it's already at the beginning of the track.",
+                "The horse realizes it can't move backward from the first position."
+        };
+        Random random = new Random();
+        int index = random.nextInt(phrases.length);
+        return new StringBuilder(phrases[index]);
+    }
+    private StringBuilder backwardsNormal() {
+        String[] phrases = {
+                "The horse gallops backward, making strategic moves.",
+                "The horse takes a step back, reassessing its position.",
+                "With a swift retreat, the horse moves back on the track.",
+                "The horse gracefully backs away, looking for a better angle.",
+                "In a tactical maneuver, the horse retreats to gain an advantage."
+        };
+        Random random = new Random();
+        int index = random.nextInt(phrases.length);
+        return new StringBuilder(phrases[index]);
+    }
+
+    /**
+     * Announces the start of the race with a random message.
+     */
+    public void raceStartAnnouncement() {
+        String[] announcements = {
+                "Ladies and gentlemen, the race is about to begin! Get ready!",
+                "And they're off! The race has officially started!",
+                "It's time for the excitement to begin! The race starts now!",
+                "Hold onto your hats! The horses are ready to race!",
+                "The crowd goes wild as the race kicks off! Let the games begin!",
+                "On your marks, get set, go! The race has started!",
+                "With a loud cheer, the race is underway! May the best horse win!",
+                "The gates have opened! The race is on!"
+        };
+
+        // Select a random announcement
+        Random random = new Random();
+        String randomAnnouncement = announcements[random.nextInt(announcements.length)];
+
+        // Print the selected announcement
+        System.out.println(randomAnnouncement+"\n");
+        Pause.seconds(3);
+    }
 }
+
