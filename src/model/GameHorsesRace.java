@@ -43,19 +43,6 @@ public class GameHorsesRace {
 
 
     /**
-     * This method draws a card from the deck, moves the horse corresponding to the suit of the drawn card,
-     * and increments the turn counter.
-     */
-    public boolean takeTurn() {
-        drawnCard = drawCard();
-        boolean directionMove = moveHorse(drawnCard);
-        System.out.println(drawnCard);
-        currentTurn++;
-        return directionMove;
-    }
-
-
-    /**
      * Gets the state of the game and determines if there is a winner.
      * If there is a winner, it returns the winning card.
      *
@@ -74,6 +61,19 @@ public class GameHorsesRace {
      */
     public Card drawCard() {
         return cardsDeck.getCardFromDeck();
+    }
+
+
+    /**
+     * This method draws a card from the deck, moves the horse corresponding to the suit of the drawn card,
+     * and increments the turn counter.
+     */
+    public boolean takeTurn() {
+        drawnCard = drawCard();
+        boolean directionMove = moveHorse(drawnCard);
+        System.out.println(drawnCard);
+        currentTurn++;
+        return directionMove;
     }
 
 
