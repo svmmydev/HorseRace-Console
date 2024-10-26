@@ -33,7 +33,8 @@ public class GameHorsesRace {
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
-        prepareDeck();
+        cardsDeck = new CardsDeck();
+        modifyDeck();
         showKnightCards();
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
