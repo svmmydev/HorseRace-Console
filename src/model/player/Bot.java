@@ -10,11 +10,11 @@ public class Bot extends Player {
         super(userName, bankroll);
     }
 
-    public void makeBet(ArrayList<Card> betOptions, int maxBet, int minBet ) {
+    public void makeBet(ArrayList<Card> betOptions, int maxBet, int minBet) {
         Card chosenCard = betOptions.get(generateRandomChoice(0, betOptions.size()-1));
         maxBet = Math.min(maxBet, this.getBankroll());
         int betAmount = generateRandomChoice(minBet, maxBet);
-        setBet(new Bet(betAmount, chosenCard));
+        setBet(new Bet(betAmount, chosenCard), betAmount);
     }
     private int generateRandomChoice(int min, int max) {
         return min + (int)(Math.random() * (max - min + 1));
