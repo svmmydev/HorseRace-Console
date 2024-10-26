@@ -29,6 +29,7 @@ public class GameHorsesRace {
 
     /**
      * Prepares the game to start a new round.
+     * This method initializes the card deck, modifies the deck according to the rules,
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
