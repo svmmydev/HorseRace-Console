@@ -29,10 +29,12 @@ public class GameHorsesRace {
 
     /**
      * Prepares the game to start a new round.
+     * This method initializes the card deck, modifies the deck according to the rules,
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
-        prepareDeck();
+        cardsDeck = new CardsDeck();
+        modifyDeck();
         showKnightCards();
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
@@ -51,10 +53,11 @@ public class GameHorsesRace {
      * This method draws a card from the deck, moves the horse corresponding to the suit of the drawn card,
      * and increments the turn counter.
      */
-    public void takeTurn() {
+    public boolean takeTurn() {
         lastDrawnCard = drawCard();
-        moveHorse(lastDrawnCard);
+        boolean directionMove = moveHorse(lastDrawnCard);
         currentTurn++;
+        return directionMove;
     }
 
 
@@ -87,7 +90,7 @@ public class GameHorsesRace {
      *
      * @param drawnCard The card that has been drawn.
      */
-    public void moveHorse(Card drawnCard) {
+    public boolean moveHorse(Card drawnCard) {
         CardSuit suit = drawnCard.getSuit();
         int horseIndex = -1;
         switch (suit) {
@@ -105,15 +108,16 @@ public class GameHorsesRace {
             }
             case CLUBS: {
                 horseIndex = 3;
+                break;
             }
         }
-        if (horseIndex != -1) {
-            if (isRetreating()) {
+        if (isRetreating()) {
                 board.retreatHorse(horseIndex);
-            } else {
-                board.advanceHorse(horseIndex);
-            }
+                return false;
         }
+
+        board.advanceHorse(horseIndex);
+        return true;
     }
 
 
