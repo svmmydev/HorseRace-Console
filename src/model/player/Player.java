@@ -21,7 +21,8 @@ public abstract class Player implements Comparable<Player> {
     @Override
     public int compareTo(Player argumentPlayer) {
         if (this.bankroll != argumentPlayer.getBankroll()) {
-            return Integer.compare(this.bankroll, argumentPlayer.getBankroll());
+            // Whoever has more chips in the bankroll goes first
+            return Integer.compare(argumentPlayer.getBankroll(), this.bankroll);
         } else {
             return this.userName.compareTo(argumentPlayer.getUserName());
         }

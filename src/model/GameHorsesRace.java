@@ -33,7 +33,6 @@ public class GameHorsesRace {
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
-        showKnightCards();
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
     }
@@ -147,18 +146,6 @@ public class GameHorsesRace {
     public boolean isRetreating() {
         return (currentTurn % 5 == 0);
     }
-
-
-    /**
-     * Displays all knight cards in the knight cards list.
-     * TODO mover sout a clase ConsoleView
-     */
-    public void showKnightCards() {
-        for (Card horse : cardsKnight) {
-            System.out.println(horse);
-        }
-    }
-
 
     /**
      * Gets a copy of the list of knight cards.

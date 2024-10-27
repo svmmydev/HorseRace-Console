@@ -2,6 +2,7 @@ package controller;
 
 import model.PlayerManager;
 import model.player.Human;
+import utils.Pause;
 import view.ConsoleView;
 import model.GameHorsesRace;
 import model.deck.Card;
@@ -76,6 +77,7 @@ public class GameController {
                 ConsoleView.showPlayerBet(playerManager.getIndexPlayer(i));
             }
         }
+        Pause.untilEnter();
     }
 
     /**

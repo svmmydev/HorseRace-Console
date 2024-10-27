@@ -164,6 +164,7 @@ public class ConsoleView {
 
             System.out.println("["+(i++)+"] "+player.getUserName()+". Bankroll: "+player.getBankroll()+" chips.");
         }
+        Pause.untilEnter();
     }
 
     /**
