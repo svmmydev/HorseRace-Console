@@ -63,7 +63,11 @@ las cartas que se lanzan en cada turno.
   • Narración de la carrera: La consola muestra mensajes narrativos, detallando movimientos y posiciones de los caballos en el tablero.<br>
   • Dinámica de eliminación: Los jugadores que pierden todas sus fichas quedan eliminados del juego.<br>
 </p>
+<br>
 
+<div align="center">
+  <img src="https://private-user-images.githubusercontent.com/164394186/380534155-aaa594bf-f051-4424-9646-32568f878e55.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzAwNjcyMTgsIm5iZiI6MTczMDA2NjkxOCwicGF0aCI6Ii8xNjQzOTQxODYvMzgwNTM0MTU1LWFhYTU5NGJmLWYwNTEtNDQyNC05NjQ2LTMyNTY4Zjg3OGU1NS5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAyN1QyMjA4MzhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jMDkxN2Y2OTMwZjk5YTg3MDQwYmZkNzYzYWVmMjBlNTM3YjZmYTkyOGQ1OTM3ZTA1NGRjNjM4N2U1YmVhNzA4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.VgvnPe1SV4w6zC4WsOpolYICHvG4ccoJKcOqHXlVlzE" alt="Gif Game Horse Race" width="800">
+</div>
 
 ---
 
