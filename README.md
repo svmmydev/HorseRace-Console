@@ -1,3 +1,5 @@
+<div align="center">
+
 ## 🏇 Carrera de caballos 🏇
 
 ¡Hola! 👋
@@ -42,7 +44,7 @@ Aquí puedes describir cómo se organiza el proyecto, el flujo de datos y las in
 
 ### Estructura de Directorios
 
-<pre>
+<table align="center" border="6px"><td><pre>
 📦NombreDelProyecto
  ┣ 📂src
  ┃ ┣ 📜main.php
@@ -50,10 +52,11 @@ Aquí puedes describir cómo se organiza el proyecto, el flujo de datos y las in
  ┃   ┣ 📜jugador.php
  ┃   ┗ 📜juego.php
  ┗ 📜README.md
-</pre>
+</pre></td>
+</table>
 
 ### Tecnologías y Herramientas
-- **Lenguaje de programación:** PHP
+• **Lenguaje de programación:** PHP
 - **Entorno de desarrollo:** Visual Studio Code, XAMPP, etc.
 
 ---
@@ -68,3 +71,5 @@ Aquí puedes describir cómo se organiza el proyecto, el flujo de datos y las in
 
 ## Créditos y Reconocimientos
 Agradecimientos especiales a los profesores o compañeros que han contribuido o inspirado el proyecto.
+
+</div>
