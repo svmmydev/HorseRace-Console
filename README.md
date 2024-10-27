@@ -1,8 +1,7 @@
-<div  style="text-align: center; font-family: jetbrains mono">
-
 ## 🏇 Carrera de caballos 🏇
 
-¡Hola! Bienvenido a nuetro humilde proyecto. Una pequeña aplicación que te permite pasar un ratillo disfrutando de una carrera de caballos, como lo oyes, ¡y encima puedes hacer apuestas! Pero tranquilo.. no tienes que meter dinero, ni siquiera son monedas virtuales, son ¡CHIPS! 🍪
+¡Hola! 👋
+Bienvenido a nuetro humilde proyecto. Una pequeña aplicación que te permite pasar un ratillo disfrutando de una carrera de caballos, como lo oyes, ¡y encima puedes hacer apuestas! Pero tranquilo.. no tienes que meter dinero, ni siquiera son monedas virtuales, son ¡CHIPS! 🍪
 
 
 
@@ -14,37 +13,19 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 (The Java Scrolls: Code Assasins)
 🗡️📜
 
-<table text-align="center"><tr><td width="33%">
-<div text-align="center">
-
- ROGER
-
-</div></td><td width="33%">
-
-<div>  
-
- SAMUEL
-
-</div></td><td width="33%">
-<div>
-
- LEANDRO
-
-</div></td></tr></table>
-
 ---
 
 ## Descripción Funcional del Juego 🎮
 **Objetivo del Juego:**  
 Describe el objetivo principal del juego, el contexto y los desafíos que los jugadores enfrentarán.
 
-**Instrucciones Básicas:**  
+**Instrucciones Básicas:**
 
-1. Cómo comenzar una partida.
-2. Reglas principales del juego.
-3. Explicación de los controles o comandos importantes.
+1.Cómo comenzar una partida.
+2.Reglas principales del juego.
+3.Explicación de los controles o comandos importantes.
 
-**Características Principales:**  
+**Características Principales:**
 - Modo de juego (un solo jugador, multijugador, con bots, etc.).
 - Elementos y mecánicas clave.
 - Cualquier otra característica destacada.
@@ -60,13 +41,14 @@ Aquí puedes describir cómo se organiza el proyecto, el flujo de datos y las in
 - **Descripción:** Explica brevemente cómo se relacionan las clases principales, destacando sus roles en el juego y cualquier patrón de diseño relevante.
 
 ### Estructura de Directorios
+
 <pre>
 📦NombreDelProyecto
  ┣ 📂src
  ┃ ┣ 📜main.php
- ┃ ┗ 📜clases/
- ┃ ┃ ┣ 📜jugador.php
- ┃ ┃ ┗ 📜juego.php
+ ┃ ┗ 📜clases
+ ┃   ┣ 📜jugador.php
+ ┃   ┗ 📜juego.php
  ┗ 📜README.md
 </pre>
 
@@ -86,5 +68,3 @@ Aquí puedes describir cómo se organiza el proyecto, el flujo de datos y las in
 
 ## Créditos y Reconocimientos
 Agradecimientos especiales a los profesores o compañeros que han contribuido o inspirado el proyecto.
-
-</div>
