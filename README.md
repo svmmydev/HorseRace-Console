@@ -14,11 +14,24 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 ## Integrantes del equipo
 ## The Java Scrolls: Code Assasins 🗡️📜<br>
 <br>
-<div align="center">
+<div>
   <img src="https://github.com/user-attachments/assets/60406d63-fc34-4927-bf2e-790a37873e80" alt="TheJavaScrolls_CodeAssasins" width="300">
 </div>
+<br>
 
-
+<table>
+  <tr>
+    <td align="center">
+      <img src= "https://private-user-images.githubusercontent.com/164394186/380535533-8d50781e-5401-45e9-9ef0-346914082691.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzAwNjg0MTgsIm5iZiI6MTczMDA2ODExOCwicGF0aCI6Ii8xNjQzOTQxODYvMzgwNTM1NTMzLThkNTA3ODFlLTU0MDEtNDVlOS05ZWYwLTM0NjkxNDA4MjY5MS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAyN1QyMjI4MzhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xNTllMzY1NmVlYTIwYjc0OTZhOTk5MWU3ZGIzODgzNmU0MWFlYmI1NDdlZTdhNTM5YzNhNzcwZGJkY2RiNzhiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.BWhDbyZRb-RBWQE3VVAnP-7AdtTIUkAOBYjK8JrW-WI" width="50"></td>
+    <td align="center"><img src= "https://private-user-images.githubusercontent.com/164394186/380536680-e8ce04a4-211b-45a4-ba9e-9236e399865c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzAwNjk1NzksIm5iZiI6MTczMDA2OTI3OSwicGF0aCI6Ii8xNjQzOTQxODYvMzgwNTM2NjgwLWU4Y2UwNGE0LTIxMWItNDVhNC1iYTllLTkyMzZlMzk5ODY1Yy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAyN1QyMjQ3NTlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03YjZhNGYxZThjY2I5MDNkZWM5NzlmMDE3ZmI1YzUyZmExYWMyNWM1YTdiZDlkNThmMGE4ZWFkYTI2Njg1ZDM2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.2q8zAHLmGItYSaCQEOkcWA-XylqsMkyLHNM1cLN0alQ" width="50"></td>
+    <td align="center"><img src= "https://private-user-images.githubusercontent.com/164394186/380536764-6be379ee-17f3-44f8-b8f9-0f2ccaa80f21.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzAwNjk3MDgsIm5iZiI6MTczMDA2OTQwOCwicGF0aCI6Ii8xNjQzOTQxODYvMzgwNTM2NzY0LTZiZTM3OWVlLTE3ZjMtNDRmOC1iOGY5LTBmMmNjYWE4MGYyMS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMDI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTAyN1QyMjUwMDhaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00MDJmNTcyYzEzMjViZjRjMjQ2MjBjZjVmZjA2MWRhZmFiM2Y3MmY2OThhZmE4N2YyYjE0MjFiZTg5Mjc3MDJiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.XAqb8pbcHN0aBYZ_aEmeIP1-Do4Ui6lCbj1Vbn0W1Tw" width="50"></td>
+  </tr>
+  <tr>
+    <td><img src="https://img.shields.io/badge/Roger-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub"></td>
+    <td><img src="https://img.shields.io/badge/Sammy-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub"></td>
+    <td><img src="https://img.shields.io/badge/Leandro-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub&link=https%3A%2F%2Fgithub.com%2FLeanEmanuel"></td>
+  </tr>
+</table>
 
 ---
 
