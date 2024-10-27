@@ -1,6 +1,6 @@
 <div align="center">
 
-## 🏇 Carrera de caballos 🏇
+# 🏇 Carrera de caballos 🏇
 
 ¡Hola! 👋
 Bienvenido a nuetro humilde proyecto. Una pequeña aplicación que te permite pasar un ratillo disfrutando de una carrera de caballos, como lo oyes, ¡y encima puedes hacer apuestas! Pero tranquilo.. no tienes que meter dinero, ni siquiera son monedas virtuales, son ¡CHIPS! 🍪
@@ -12,7 +12,7 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 </br>
 
 ##### Integrantes del equipo
-# The Java Scrolls: Code Assasins 🗡️📜<br>
+## The Java Scrolls: Code Assasins 🗡️📜<br>
 <br>
 <div align="center">
   <img src="https://github.com/user-attachments/assets/60406d63-fc34-4927-bf2e-790a37873e80" alt="TheJavaScrolls_CodeAssasins" width="300">
@@ -29,30 +29,41 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 las cartas que se lanzan en cada turno.
 
 ***Instrucciones Básicas:***
-<p>
-🚀 Cómo comenzar una partida.<br>
+
+🚀 Cómo comenzar una partida<br>
   <p align="left">
   • Inicio del juego: Ingresa la cantidad de jugadores totales, se ingresa el nombre de los jugadores humanos.<br>
-  • Apuestas: Se selecciona el caballo a apostar y la apuesta en fichas dentro del rango permitido.<br>
-  • Inicio de carerra: Comienza el primer turno sacando la primera carta del mazo.<br>
+  • Apuestas: Se selecciona el caballo a apostar y el número de la apuesta en fichas.<br>
+  • Inicio de la carrera: Comienza el primer turno sacando la primera carta del mazo.<br>
   </p>
+  
 📝 Reglas principales del juego.<br>
 <p align="left">
+  • Selección de jugadores humanos, mínimo un jugador humano y mínimo dos jugadores en total.
+    El máximo de jugadores permitidos sumando humanos y bots es de 6.
   • Carrera por turnos: Cada ronda representa un turno en la carrera, donde se determina el caballo que se movera según
   el palo de la última carta tirada.<br>
-  • Movimiento de los caballos: El caballo que se corresponde con el palo de la carta avanza una casilla en el tablero.<br>
+  • Movimiento de los caballos: El caballo que se corresponde con el palo de la última carta tirada avanza una casilla en el tablero.<br>
   Si el turno es múltiplo de 5 se retrocede una casilla.<br>
-  • Ganador de la carrera: El primer caballo en llegar a la última casilla de tablero.<br>
+  • Ganador de la carrera: El primer caballo en llegar a la última casilla, se reparten las apuesta entre los jugadores que han ganado.<br>
+  
+🎮 Explicación de los controles o comandos importantes.<br>
+  <p align="left">
+    • Iniciar partida: Se indica el número de jugadores y sus nombres por consola.<br>
+    • Seleccionar caballo y apuesta: Cada jugador selecciona un caballo y una apuesta en fichas.<br>
+    • Continuar carrera: Despúes de cada turno se ejecuta una pausa, presionar Enter para continuar.<br>
+  </p>
+  
+***Características Principales:***
+
+<p align="left">
+  • Multijugador: Permite entre 2 y 6 jugadores.<br>
+  • Apuestas por carrera: Los jugadores eligen sus apuestas antes de iniciar la carrera.<br>
+  • Clasificación de jugadores: Los jugadores se clasifican según el bankroll acumulado tras cada carrera.<br>
+  • Narración de la carrera: La consola muestra mensajes narrativos, detallando movimientos y posiciones de los caballos en el tablero.<br>
+  • Dinámica de eliminación: Los jugadores que pierden todas sus fichas quedan eliminados del juego.<br>
 </p>
 
- 
-  
-🎮 Explicación de los controles o comandos importantes.
-</p>
-***Características Principales:***
-- Modo de juego (un solo jugador, multijugador, con bots, etc.).
-- Elementos y mecánicas clave.
-- Cualquier otra característica destacada.
 
 ---
 
