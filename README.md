@@ -14,6 +14,11 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 ##### Integrantes del equipo
 (The Java Scrolls: Code Assasins)
 🗡️📜
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/60406d63-fc34-4927-bf2e-790a37873e80" alt="TheJavaScrolls_CodeAssasins" width="300">
+</div>
+
+
 
 ---
 
