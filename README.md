@@ -3,7 +3,7 @@
 # 🏇 Carrera de caballos 🏇
 
 ¡Hola! 👋
-Bienvenido a nuetro humilde proyecto. Una pequeña aplicación que te permite pasar un ratillo disfrutando de una carrera de caballos, como lo oyes, ¡y encima puedes hacer apuestas! Pero tranquilo.. no tienes que meter dinero, ni siquiera son monedas virtuales, son ¡CHIPS! 🍪
+Bienvenido a nuestro humilde proyecto. Una pequeña aplicación que te permite pasar un ratillo disfrutando de una carrera de caballos, como lo oyes, ¡y encima puedes hacer apuestas! Pero tranquilo.. no tienes que meter dinero, ni siquiera son monedas virtuales, son ¡CHIPS! 🍪
 
 
 
@@ -11,7 +11,7 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 
 </br>
 
-##### Integrantes del equipo
+## Integrantes del equipo
 ## The Java Scrolls: Code Assasins 🗡️📜<br>
 <br>
 <div align="center">
