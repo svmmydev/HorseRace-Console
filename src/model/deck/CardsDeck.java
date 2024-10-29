@@ -46,6 +46,16 @@ public class CardsDeck {
         return cardsDeck.size();
     }
 
+    /**
+     * Checks if the deck is empty by comparing the number of drawn cards
+     * with the total number of cards in the deck.
+     *
+     * @return  true if all cards have been drawn and the deck is empty;
+     *          false otherwise.
+     */
+    public boolean isDeckEmpty(){
+        return cardNumber.size() == cardsDeck.size();
+    }
 
     /**
      * Returns the array of card faces.

@@ -23,8 +23,6 @@ public class GameHorsesRace {
     private CardsDeck cardsDeck;
     private int currentTurn;
     private ArrayList<Card> cardsKnight;
-    private final int RACE_LENGTH = 9;
-
 
 
     /**
@@ -33,9 +31,11 @@ public class GameHorsesRace {
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
+        final int RACE_LENGTH = 9;
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
     }
+
 
     /**
      * This method initializes the card deck, modifies the deck according to the rules.
@@ -51,6 +51,9 @@ public class GameHorsesRace {
      * and increments the turn counter.
      */
     public boolean takeTurn() {
+        if (cardsDeck.isDeckEmpty()) {
+            prepareDeck();
+        }
         lastDrawnCard = drawCard();
         boolean directionMove = moveHorse(lastDrawnCard);
         currentTurn++;
@@ -75,7 +78,7 @@ public class GameHorsesRace {
      *
      * @return Card The card drawn from the deck.
      */
-    public Card drawCard() {
+    private Card drawCard() {
         return cardsDeck.getCardFromDeck();
     }
 
@@ -87,7 +90,7 @@ public class GameHorsesRace {
      *
      * @param drawnCard The card that has been drawn.
      */
-    public boolean moveHorse(Card drawnCard) {
+    private boolean moveHorse(Card drawnCard) {
         CardSuit suit = drawnCard.getSuit();
         int horseIndex = -1;
         switch (suit) {
@@ -109,8 +112,8 @@ public class GameHorsesRace {
             }
         }
         if (isRetreating()) {
-                board.retreatHorse(horseIndex);
-                return false;
+            board.retreatHorse(horseIndex);
+            return false;
         }
 
         board.advanceHorse(horseIndex);
@@ -143,9 +146,10 @@ public class GameHorsesRace {
      *
      * @return boolean True if it is the fifth turn, false otherwise.
      */
-    public boolean isRetreating() {
+    private boolean isRetreating() {
         return (currentTurn % 5 == 0);
     }
+
 
     /**
      * Gets a copy of the list of knight cards.
