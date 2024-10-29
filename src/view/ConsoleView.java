@@ -13,6 +13,30 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 
+/**
+ * This class represents the console view for the Horse Race Betting game.
+ * It provides various console output functionalities for interaction with users,
+ * displaying messages, and gathering user input to control the game flow.
+ * It is instantiated only in the GameController class, where all its methods will be called.
+ * <hr>
+ * <p><b>Responsibilities include:</b></p>
+ * <ul>
+ * <li>Displaying messages and prompts for player actions (such as placing bets, choosing horses).</li>
+ * <li>Showing game information, including leaderboards, race updates, and game results.</li>
+ * <li>Providing narration of the race's progress.</li>
+ * </ul>
+ * <p>Methods within this class are designed for different stages of the game, from setup
+ * (player input and welcome messages) to game progression (displaying player actions,
+ * leaderboard updates) and end of the game (winning announcements).</p>
+ * <hr>
+ * <p><b>Example usage:</b></p>
+ * <pre>
+ *     ConsoleView consoleView = new ConsoleView();
+ *     consoleView.displayWelcomeMessage();
+ *     consoleView.displayPlayersRanking(players);
+ * </pre>
+ * @see controller.GameController
+ */
 public class ConsoleView {
 
 
