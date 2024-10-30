@@ -314,6 +314,15 @@ public class ConsoleView {
         Pause.untilEnter();  // Pauses until the user presses Enter
     }
 
+    /***
+     *Display the current turn in the console.
+     *
+     * @param currentTurn the number of the current turn to be displayed.
+     */
+    public void displayCurrentTurn(int currentTurn){
+        System.out.println("Ronda: " + currentTurn);
+    }
+
     /**
      * Checks if the horse with the same suit as the drawnCard is in the first position of the board.
      * @param drawnCard Card: The last drawn card

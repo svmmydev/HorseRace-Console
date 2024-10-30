@@ -170,6 +170,18 @@ public class GameHorsesRace {
         return board;
     }
 
+    /**
+     * Get the current turn number og the game.
+     *
+     * This method returns the current turn count, allowing other components
+     * to track the progression of turns within the game.
+     *
+     * @return A int current turn number.
+     */
+    public int getCurrentTurn() {
+        return currentTurn;
+    }
+
 
     /**
      * Gets the card that has been draw in the current turn.

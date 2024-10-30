@@ -114,9 +114,9 @@ public class GameController {
         consoleView.displayBoard(gameHorsesRace.getBoard(), null, movesForward);
         do {
 
+            consoleView.displayCurrentTurn(gameHorsesRace.getCurrentTurn());
             movesForward = gameHorsesRace.takeTurn(); // take a turn and make the necessary changes to the state of the game.
             consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getLastDrawnCard(), movesForward);
-
             winner = gameHorsesRace.getWinner(); // Checks if there is a winner after the turn.
 
         } while (winner==null); // It will continue while there is no winner.
