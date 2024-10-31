@@ -123,7 +123,10 @@ las cartas que se lanzan en cada turno.
 </p><br>
 
 ### Diagramas de Clases
-![Diagrama de Clases]("resources/class-diagrams/MVC.png")
+![MVC](resources/class-diagrams/MVC.png)
+![CardsDeck](resources/class-diagrams/CardsDeck.png)
+![PlauerManager](resources/class-diagrams/PlayerManager.png)
+
 - **Descripción:** Explica brevemente cómo se relacionan las clases principales, destacando sus roles en el juego y cualquier patrón de diseño relevante.
 
 ### Estructura de Directorios
