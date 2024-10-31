@@ -5,6 +5,7 @@ import model.deck.Card;
 import model.deck.CardSuit;
 import model.player.Human;
 import model.player.Player;
+import utils.Colors;
 import utils.ConsoleInOut;
 import utils.Pause;
 
@@ -35,6 +36,7 @@ import java.util.Random;
  *     consoleView.displayWelcomeMessage();
  *     consoleView.displayPlayersRanking(players);
  * </pre>
+ *
  * @see controller.GameController
  */
 public class ConsoleView {
@@ -46,26 +48,49 @@ public class ConsoleView {
 
     /**
      * Displays through console the current bet of the player.
+     *
      * @param player Player: the player who's bet will be displayed.
      */
     public static void showPlayerBet(Player player) {
         System.out.println(
-                player.getUserName()+" bid "+player.getBet().getBetAmount()+" chips to the "+player.getBet().getHorseBet().getDescription()+"."
+                Colors.colorize(player.getUserName() + " bid ", Colors.BLUE) +
+                        Colors.colorize(player.getBet().getBetAmount() + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(" chips to the ", Colors.BLUE) +
+                        player.getBet().getHorseBet().getDescription() + // sin color
+                        Colors.colorize(".", Colors.BLUE)
         );
+    }
+
+
+    public void displayGameName() {
+        System.out.println(Colors.colorize("╔═════════════════════════════════════════════════════════════════════════════════╗", Colors.VIBRANT_RED));
+        System.out.println(Colors.colorize("║                                                                                 ║", Colors.VIBRANT_RED));
+        System.out.println(Colors.colorize("""
+                ║        ______  __                              ________                         ║
+                ║        ___  / / _________________________      ___  __ ______ ___________       ║
+                ║        __  /_/ /_  __ __  _____  ____  _ \\     __  /_/ _  __ `_  ____  _ \\      ║
+                ║        _  __  / / /_/ _  /   _(__  )/  __/     _  _, _// /_/ // /__ /  __/      ║
+                ║        /_/ /_/  \\____//_/    /____/ \\___/      /_/ |_| \\__,_/ \\___/ \\___/       ║
+                ║                                                                                 ║
+                ║                                                                                 ║""", Colors.VIBRANT_RED));
+        System.out.println(Colors.colorize("╚═════════════════════════════════════════════════════════════════════════════════╝", Colors.VIBRANT_RED));
     }
 
     /**
      * Displays the welcome message through console when starting the app
      */
     public void displayWelcomeMessage() {
-        System.out.println("Welcome to the Horses Race betting game!");
+        System.out.println(Colors.colorize("\n════════════════════════════════════════════════", Colors.ORANGE));
+        System.out.println(Colors.colorize("🐴  Welcome to the Horses Race Betting Game! 🐴", Colors.GREEN));
+        System.out.println(Colors.colorize("════════════════════════════════════════════════", Colors.ORANGE));
     }
 
     /**
      * Asks for user input to know the amount of human players that will participate in the game and their names.
      * The amount is limited by minHumans and maxPlayers.
      * Uses a HashSet to avoid repeated human names.
-     * @param minHumans minimum amount of human players that the game needs
+     *
+     * @param minHumans  minimum amount of human players that the game needs
      * @param maxPlayers maximum amount of players (in this case humans) that the game accepts
      * @return String[]: an array with the name of the human players that will be participating
      */
@@ -73,20 +98,26 @@ public class ConsoleView {
         final String NAME_REGEXP = "[0-9A-Za-z._]{4,15}";
         HashSet<String> nameSet = new HashSet<>(); // To check for repeated human names
         int humanPlayersAmount = ConsoleInOut.getIntegerInRange(
-                "How many human players will be playing?\n" +
-                        "Minimum "+minHumans+" maximum "+maxPlayers+".",
+                Colors.colorize("\n════════════════════════════════════════\n", Colors.YELLOW) +
+                        Colors.colorize("How many human players will be playing?\n", Colors.BLUE) +
+                        Colors.colorize(">> ", Colors.GREEN) +
+                        Colors.colorize("Minimum " + minHumans + ", maximum " + maxPlayers + ".\n", Colors.YELLOW) +
+                        Colors.colorize("════════════════════════════════════════", Colors.YELLOW),
                 minHumans,
                 maxPlayers
         );
         String[] humanNames = new String[humanPlayersAmount];
         String name;
 
-        for (int i=0; i<humanPlayersAmount; i++) {
+        for (int i = 0; i < humanPlayersAmount; i++) {
 
             do {
                 name = ConsoleInOut.getStringWithRegex(
-                        "Enter human player " + (i + 1) + " of " + humanPlayersAmount + " name:\n" +
-                                "\"Length 4-15, letters, numbers, \\\".\\\" and \\\"_\\\"\"",
+                        Colors.colorize("══════════════════════════════════════════════\n", Colors.YELLOW) +
+                                Colors.colorize("Enter human player " + (i + 1) + " of " + humanPlayersAmount + " name:\n", Colors.BLUE) +
+                                Colors.colorize(">> ", Colors.GREEN) +
+                                Colors.colorize("Length 4-15, letters, numbers, '.' and '_'.\n", Colors.YELLOW) +
+                                Colors.colorize("══════════════════════════════════════════════", Colors.YELLOW),
                         NAME_REGEXP
                 );
                 if (!nameSet.contains(name.toLowerCase())) {
@@ -94,7 +125,7 @@ public class ConsoleView {
                     nameSet.add(name.toLowerCase());
                     break;
                 }
-                System.out.println("\""+name+"\" has already been chosen, chose another name.");
+                System.out.println("\"" + name + "\" has already been chosen, chose another name.");
             } while (true);
         }
 
@@ -104,32 +135,39 @@ public class ConsoleView {
     /**
      * Prompts the user to input how many bots will be playing as opponents in the game.
      * If maxBots is 0 it just displays a message and returns 0.
+     *
      * @param minBots int: minimum amount of bots the player can choose.
      * @param maxBots int: maximum amount of bots the player can choose.
      * @return int: the amount of bots that will be playing the game.
      */
     public int getNumberOfBots(int minBots, int maxBots) {
 
-        if (maxBots<=0) {
+        if (maxBots <= 0) {
             System.out.println("There is no room for bots, all players will be human");
             return 0;
         }
         return ConsoleInOut.getIntegerInRange(
-                "How many AI controlled oponents do you want?\n" +
-                        "Minimum "+minBots+" maximum "+maxBots+".",
+                Colors.colorize("═════════════════════════════════════════════\n", Colors.YELLOW) +
+                        Colors.colorize("How many AI-controlled opponents do you want?\n", Colors.BLUE) +
+                        Colors.colorize(">> ", Colors.GREEN) +
+                        Colors.colorize("Minimum " + minBots + ", maximum " + maxBots + ".", Colors.YELLOW) + "\n" +
+                        Colors.colorize("═════════════════════════════════════════════", Colors.YELLOW),
                 minBots,
                 maxBots
         );
+
     }
 
     /**
      * Asks the player to choose a winning horse from the available options.
+     *
      * @param betOptions List of horses represented as Card objects.
-     * @param player The player making the choice.
+     * @param player     The player making the choice.
      * @return The Card object representing the chosen horse.
      */
     public Card askForBetCardToPlayer(ArrayList<Card> betOptions, Player player) {
-        System.out.println(player.getUserName()+", it is your turn to choose:");
+        System.out.println(Colors.colorize("═════════════════════════════════════════════\n", Colors.YELLOW));
+        System.out.println(Colors.colorize(player.getUserName() + ", it is your turn to choose:", Colors.BLUE));
         displayBetOptions(betOptions);
         int chosenCardIndex = getPlayerChoice(betOptions.size());
         return betOptions.get(chosenCardIndex);
@@ -137,24 +175,26 @@ public class ConsoleView {
 
     /**
      * Displays the available betting options (horses) to the player.
+     *
      * @param betOptions List of horses represented as Card objects.
      */
     private void displayBetOptions(ArrayList<Card> betOptions) {
-        System.out.println("Choose a winning horse:");
+        System.out.println(Colors.colorize("Choose a winning horse:", Colors.BLUE));
         for (int i = 0; i < betOptions.size(); i++) {
             Card card = betOptions.get(i);
-            System.out.println("[" + (i + 1) + "] " + card.getDescription());
+            System.out.println(Colors.colorize(">> ", Colors.GREEN) + Colors.colorize("[" + (i + 1) + "] ", Colors.GREEN) + card.getDescription());
         }
     }
 
     /**
      * Prompts the player for their choice based on the number of available options.
+     *
      * @param choicesAmount The total number of choices available.
      * @return The index of the chosen horse.
      */
     private int getPlayerChoice(int choicesAmount) {
         return -1 + ConsoleInOut.getIntegerInRange(
-                "Choose a winning horse [1-" + choicesAmount + "]",
+                Colors.colorize("Choose a winning horse [1-" + choicesAmount + "]", Colors.BLUE),
                 1,
                 choicesAmount
         );
@@ -162,6 +202,7 @@ public class ConsoleView {
 
     /**
      * Asks the player to input a bet amount between minBet and maxBet.
+     *
      * @param player Player: the player making the choice.
      * @param minBet int: minimum bet the player can choose.
      * @param maxBet int: maximum bet the player can choose.
@@ -169,8 +210,14 @@ public class ConsoleView {
      */
     public int askForBetAmountToPlayer(Player player, int minBet, int maxBet) {
         return ConsoleInOut.getIntegerInRange(
-                player.getUserName()+", you have "+player.getBankroll()+" chips.\n" +
-                        "Please, choose a bet amount between "+minBet+" and "+maxBet+".",
+                Colors.colorize(player.getUserName() + ", you have ", Colors.BLUE) +
+                        Colors.colorize(player.getBankroll() + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(" chips.\n", Colors.BLUE) +
+                        Colors.colorize("Please, choose a bet amount between ", Colors.BLUE) +
+                        Colors.colorize(minBet + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(" and ", Colors.BLUE) +
+                        Colors.colorize(maxBet + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(".", Colors.BLUE),
                 minBet,
                 maxBet
         );
@@ -178,15 +225,21 @@ public class ConsoleView {
 
     /**
      * Display the current ranking of players by their bankroll.
+     *
      * @param players The list of players to be displayed in the ranking.
      */
     public void displayPlayersRanking(ArrayList<Player> players) {
-        System.out.println("This is the actual leaderboard:");
+        System.out.println(Colors.colorize("This is the actual leaderboard:", Colors.BLUE));
         Collections.sort(players);
-        int i=1;
-        for (Player player : players){
-
-            System.out.println("["+(i++)+"] "+player.getUserName()+". Bankroll: "+player.getBankroll()+" chips.");
+        int i = 1;
+        for (Player player : players) {
+            System.out.println(
+                    Colors.colorize("[" + (i++) + "] ", Colors.BLUE) +
+                            Colors.colorize(player.getUserName(), Colors.ORANGE) +
+                            Colors.colorize(". Bankroll: ", Colors.BLUE) +
+                            Colors.colorize(player.getBankroll() + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                            Colors.colorize(" chips.", Colors.BLUE)
+            );
         }
         Pause.untilEnter();
     }
@@ -195,16 +248,16 @@ public class ConsoleView {
      * Constructs a string representation of a specific row in the board,
      * including the horse's description and its position on the track.
      *
-     * @param card Card: represents the card that races (usually a Knight).
-     * @param col int: the current position of the card on the track.
+     * @param card        Card: represents the card that races (usually a Knight).
+     * @param col         int: the current position of the card on the track.
      * @param trackLength int: the total length of the track.
      * @return StringBuilder: contains the formatted row representation ready to be printed.
      */
     private StringBuilder getRow(Card card, int col, int trackLength) {
 
         StringBuilder rowToPrint = new StringBuilder(String.format("%-20s", card.getDescription()));
-        for (int i=0; i<trackLength; i++) {
-            if (i==col) {
+        for (int i = 0; i < trackLength; i++) {
+            if (i == col) {
                 rowToPrint.append(" [X]");
             } else {
                 rowToPrint.append(" [ ]");
@@ -217,14 +270,15 @@ public class ConsoleView {
     /**
      * Prompts the user to decide if he wants to keep playing the game.
      * If he inputs Y/y/S/s it means "yes" N/n means "no",
+     *
      * @return boolean: true if the user answer yes, false otherwise,
      */
     public boolean askIfKeepPlaying() {
         final String YES_CHARACTERS = "YySs";
         final String NO_CHARACTERS = "Nn";
         String answer = ConsoleInOut.getStringWithRegex(
-                        "Do you want to keep playing the game? [Y] Yes [N] No",
-                        "[" + YES_CHARACTERS + NO_CHARACTERS + "]");
+                "Do you want to keep playing the game? [Y] Yes [N] No",
+                "[" + YES_CHARACTERS + NO_CHARACTERS + "]");
 
         return YES_CHARACTERS.contains(answer);
     }
@@ -232,10 +286,11 @@ public class ConsoleView {
     /**
      * Displays a message indicating that no player guessed the winning horse.
      * The message also states that the current pot of chips will carry over to the next round.
+     *
      * @param pot int: the amount of chips in the pot that will stay for the next round.
      */
     public void displayNoWinningBets(int pot) {
-        System.out.println("Nobody guessed the winning Horse, that means that the pot of "+pot+" chips stays for the next round!!");
+        System.out.println("Nobody guessed the winning Horse, that means that the pot of " + pot + " chips stays for the next round!!");
         Pause.untilEnter();
     }
 
@@ -271,16 +326,18 @@ public class ConsoleView {
 
     /**
      * Announces the winner of the game and displays a congratulatory message.
+     *
      * @param winner Human: the human player who won the game.
      */
     public void announceWinnerAndSayGoodbye(Human winner) {
-        System.out.println("Congratulations "+winner.getUserName()+"!!\n" +
+        System.out.println("Congratulations " + winner.getUserName() + "!!\n" +
                 "You defeated all your opponents and emerged victorious!!");
         sayGoodBye();
     }
 
     /**
      * Displays the current state of the board with the positions of the horses and the last drawn card.
+     *
      * @param board        Board: represents the current state of the board.
      * @param drawnCard    Card: represents the card that was drawn if there is any.
      * @param movesForward boolean: true if the movement of the last drawn card is forward, false otherwise.
@@ -291,9 +348,9 @@ public class ConsoleView {
         boolean isInFirstPosition;
         StringBuilder boardToPrint = new StringBuilder();
 
-        for (int row=0; row<boardArray.length; row++) {
-            for (int col=0; col<trackLength; col++) {
-                if (boardArray[row][col]!=null) {
+        for (int row = 0; row < boardArray.length; row++) {
+            for (int col = 0; col < trackLength; col++) {
+                if (boardArray[row][col] != null) {
                     boardToPrint.append(
                             getRow(boardArray[row][col], col, trackLength)
                     ).append("\n");
@@ -319,14 +376,15 @@ public class ConsoleView {
      *
      * @param currentTurn the number of the current turn to be displayed.
      */
-    public void displayCurrentTurn(int currentTurn){
-        System.out.println("Ronda: " + currentTurn);
+    public void displayCurrentTurn(int currentTurn) {
+        System.out.println(Colors.GREEN + "|| RONDA: " + currentTurn + " ||" + Colors.RESET);
     }
 
     /**
      * Checks if the horse with the same suit as the drawnCard is in the first position of the board.
+     *
      * @param drawnCard Card: The last drawn card
-     * @param board Board: the board containing the state of the race.
+     * @param board     Board: the board containing the state of the race.
      * @return boolean: true if the horse with the same suit as drawnCard is in the first position, false otherwise.
      */
     private boolean isHorseInFirstPosition(Card drawnCard, Board board) {
@@ -345,8 +403,9 @@ public class ConsoleView {
 
     /**
      * Generates the narration of the horse's movement based on the drawn card and its position.
-     * @param drawnCard Card: The last drawn card indicating which horse moves.
-     * @param movesForward boolean: Indicates if the horse moves forward or backward.
+     *
+     * @param drawnCard         Card: The last drawn card indicating which horse moves.
+     * @param movesForward      boolean: Indicates if the horse moves forward or backward.
      * @param isInFirstPosition boolean: Indicates if the horse is in the first position.
      * @return StringBuilder: contains the narration of the turn result.
      */
@@ -373,6 +432,7 @@ public class ConsoleView {
     /**
      * Generates a narration indicating that a horse has moved forward from the first position on the board.
      * The narration will be chosen randomly from a predefined set of phrases.
+     *
      * @return StringBuilder containing a random narration about the horse's movement.
      */
     private StringBuilder forwardFromFirstPosition() {
@@ -391,6 +451,7 @@ public class ConsoleView {
     /**
      * Generates a narration indicating that a horse has moved forward normally on the board.
      * The narration will be chosen randomly from a predefined set of phrases.
+     *
      * @return StringBuilder containing a random narration about the horse's movement.
      */
     private StringBuilder forwardNormal() {
@@ -409,6 +470,7 @@ public class ConsoleView {
     /**
      * Generates a narration indicating that the horse is attempting to move backward from the first position,
      * but cannot move because it is already at the start.
+     *
      * @return StringBuilder containing a random narration about the horse's movement.
      */
     private StringBuilder backwardsFromFirstPosition() {
@@ -423,6 +485,7 @@ public class ConsoleView {
         int index = random.nextInt(phrases.length);
         return new StringBuilder(phrases[index]);
     }
+
     private StringBuilder backwardsNormal() {
         String[] phrases = {
                 "The horse gallops backward, making strategic moves.",
@@ -451,12 +514,13 @@ public class ConsoleView {
                 "The gates have opened! The race is on!"
         };
 
+        System.out.println(Colors.colorize("═══════════════════════════════════════════════════════════════════", Colors.VIBRANT_PURPLE));
         // Select a random announcement
         Random random = new Random();
         String randomAnnouncement = announcements[random.nextInt(announcements.length)];
 
         // Print the selected announcement
-        System.out.println(randomAnnouncement+"\n");
+        System.out.println(Colors.colorize("\uD83C\uDF99" + randomAnnouncement + "\n", Colors.VIBRANT_PURPLE));
         Pause.seconds(3);
     }
 }

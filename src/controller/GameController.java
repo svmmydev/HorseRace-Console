@@ -36,6 +36,7 @@ public class GameController {
      * This allows for a structured and enjoyable game.
      */
     public void init() {
+        consoleView.displayGameName();
         consoleView.displayWelcomeMessage();
 
         // asks for user input to set up both the human and bot players.
