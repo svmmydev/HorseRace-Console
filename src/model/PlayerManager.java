@@ -290,6 +290,7 @@ public class PlayerManager {
      * @return bool If the only last element is 'Human' or not.
      */
     public Human getHumanWinner() {
+        if (players.isEmpty()) return null;
         Player player = players.getFirst();
         if (player instanceof Human) return (Human) player;
         return null;

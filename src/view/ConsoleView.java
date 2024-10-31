@@ -153,7 +153,7 @@ public class ConsoleView {
 
             do {
                 name = ConsoleInOut.getStringWithRegex(
-                        Colors.colorize("════════════════════════════════════════════════\n", Colors.YELLOW) +
+                        Colors.colorize("\n════════════════════════════════════════════════\n", Colors.YELLOW) +
                                 Colors.colorize("Enter human player " + (i + 1) + " of " + humanPlayersAmount + " name:\n", Colors.BLUE) +
                                 Colors.colorize(">> ", Colors.GREEN) +
                                 Colors.colorize("Length 4-15, letters, numbers, '.' and '_'.\n", Colors.YELLOW) +
@@ -187,7 +187,7 @@ public class ConsoleView {
             return 0;
         }
         return ConsoleInOut.getIntegerInRange(
-                Colors.colorize("════════════════════════════════════════════════\n", Colors.YELLOW) +
+                Colors.colorize("\n════════════════════════════════════════════════\n", Colors.YELLOW) +
                         Colors.colorize("How many AI-controlled opponents do you want?\n", Colors.BLUE) +
                         Colors.colorize(">> ", Colors.GREEN) +
                         Colors.colorize("Minimum " + minBots + ", maximum " + maxBots + ".", Colors.YELLOW) + "\n" +
@@ -206,7 +206,7 @@ public class ConsoleView {
      * @return The Card object representing the chosen horse.
      */
     public Card askForBetCardToPlayer(ArrayList<Card> betOptions, Player player) {
-        System.out.println(Colors.colorize("════════════════════════════════════════════════\n", Colors.YELLOW));
+        System.out.println(Colors.colorize("\n════════════════════════════════════════════════", Colors.YELLOW));
         System.out.println(Colors.colorize(player.getUserName() + ", it is your turn to choose:", Colors.BLUE));
         displayBetOptions(betOptions);
         int chosenCardIndex = getPlayerChoice(betOptions.size());
@@ -269,6 +269,7 @@ public class ConsoleView {
      * @param players The list of players to be displayed in the ranking.
      */
     public void displayPlayersRanking(ArrayList<Player> players) {
+        System.out.println();
         System.out.println(Colors.colorize("This is the actual leaderboard:", Colors.BLUE));
         Collections.sort(players);
         int i = 1;
@@ -276,7 +277,7 @@ public class ConsoleView {
             System.out.println(
                     Colors.colorize("[" + (i++) + "] ", Colors.BLUE) +
                             Colors.colorize(player.getUserName(), Colors.ORANGE) +
-                            Colors.colorize(". Bankroll: ", Colors.BLUE) +
+                            Colors.colorize(" - Bankroll: ", Colors.BLUE) +
                             Colors.colorize(player.getBankroll() + " \uD83C\uDF6A", Colors.VIBRANT_YELLOW) +
                             Colors.colorize(" chips.", Colors.BLUE)
             );
@@ -365,7 +366,7 @@ public class ConsoleView {
         //Final title with writing delay
         String title = """
                       O                                                                     O
-                {o)xxx|===============-  "The Java Scroll: Code Assassins"  -===============|xxx(o}
+                {o)xxx|===============-  "The Java Scrolls: Code Assassins"  -===============|xxx(o}
                       O                                                                     O""";
         for (char c : title.toCharArray()) {
             System.out.print(Colors.colorize(String.valueOf(c), Colors.VIBRANT_GREEN));
@@ -451,7 +452,7 @@ public class ConsoleView {
                 case CLUBS -> Colors.VIBRANT_GREEN;
                 case GOLD -> Colors.VIBRANT_YELLOW;
             };
-            boardToPrint.append(Colors.colorize("The crupier draws the ", Colors.VIBRANT_PURPLE))
+            boardToPrint.append(Colors.colorize("\nThe crupier draws the ", Colors.VIBRANT_PURPLE))
                     .append(Colors.colorize(drawnCard.getDescription(), suitColor))
                     .append(Colors.colorize("!!\n", Colors.VIBRANT_PURPLE));
             isInFirstPosition = isHorseInFirstPosition(drawnCard, board);
@@ -616,7 +617,13 @@ public class ConsoleView {
 
         // Print the selected announcement
         System.out.println(Colors.colorize(announcerEmoji + announcerEmoji + " " + randomAnnouncement + " " + announcerEmoji + announcerEmoji + "\n", Colors.VIBRANT_PURPLE));
-        Pause.seconds(3);
+        System.out.print(Colors.colorize("🐴 Wait a second, we are adjusting horsehoes",Colors.ORANGE));
+        System.out.print(Colors.colorize(".",Colors.ORANGE));
+        Pause.milliseconds(1500);
+        System.out.print(Colors.colorize(".",Colors.ORANGE));
+        Pause.milliseconds(1500);
+        System.out.println(Colors.colorize(". \n",Colors.ORANGE));
+        Pause.milliseconds(1500);
     }
 }
 

@@ -135,6 +135,7 @@ public class GameController {
         if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets(playerManager.getPot());
         // removes players with not enough bankroll to keep playing and display remaining players.
         if (playerManager.removeLosers()) consoleView.displaySomePlayersLostMessage();
+        if (playerManager.isGameOver()) concludeGame();
         consoleView.displayPlayersRanking(playerManager.getPlayers());
     }
 
@@ -145,5 +146,6 @@ public class GameController {
         Human winner = playerManager.getHumanWinner();
         if (winner==null) consoleView.announceDefeatAndSayGoodbye();
         else consoleView.announceWinnerAndSayGoodbye(winner);
+        System.exit(0);
     }
 }
