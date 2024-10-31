@@ -32,10 +32,6 @@ public abstract class Player implements Comparable<Player> {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public Bet getBet() {
         return bet;
     }

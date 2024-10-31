@@ -42,7 +42,7 @@ import java.util.Random;
 public class ConsoleView {
 
 
-    public static void displayRaceWinner(Card winner) {
+    public void displayRaceWinner(Card winner) {
         String message = getSuitColor(winner);
 
         //Define a fixed width for the top and bottom frame
@@ -70,7 +70,7 @@ public class ConsoleView {
      * @param winner the winning card, whose suit color will be used to highlight the message
      * @return a formatted message indicating the winner, with vibrant color styling based on suit
      */
-    private static String getSuitColor(Card winner) {
+    private String getSuitColor(Card winner) {
         String suitColor;
         switch (winner.getSuit()) {
             case SWORDS -> suitColor = Colors.VIBRANT_BLUE;
@@ -457,7 +457,7 @@ public class ConsoleView {
             isInFirstPosition = isHorseInFirstPosition(drawnCard, board);
 
             boardToPrint.append(Colors.colorize("═══════════════════════════════════════════════════════════════════════════════\n", Colors.VIBRANT_PURPLE));
-            boardToPrint.append(narrateTurnResult(drawnCard, movesForward, isInFirstPosition)).append("\n");
+            boardToPrint.append(narrateTurnResult(movesForward, isInFirstPosition)).append("\n");
         }
 
         System.out.println(boardToPrint);
@@ -517,12 +517,11 @@ public class ConsoleView {
     /**
      * Generates the narration of the horse's movement based on the drawn card and its position.
      *
-     * @param drawnCard         Card: The last drawn card indicating which horse moves.
      * @param movesForward      boolean: Indicates if the horse moves forward or backward.
      * @param isInFirstPosition boolean: Indicates if the horse is in the first position.
      * @return StringBuilder: contains the narration of the turn result.
      */
-    private StringBuilder narrateTurnResult(Card drawnCard, boolean movesForward, boolean isInFirstPosition) {
+    private StringBuilder narrateTurnResult(boolean movesForward, boolean isInFirstPosition) {
         StringBuilder narration = new StringBuilder();
 
         if (movesForward) {

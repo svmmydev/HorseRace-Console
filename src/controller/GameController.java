@@ -129,7 +129,7 @@ public class GameController {
      * @param winner the Card that determines who won the bet.
      */
     private void handleWinnerHorseRepercussions(Card winner) {
-        ConsoleView.displayRaceWinner(winner); // Display the winning horse to the players.
+        consoleView.displayRaceWinner(winner); // Display the winning horse to the players.
 
         // Distribute bets based on the winner, also display if there are no winning bets.
         if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets(playerManager.getPot());

@@ -191,16 +191,6 @@ public class PlayerManager {
         return (humans==0)||(humans==1&&bots==0); // no 'Human' left or only one without 'Bot'
     }
 
-    public boolean adjustBankroll(int i, int bet) {
-        for (Player player : players) {
-            if (player.equals(this.getIndexPlayer(i))) {
-                player.subtractFromBankroll(bet);
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * If there ir any winner, it redistribute the earnings depending on each player's bet. It also updates the pot.
      *

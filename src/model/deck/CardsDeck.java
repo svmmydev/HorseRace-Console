@@ -57,15 +57,6 @@ public class CardsDeck {
         return cardNumber.size() == cardsDeck.size();
     }
 
-    /**
-     * Returns the array of card faces.
-     *
-     * @return An array of card faces.
-     */
-    public CardFace[] getCardFaces() {
-        return cardFaces;
-    }
-
 
     /**
      * Removes the specified card from the deck.
@@ -134,15 +125,5 @@ public class CardsDeck {
      */
     public Card getCardAt(int i) {
         return cardsDeck.get(i);
-    }
-
-
-    /**
-     * Prints all cards in the deck to the console.
-     */
-    public void getCardsDeck() {
-        for (Card i: cardsDeck){
-            System.out.println(i);
-        }
     }
 }
