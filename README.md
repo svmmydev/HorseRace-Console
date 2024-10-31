@@ -59,12 +59,9 @@ las cartas que se lanzan en cada turno.
   
 📝 Reglas principales del juego.<br>
 <p align="left">
-  • Selección de jugadores humanos, mínimo un jugador humano y mínimo dos jugadores en total.
-    El máximo de jugadores permitidos sumando humanos y bots es de 6.
-  • Carrera por turnos: Cada ronda representa un turno en la carrera, donde se determina el caballo que se movera según
-  el palo de la última carta tirada.<br>
-  • Movimiento de los caballos: El caballo que se corresponde con el palo de la última carta tirada avanza una casilla en el tablero.<br>
-  Si el turno es múltiplo de 5 se retrocede una casilla.<br>
+  • Selección de jugadores humanos, mínimo un jugador humano y mínimo dos jugadores en total. El máximo de jugadores permitidos sumando humanos y bots es de 6.<br>
+  • Carrera por turnos: Cada ronda representa un turno en la carrera, donde se determina el caballo que se movera según el palo de la última carta tirada.<br>
+  • Movimiento de los caballos: El caballo que se corresponde con el palo de la última carta tirada avanza una casilla en el tablero. Si el turno es múltiplo de 5 se retrocede una casilla.<br>
   • Ganador de la carrera: El primer caballo en llegar a la última casilla, se reparten las apuesta entre los jugadores que han ganado.<br>
   
 🎮 Explicación de los controles o comandos importantes.<br>
@@ -100,29 +97,29 @@ las cartas que se lanzan en cada turno.
 </p><br>
 
 <p align="left">
-  1.Módulo controller<br>
-  • Contiene el controlador principal (GameController.java), que orquesta el flujo del juego y coordina las              interacciones entre los diferentes componentes.<br>
-  • GameController actúa como intermediario, gestionando el flujo de información y las llamadas entre la vista y la      lógica del juego en el modelo.<br>
+  1.Módulo "controller"<br>
+  • Contiene el controlador principal (GameController.java), que orquesta el flujo del juego y coordina las interacciones entre los diferentes componentes.<br>
+  • GameController actúa como intermediario, gestionando el flujo de información y las llamadas entre la vista y la lógica del juego en el modelo.<br>
   • Cada turno, el controlador toma decisiones y coordina la ejecución de las reglas del juego.
 </p><br>
 
 <p align="left">
-  2.Módulo model:<br>
-  • model/Board: Gestiona el tablero de juego y el estado de los caballos en la carrera.<br>
-  • model/GameHorsesRace: Representa la lógica principal de la carrera de caballos, gestionando el estado general        del juego, los turnos y la mecánica de movimiento.<br>
+  2.Módulo "model":<br>
+  • Board: Gestiona el tablero de juego y el estado de los caballos en la carrera.<br>
+  • GameHorsesRace: Representa la lógica principal de la carrera de caballos, gestionando el estado general del juego, los turnos y la mecánica de movimiento.<br>
   • model/deck: Este submódulo encapsula las clases relacionadas con las cartas:<br>
-    • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la         relación con los caballos.<br>
-  • model/player: Gestiona la lógica relacionada con los jugadores y las apuestas, incluyendo clases para jugadores      humanos (Human.java) y bots (Bot.java). Cada jugador puede realizar         apuestas en la carrera.
+  • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la relación con los caballos.<br>
+  • model/player: Gestiona la lógica relacionada con los jugadores y las apuestas, incluyendo clases para jugadores humanos (Human.java) y bots (Bot.java). Cada jugador puede realizar apuestas en la carrera.
 </p><br>
 <p align="left">
   3.Módulo utils:<br>
-    • Contiene utilidades de apoyo al proyecto, como ConsoleInOut para gestionar la entrada y salida por consola,          Colors para el manejo de colores ANSI, y Pause para controlar las pausas entre acciones.
+    • Contiene utilidades de apoyo al proyecto, como ConsoleInOut para gestionar la entrada y salida por consola, Colors para el manejo de colores ANSI, y Pause para controlar las pausas entre acciones.
 </p><br>
     
 <p align="left">
   4.Módulo view:<br>
-    • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la                  información de los turnos y la dirección de movimiento de los caballos.<br>
-    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las               apuestas y los resultados.
+    • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br>
+    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.
 </p><br>
 
 ***Flujo de datos y relaciones entre componentes***
@@ -140,7 +137,7 @@ las cartas que se lanzan en cada turno.
 <p align="left">
   3.Apuestas y jugadores:<br>
   • Los jugadores pueden realizar apuestas antes del inicio de la carrera.
-  • A lo largo del juego, GameController mantiene el estado de cada jugador y sus apuestas, actualizando los             resultados al final.
+  • A lo largo del juego, GameController mantiene el estado de cada jugador y sus apuestas, actualizando los resultados al final.
 </p><br>
 <p align="left">
   4.Finalización del juego:
