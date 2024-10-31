@@ -173,20 +173,12 @@ las cartas que se lanzan en cada turno.
 
 
 ### Tecnologías y Herramientas
-• **Lenguaje de programación:** PHP
-- **Entorno de desarrollo:** Visual Studio Code, XAMPP, etc.
+**Lenguaje de programación:**<br>
+<img alt="java" src="https://user-images.githubusercontent.com/25181517/117201156-9a724800-adec-11eb-9a9d-3cd0f67da4bc.png" width="80"/><br>
+**Entorno de desarrollo:**<br>
+<img alt="java" src="https://user-images.githubusercontent.com/25181517/192108890-200809d1-439c-4e23-90d3-b090cf9a4eea.png" width="80"/><br>
+  
 
 ---
-
-## Instalación y Ejecución 🚀
-1. Clona el repositorio: `git clone https://github.com/tu_usuario/tu_proyecto.git`
-2. Abre el proyecto en tu entorno de desarrollo.
-3. Configura las dependencias (si aplica).
-4. Inicia el servidor y ejecuta el juego siguiendo las instrucciones.
-
----
-
-## Créditos y Reconocimientos
-Agradecimientos especiales a los profesores o compañeros que han contribuido o inspirado el proyecto.
 
 </div>
