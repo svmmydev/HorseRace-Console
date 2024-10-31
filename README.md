@@ -79,14 +79,14 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
   • Movimiento de los caballos: El caballo que se corresponde con el palo de la última carta tirada avanza una casilla en el tablero. Si el turno es múltiplo de 5 se retrocede una casilla.<br>
   • Ganador de la carrera: El primer caballo en llegar a la última casilla, se reparten las apuesta entre los jugadores que han ganado.<br>
   
-🎮 Explicación de los controles o comandos importantes.<br>
+🎮 Explicación de los controles o comandos importantes 🎮<br>
   <p align="center">
     • Iniciar partida: Se indica el número de jugadores y sus nombres por consola.<br>
     • Seleccionar caballo y apuesta: Cada jugador selecciona un caballo y una apuesta en fichas.<br>
     • Continuar carrera: Despúes de cada turno se ejecuta una pausa, presionar Enter para continuar.<br>
   </p>
   
-***Características Principales:***
+### ***Características Principales:***
 
 <p align="center">
   • Multijugador: Permite entre 2 y 6 jugadores.<br>
@@ -130,8 +130,8 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 
 </br>
 
-## Descripción Técnica ⚙️
-***Arquitectura General del Proyecto***
+##⚙️ Descripción Técnica ⚙️
+### ***📏 Arquitectura General del Proyecto 📐***
 <p align="left">
   El proyecto sigue una arquitectura en capas, separando la lógica en diferentes módulos para mejorar la 
   organización, la mantenibilidad y la claridad del código.
