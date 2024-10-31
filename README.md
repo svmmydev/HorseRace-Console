@@ -11,7 +11,6 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 
 </br>
 
-## Integrantes del equipo
 ## The Java Scrolls: Code Assassins 🗡️📜<br>
 <br>
 <div>
@@ -165,35 +164,31 @@ las cartas que se lanzan en cada turno.
       <pre>
 📦 Práctica UF4
  ┣ 📂 src
- ┃ ┣ 📜 Main.java
- ┃ ┣ 📂 controller
- ┃ ┃ ┣ 📜 GameController.java
- ┃ ┣ 📂 model
- ┃ ┃ ┣ 📜 Board.java
- ┃ ┃ ┣ 📜 GameHorsesRace.java
- ┃ ┃ ┣ 📜 PlayerManager.java
- ┃ ┃ ┣ 📂 deck
- ┃ ┃ ┃ ┣ 📜 Card.java
- ┃ ┃ ┃ ┣ 📜 CardFace.java
- ┃ ┃ ┃ ┣ 📜 CardsDeck.java
- ┃ ┃ ┃ ┣ 📜 CardSuit.java
- ┃ ┃ ┃ ┣ 📜 FacedCard.java
- ┃ ┃ ┃ ┗ 📜 NumeredCard.java
-      </pre>
-    </td>
-    <td>
-      <pre>
- ┃ ┃ ┣ 📂 player
- ┃ ┃ ┃ ┣ 📜 Bet.java
- ┃ ┃ ┃ ┣ 📜 Bot.java
- ┃ ┃ ┃ ┣ 📜 Human.java
- ┃ ┃ ┃ ┗ 📜 Player.java
- ┃ ┣ 📂 utils
- ┃ ┃ ┣ 📜 Colors.java
- ┃ ┃ ┣ 📜 ConsoleInOut.java
- ┃ ┃ ┗ 📜 Pause.java
- ┃ ┗ 📂 view
- ┃ ┃ ┗ 📜 ConsoleView.java
+   ┣ 📜 Main.java
+   ┣ 📂 controller
+   ┃ ┣ 📜 GameController.java
+   ┣ 📂 model
+   ┃ ┣ 📜 Board.java
+   ┃ ┣ 📜 GameHorsesRace.java
+   ┃ ┣ 📜 PlayerManager.java
+   ┃ ┣ 📂 deck
+   ┃ ┃ ┣ 📜 Card.java
+   ┃ ┃ ┣ 📜 CardFace.java
+   ┃ ┃ ┣ 📜 CardsDeck.java
+   ┃ ┃ ┣ 📜 CardSuit.java
+   ┃ ┃ ┣ 📜 FacedCard.java
+   ┃ ┃ ┗ 📜 NumeredCard.java
+   ┃ ┣ 📂 player
+   ┃ ┃ ┣ 📜 Bet.java
+   ┃ ┃ ┣ 📜 Bot.java
+   ┃ ┃ ┣ 📜 Human.java
+   ┃ ┃ ┗ 📜 Player.java
+   ┣ 📂 utilsgit
+   ┃ ┣ 📜 Colors.java
+   ┃ ┣ 📜 ConsoleInOut.java
+   ┃ ┗ 📜 Pause.java
+   ┗ 📂 view
+     ┗ 📜 ConsoleView.java
       </pre>
     </td>
   </tr>
