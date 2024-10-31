@@ -23,8 +23,6 @@ public class GameHorsesRace {
     private CardsDeck cardsDeck;
     private int currentTurn;
     private ArrayList<Card> cardsKnight;
-    private final int RACE_LENGTH = 9;
-
 
 
     /**
@@ -33,12 +31,11 @@ public class GameHorsesRace {
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
-        cardsDeck = new CardsDeck();
-        modifyDeck();
-        showKnightCards();
+        final int RACE_LENGTH = 9;
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
     }
+
 
     /**
      * This method initializes the card deck, modifies the deck according to the rules.
@@ -54,6 +51,9 @@ public class GameHorsesRace {
      * and increments the turn counter.
      */
     public boolean takeTurn() {
+        if (cardsDeck.isDeckEmpty()) {
+            prepareDeck();
+        }
         lastDrawnCard = drawCard();
         boolean directionMove = moveHorse(lastDrawnCard);
         currentTurn++;
@@ -78,7 +78,7 @@ public class GameHorsesRace {
      *
      * @return Card The card drawn from the deck.
      */
-    public Card drawCard() {
+    private Card drawCard() {
         return cardsDeck.getCardFromDeck();
     }
 
@@ -90,30 +90,30 @@ public class GameHorsesRace {
      *
      * @param drawnCard The card that has been drawn.
      */
-    public boolean moveHorse(Card drawnCard) {
+    private boolean moveHorse(Card drawnCard) {
         CardSuit suit = drawnCard.getSuit();
         int horseIndex = -1;
         switch (suit) {
-            case GOLD: {
+            case SWORDS: {
                 horseIndex = 0;
                 break;
             }
-            case SWORDS: {
+            case CUPS: {
                 horseIndex = 1;
                 break;
             }
-            case CUPS: {
+            case CLUBS: {
                 horseIndex = 2;
                 break;
             }
-            case CLUBS: {
+            case GOLD: {
                 horseIndex = 3;
                 break;
             }
         }
         if (isRetreating()) {
-                board.retreatHorse(horseIndex);
-                return false;
+            board.retreatHorse(horseIndex);
+            return false;
         }
 
         board.advanceHorse(horseIndex);
@@ -146,19 +146,8 @@ public class GameHorsesRace {
      *
      * @return boolean True if it is the fifth turn, false otherwise.
      */
-    public boolean isRetreating() {
+    private boolean isRetreating() {
         return (currentTurn % 5 == 0);
-    }
-
-
-    /**
-     * Displays all knight cards in the knight cards list.
-     * TODO mover sout a clase ConsoleView
-     */
-    public void showKnightCards() {
-        for (Card horse : cardsKnight) {
-            System.out.println(horse);
-        }
     }
 
 
@@ -179,6 +168,18 @@ public class GameHorsesRace {
      */
     public Board getBoard() {
         return board;
+    }
+
+    /**
+     * Get the current turn number og the game.
+     *
+     * This method returns the current turn count, allowing other components
+     * to track the progression of turns within the game.
+     *
+     * @return A int current turn number.
+     */
+    public int getCurrentTurn() {
+        return currentTurn;
     }
 
 

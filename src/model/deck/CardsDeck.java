@@ -46,14 +46,15 @@ public class CardsDeck {
         return cardsDeck.size();
     }
 
-
     /**
-     * Returns the array of card faces.
+     * Checks if the deck is empty by comparing the number of drawn cards
+     * with the total number of cards in the deck.
      *
-     * @return An array of card faces.
+     * @return  true if all cards have been drawn and the deck is empty;
+     *          false otherwise.
      */
-    public CardFace[] getCardFaces() {
-        return cardFaces;
+    public boolean isDeckEmpty(){
+        return cardNumber.size() == cardsDeck.size();
     }
 
 
@@ -124,15 +125,5 @@ public class CardsDeck {
      */
     public Card getCardAt(int i) {
         return cardsDeck.get(i);
-    }
-
-
-    /**
-     * Prints all cards in the deck to the console.
-     */
-    public void getCardsDeck() {
-        for (Card i: cardsDeck){
-            System.out.println(i);
-        }
     }
 }

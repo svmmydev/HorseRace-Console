@@ -2,6 +2,7 @@ package controller;
 
 import model.PlayerManager;
 import model.player.Human;
+import utils.Pause;
 import view.ConsoleView;
 import model.GameHorsesRace;
 import model.deck.Card;
@@ -35,6 +36,7 @@ public class GameController {
      * This allows for a structured and enjoyable game.
      */
     public void init() {
+        consoleView.displayGameName();
         consoleView.displayWelcomeMessage();
 
         // asks for user input to set up both the human and bot players.
@@ -76,6 +78,7 @@ public class GameController {
                 ConsoleView.showPlayerBet(playerManager.getIndexPlayer(i));
             }
         }
+        Pause.untilEnter();
     }
 
     /**
@@ -112,9 +115,9 @@ public class GameController {
         consoleView.displayBoard(gameHorsesRace.getBoard(), null, movesForward);
         do {
 
+            consoleView.displayCurrentTurn(gameHorsesRace.getCurrentTurn());
             movesForward = gameHorsesRace.takeTurn(); // take a turn and make the necessary changes to the state of the game.
             consoleView.displayBoard(gameHorsesRace.getBoard(), gameHorsesRace.getLastDrawnCard(), movesForward);
-
             winner = gameHorsesRace.getWinner(); // Checks if there is a winner after the turn.
 
         } while (winner==null); // It will continue while there is no winner.
@@ -126,12 +129,13 @@ public class GameController {
      * @param winner the Card that determines who won the bet.
      */
     private void handleWinnerHorseRepercussions(Card winner) {
-        ConsoleView.displayRaceWinner(winner); // Display the winning horse to the players.
+        consoleView.displayRaceWinner(winner); // Display the winning horse to the players.
 
         // Distribute bets based on the winner, also display if there are no winning bets.
         if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets(playerManager.getPot());
         // removes players with not enough bankroll to keep playing and display remaining players.
         if (playerManager.removeLosers()) consoleView.displaySomePlayersLostMessage();
+        if (playerManager.isGameOver()) concludeGame();
         consoleView.displayPlayersRanking(playerManager.getPlayers());
     }
 
@@ -142,5 +146,6 @@ public class GameController {
         Human winner = playerManager.getHumanWinner();
         if (winner==null) consoleView.announceDefeatAndSayGoodbye();
         else consoleView.announceWinnerAndSayGoodbye(winner);
+        System.exit(0);
     }
 }

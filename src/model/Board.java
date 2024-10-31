@@ -35,7 +35,7 @@ public class Board {
      *
      * @param horses The list of horses to be placed on the board.
      */
-    public void initializeBoard(ArrayList<Card> horses) {
+    private void initializeBoard(ArrayList<Card> horses) {
         for (int i = 0; i < horses.size(); i++) {
             board[i][0] = horses.get(i);
         }

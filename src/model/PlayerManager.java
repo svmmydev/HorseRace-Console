@@ -191,16 +191,6 @@ public class PlayerManager {
         return (humans==0)||(humans==1&&bots==0); // no 'Human' left or only one without 'Bot'
     }
 
-    public boolean adjustBankroll(int i, int bet) {
-        for (Player player : players) {
-            if (player.equals(this.getIndexPlayer(i))) {
-                player.subtractFromBankroll(bet);
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * If there ir any winner, it redistribute the earnings depending on each player's bet. It also updates the pot.
      *
@@ -208,16 +198,16 @@ public class PlayerManager {
      * @return bool If pot has been distributed or not.
      */
     public boolean distributeBetsAfterRace(Card winner) {
-        int totalWinningBets = getWinningBetsAmount(winner); // Calculates how many bets won
+        int totalWinningBetsAmount = getWinningBetsAmount(winner); // Calculates the total bets amount
         int totalEarnings = 0;
 
-        if (totalWinningBets == 0) return false;
+        if (totalWinningBetsAmount == 0) return false;
 
         // Calculates each earning depending on each bet
         for(Player player : players) {
             if (player.getBet().getHorseBet().equals(winner)) {
                 int playerBet = player.getBet().getBetAmount();
-                int winnings = (playerBet * pot) / totalWinningBets;
+                int winnings = (playerBet * pot) / totalWinningBetsAmount;
                 player.addToBankroll(winnings);
                 totalEarnings += winnings; // Accumulates the winnings
             }
@@ -233,15 +223,15 @@ public class PlayerManager {
      * @return int The amount of bets (each 'Player') which has won the game.
      */
     public int getWinningBetsAmount(Card winner) {
-        int winnerCount = 0;
+        int totalBetsAmount = 0;
 
         // Calculates how many bets won
         for(Player player : players) {
             if (player.getBet().getHorseBet().equals(winner)) {
-                winnerCount++;
+                totalBetsAmount += player.getBet().getBetAmount();
             }
         }
-        return winnerCount;
+        return totalBetsAmount;
     }
 
     /**
@@ -300,6 +290,7 @@ public class PlayerManager {
      * @return bool If the only last element is 'Human' or not.
      */
     public Human getHumanWinner() {
+        if (players.isEmpty()) return null;
         Player player = players.getFirst();
         if (player instanceof Human) return (Human) player;
         return null;
