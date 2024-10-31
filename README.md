@@ -11,7 +11,7 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 
 </br>
 
-## The Java Scrolls: Code Assassins 🗡️📜<br>
+### The Java Scrolls: Code Assassins 🗡️📜<br>
 <br>
 <div>
   <img src="resources/Readme-Images/TheJavaScrolls_CodeAssasins.png" alt="Logo Grupo The Java Scrolls: Code Assasins" width="300">
@@ -40,32 +40,41 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
   </tr>
 </table>
 
+</br>
+
 ---
 
-## Descripción Funcional del Juego 🎮
-***Objetivo del Juego:***<br>  
+</br>
+
+### 🎮 Descripción Funcional del Juego 🎮
+
+</br>
+
+### ***Objetivo:***<br>  
 En este juego de carreras de caballo, los jugadores apuestan por los caballos que creen que ganará la carrera.  
-La carrera esta representado por las cartas de la baraja española, donde los caballos se van moviendo por el tablero según
-las cartas que se lanzan en cada turno.
+La carrera esta representado por las cartas de la baraja española, donde los caballos se van moviendo por el tablero según las cartas que se lanzan en cada turno.
 
-***Instrucciones Básicas:***
+</br>
 
-🚀 Cómo comenzar una partida<br>
-  <p align="left">
-  • Inicio del juego: Ingresa la cantidad de jugadores totales, se ingresa el nombre de los jugadores humanos.<br>
-  • Apuestas: Se selecciona el caballo a apostar y el número de la apuesta en fichas.<br>
-  • Inicio de la carrera: Comienza el primer turno sacando la primera carta del mazo.<br>
+### ***Instrucciones Básicas:***
+
+🚀 Comenzar una partida 🚀<br>
+  <p align="center">
+    
+  • ***[Inicio del juego]*** Ingresa la cantidad de jugadores totales, se ingresa el nombre de los jugadores humanos.<br><br>
+  • ***[Apuestas]*** Se selecciona el caballo a apostar y el número de la apuesta en fichas.<br><br>
+  • ***[Inicio de la carrera]*** Comienza el primer turno sacando la primera carta del mazo.<br><br>
   </p>
   
-📝 Reglas principales del juego.<br>
-<p align="left">
+📝 Reglas principales del juego 📝<br>
+<p align="center">
   • Selección de jugadores humanos, mínimo un jugador humano y mínimo dos jugadores en total. El máximo de jugadores permitidos sumando humanos y bots es de 6.<br>
   • Carrera por turnos: Cada ronda representa un turno en la carrera, donde se determina el caballo que se movera según el palo de la última carta tirada.<br>
   • Movimiento de los caballos: El caballo que se corresponde con el palo de la última carta tirada avanza una casilla en el tablero. Si el turno es múltiplo de 5 se retrocede una casilla.<br>
   • Ganador de la carrera: El primer caballo en llegar a la última casilla, se reparten las apuesta entre los jugadores que han ganado.<br>
   
 🎮 Explicación de los controles o comandos importantes.<br>
-  <p align="left">
+  <p align="center">
     • Iniciar partida: Se indica el número de jugadores y sus nombres por consola.<br>
     • Seleccionar caballo y apuesta: Cada jugador selecciona un caballo y una apuesta en fichas.<br>
     • Continuar carrera: Despúes de cada turno se ejecuta una pausa, presionar Enter para continuar.<br>
@@ -73,7 +82,7 @@ las cartas que se lanzan en cada turno.
   
 ***Características Principales:***
 
-<p align="left">
+<p align="center">
   • Multijugador: Permite entre 2 y 6 jugadores.<br>
   • Apuestas por carrera: Los jugadores eligen sus apuestas antes de iniciar la carrera.<br>
   • Clasificación de jugadores: Los jugadores se clasifican según el bankroll acumulado tras cada carrera.<br>
@@ -86,7 +95,34 @@ las cartas que se lanzan en cada turno.
   <img src="resources/Readme-Images/game_horse_race.gif" alt="Gif Game Horse Race" width="800">
 </div>
 
+</br>
+
 ---
+
+</br>
+
+### Diagramas de Clases
+
+</br>
+
+#### Main + MVC
+![MVC](resources/class-diagrams/MVC.png)
+
+</br>
+
+#### CardsDeck
+![CardsDeck](resources/class-diagrams/CardsDeck.png)
+
+</br>
+
+#### PlayerManager
+![PlauerManager](resources/class-diagrams/PlayerManager.png)
+
+</br>
+
+---
+
+</br>
 
 ## Descripción Técnica ⚙️
 ***Arquitectura General del Proyecto***
@@ -114,24 +150,13 @@ las cartas que se lanzan en cada turno.
 <p align="left">
   3.Módulo utils:<br>
     • Contiene utilidades de apoyo al proyecto, como ConsoleInOut para gestionar la entrada y salida por consola, Colors para el manejo de colores ANSI, y Pause para controlar las pausas entre acciones.
-</p><br>
+</p></br>
     
 <p align="left">
   4.Módulo view:<br>
     • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br>
     • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.
-</p><br>
-
-### Diagramas de Clases
-
-#### Main + MVC
-![MVC](resources/class-diagrams/MVC.png)
-
-#### CardsDeck
-![CardsDeck](resources/class-diagrams/CardsDeck.png)
-
-#### PlayerManager
-![PlauerManager](resources/class-diagrams/PlayerManager.png)
+</p></br>
 
 ### Estructura de Directorios
 
@@ -171,14 +196,13 @@ las cartas que se lanzan en cada turno.
   </tr>
 </table>
 
+</br>
 
 ### Tecnologías y Herramientas
-**Lenguaje de programación:**<br>
-<img alt="java" src="https://user-images.githubusercontent.com/25181517/117201156-9a724800-adec-11eb-9a9d-3cd0f67da4bc.png" width="80"/><br>
-**Entorno de desarrollo:**<br>
-<img alt="java" src="https://user-images.githubusercontent.com/25181517/192108890-200809d1-439c-4e23-90d3-b090cf9a4eea.png" width="80"/><br>
-  
 
----
+</br>
+
+<img alt="java" src="https://user-images.githubusercontent.com/25181517/117201156-9a724800-adec-11eb-9a9d-3cd0f67da4bc.png" width="80"/>  
+<img alt="java" src="https://user-images.githubusercontent.com/25181517/192108890-200809d1-439c-4e23-90d3-b090cf9a4eea.png" width="80"/><br><br><br>
 
 </div>
