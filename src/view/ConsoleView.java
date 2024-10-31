@@ -43,7 +43,38 @@ public class ConsoleView {
 
 
     public static void displayRaceWinner(Card winner) {
-        System.out.println("And the winner is... the mighty " + winner.getDescription() + "! 🏆 Congratulations!");
+        String suitColor;
+        switch (winner.getSuit()) {
+            case SWORDS -> suitColor = Colors.VIBRANT_BLUE;
+            case CUPS -> suitColor = Colors.VIBRANT_RED;
+            case CLUBS -> suitColor = Colors.VIBRANT_GREEN;
+            case GOLD -> suitColor = Colors.VIBRANT_YELLOW;
+            default -> suitColor = Colors.RESET;
+        }
+
+        // Definir el mensaje con el color del palo
+        String message = Colors.colorize("And the winner is... the mighty ", Colors.VIBRANT_YELLOW) +
+                Colors.colorize(winner.getDescription(), suitColor) +
+                Colors.colorize("! 🏆 Congratulations! 🏆", Colors.VIBRANT_YELLOW);
+
+        // Definir un ancho fijo para el marco superior e inferior
+        int borderWidth = 81; // Ajusta este valor según el ancho deseado para los bordes
+
+        // Calcular el padding necesario para centrar el mensaje
+        int leftPaddingSize = 5; // Ajusta este valor para aumentar el desplazamiento hacia la derecha
+
+        String leftPadding = " ".repeat(leftPaddingSize);
+        String paddedMessage = leftPadding + message; // Construye el mensaje final
+
+        // Construir los bordes superior e inferior
+        String topBorder = Colors.colorize("╔" + "═".repeat(borderWidth - 2) + "╗", Colors.VIBRANT_YELLOW);
+        String bottomBorder = Colors.colorize("╚" + "═".repeat(borderWidth - 2) + "╝", Colors.VIBRANT_YELLOW);
+
+
+        // Imprimir el marco con el mensaje
+        System.out.println(topBorder);
+        System.out.println(paddedMessage);
+        System.out.println(bottomBorder);
     }
 
     /**
@@ -54,7 +85,7 @@ public class ConsoleView {
     public static void showPlayerBet(Player player) {
         System.out.println(
                 Colors.colorize(player.getUserName() + " bid ", Colors.BLUE) +
-                        Colors.colorize(player.getBet().getBetAmount() + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(player.getBet().getBetAmount() + " \uD83C\uDF6A", Colors.VIBRANT_YELLOW) +
                         Colors.colorize(" chips to the ", Colors.BLUE) +
                         player.getBet().getHorseBet().getDescription() + // sin color
                         Colors.colorize(".", Colors.BLUE)
@@ -98,11 +129,11 @@ public class ConsoleView {
         final String NAME_REGEXP = "[0-9A-Za-z._]{4,15}";
         HashSet<String> nameSet = new HashSet<>(); // To check for repeated human names
         int humanPlayersAmount = ConsoleInOut.getIntegerInRange(
-                Colors.colorize("\n════════════════════════════════════════\n", Colors.YELLOW) +
+                Colors.colorize("\n════════════════════════════════════════════════\n", Colors.YELLOW) +
                         Colors.colorize("How many human players will be playing?\n", Colors.BLUE) +
                         Colors.colorize(">> ", Colors.GREEN) +
                         Colors.colorize("Minimum " + minHumans + ", maximum " + maxPlayers + ".\n", Colors.YELLOW) +
-                        Colors.colorize("════════════════════════════════════════", Colors.YELLOW),
+                        Colors.colorize("════════════════════════════════════════════════", Colors.YELLOW),
                 minHumans,
                 maxPlayers
         );
@@ -113,11 +144,11 @@ public class ConsoleView {
 
             do {
                 name = ConsoleInOut.getStringWithRegex(
-                        Colors.colorize("══════════════════════════════════════════════\n", Colors.YELLOW) +
+                        Colors.colorize("════════════════════════════════════════════════\n", Colors.YELLOW) +
                                 Colors.colorize("Enter human player " + (i + 1) + " of " + humanPlayersAmount + " name:\n", Colors.BLUE) +
                                 Colors.colorize(">> ", Colors.GREEN) +
                                 Colors.colorize("Length 4-15, letters, numbers, '.' and '_'.\n", Colors.YELLOW) +
-                                Colors.colorize("══════════════════════════════════════════════", Colors.YELLOW),
+                                Colors.colorize("════════════════════════════════════════════════", Colors.YELLOW),
                         NAME_REGEXP
                 );
                 if (!nameSet.contains(name.toLowerCase())) {
@@ -147,11 +178,11 @@ public class ConsoleView {
             return 0;
         }
         return ConsoleInOut.getIntegerInRange(
-                Colors.colorize("═════════════════════════════════════════════\n", Colors.YELLOW) +
+                Colors.colorize("════════════════════════════════════════════════\n", Colors.YELLOW) +
                         Colors.colorize("How many AI-controlled opponents do you want?\n", Colors.BLUE) +
                         Colors.colorize(">> ", Colors.GREEN) +
                         Colors.colorize("Minimum " + minBots + ", maximum " + maxBots + ".", Colors.YELLOW) + "\n" +
-                        Colors.colorize("═════════════════════════════════════════════", Colors.YELLOW),
+                        Colors.colorize("════════════════════════════════════════════════", Colors.YELLOW),
                 minBots,
                 maxBots
         );
@@ -166,7 +197,7 @@ public class ConsoleView {
      * @return The Card object representing the chosen horse.
      */
     public Card askForBetCardToPlayer(ArrayList<Card> betOptions, Player player) {
-        System.out.println(Colors.colorize("═════════════════════════════════════════════\n", Colors.YELLOW));
+        System.out.println(Colors.colorize("════════════════════════════════════════════════\n", Colors.YELLOW));
         System.out.println(Colors.colorize(player.getUserName() + ", it is your turn to choose:", Colors.BLUE));
         displayBetOptions(betOptions);
         int chosenCardIndex = getPlayerChoice(betOptions.size());
@@ -211,12 +242,12 @@ public class ConsoleView {
     public int askForBetAmountToPlayer(Player player, int minBet, int maxBet) {
         return ConsoleInOut.getIntegerInRange(
                 Colors.colorize(player.getUserName() + ", you have ", Colors.BLUE) +
-                        Colors.colorize(player.getBankroll() + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(player.getBankroll() + " \uD83C\uDF6A", Colors.VIBRANT_YELLOW) +
                         Colors.colorize(" chips.\n", Colors.BLUE) +
                         Colors.colorize("Please, choose a bet amount between ", Colors.BLUE) +
-                        Colors.colorize(minBet + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(minBet + " \uD83C\uDF6A", Colors.VIBRANT_YELLOW) +
                         Colors.colorize(" and ", Colors.BLUE) +
-                        Colors.colorize(maxBet + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                        Colors.colorize(maxBet + " \uD83C\uDF6A", Colors.VIBRANT_YELLOW) +
                         Colors.colorize(".", Colors.BLUE),
                 minBet,
                 maxBet
@@ -237,7 +268,7 @@ public class ConsoleView {
                     Colors.colorize("[" + (i++) + "] ", Colors.BLUE) +
                             Colors.colorize(player.getUserName(), Colors.ORANGE) +
                             Colors.colorize(". Bankroll: ", Colors.BLUE) +
-                            Colors.colorize(player.getBankroll() + " \uD83D\uDCB0", Colors.VIBRANT_YELLOW) +
+                            Colors.colorize(player.getBankroll() + " \uD83C\uDF6A", Colors.VIBRANT_YELLOW) +
                             Colors.colorize(" chips.", Colors.BLUE)
             );
         }
@@ -285,7 +316,7 @@ public class ConsoleView {
         final String YES_CHARACTERS = "YySs";
         final String NO_CHARACTERS = "Nn";
         String answer = ConsoleInOut.getStringWithRegex(
-                "Do you want to keep playing the game? [Y] Yes [N] No",
+                Colors.colorize("Do you want to keep playing the game? [Y] Yes [N] No", Colors.BLUE),
                 "[" + YES_CHARACTERS + NO_CHARACTERS + "]");
 
         return YES_CHARACTERS.contains(answer);
@@ -298,7 +329,7 @@ public class ConsoleView {
      * @param pot int: the amount of chips in the pot that will stay for the next round.
      */
     public void displayNoWinningBets(int pot) {
-        System.out.println("Nobody guessed the winning Horse, that means that the pot of " + pot + " chips stays for the next round!!");
+        System.out.println(Colors.colorize("Nobody guessed the winning Horse, that means that the pot of " + pot + " chips stays for the next round!!",Colors.BLUE));
         Pause.untilEnter();
     }
 
@@ -362,7 +393,7 @@ public class ConsoleView {
         String bottomLeftCorner = "└";
         String bottomRightCorner = "┘";
         String horizontalLine = "─";
-        String verticalSeparator = "│";
+
 
         int borderWidth = trackLength * 6 + 22;  // 6 caracteres por casilla y 20 para el nombre del caballero
         String borderLine = horizontalLine.repeat(borderWidth);
@@ -376,11 +407,8 @@ public class ConsoleView {
         for (int row = 0; row < boardArray.length; row++) {
             for (int col = 0; col < trackLength; col++) {
                 if (boardArray[row][col] != null) {
-                    boardToPrint.append(verticalSeparator) // Borde izquierdo
-                            .append(" ")
+                    boardToPrint.append("  ")  // Espacio al inicio para ajustar la alineación
                             .append(getRow(boardArray[row][col], col, trackLength, row))
-                            .append(" ")
-                            .append(verticalSeparator) // Borde derecho
                             .append("\n");
                     break;
                 }
@@ -403,6 +431,8 @@ public class ConsoleView {
                     .append(Colors.colorize(drawnCard.getDescription(), suitColor))
                     .append(Colors.colorize("!!\n", Colors.VIBRANT_PURPLE));
             isInFirstPosition = isHorseInFirstPosition(drawnCard, board);
+
+            boardToPrint.append(Colors.colorize("═══════════════════════════════════════════════════════════════════════════════\n", Colors.VIBRANT_PURPLE));
             boardToPrint.append(narrateTurnResult(drawnCard, movesForward, isInFirstPosition)).append("\n");
         }
 
@@ -483,9 +513,11 @@ public class ConsoleView {
                 "With a burst of speed, the horse races ahead from the first position!",
                 "The horse has broken free from the starting gate!"
         };
+        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
         Random random = new Random();
         int index = random.nextInt(phrases.length);
-        return new StringBuilder(phrases[index]);
+        String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
+        return new StringBuilder(coloredPhrase);
     }
 
     /**
@@ -502,9 +534,11 @@ public class ConsoleView {
                 "A smooth stride forward for the horse.",
                 "The horse picks up speed as it moves ahead."
         };
+        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
         Random random = new Random();
         int index = random.nextInt(phrases.length);
-        return new StringBuilder(phrases[index]);
+        String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
+        return new StringBuilder(coloredPhrase);
     }
 
     /**
@@ -521,9 +555,11 @@ public class ConsoleView {
                 "The horse attempts to go backward, but it's already at the beginning of the track.",
                 "The horse realizes it can't move backward from the first position."
         };
+        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
         Random random = new Random();
         int index = random.nextInt(phrases.length);
-        return new StringBuilder(phrases[index]);
+        String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
+        return new StringBuilder(coloredPhrase);
     }
 
     private StringBuilder backwardsNormal() {
@@ -534,9 +570,11 @@ public class ConsoleView {
                 "The horse gracefully backs away, looking for a better angle.",
                 "In a tactical maneuver, the horse retreats to gain an advantage."
         };
+        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
         Random random = new Random();
         int index = random.nextInt(phrases.length);
-        return new StringBuilder(phrases[index]);
+        String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
+        return new StringBuilder(coloredPhrase);
     }
 
     /**
@@ -554,13 +592,14 @@ public class ConsoleView {
                 "The gates have opened! The race is on!"
         };
 
-        System.out.println(Colors.colorize("═══════════════════════════════════════════════════════════════════", Colors.VIBRANT_PURPLE));
+        System.out.println(Colors.colorize("═══════════════════════════════════════════════════════════════════════════════", Colors.VIBRANT_PURPLE));
         // Select a random announcement
         Random random = new Random();
         String randomAnnouncement = announcements[random.nextInt(announcements.length)];
+        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
 
         // Print the selected announcement
-        System.out.println(Colors.colorize("\uD83C\uDF99" + randomAnnouncement + "\n", Colors.VIBRANT_PURPLE));
+        System.out.println(Colors.colorize(announcerEmoji + announcerEmoji + " " + randomAnnouncement + " " + announcerEmoji + announcerEmoji + "\n", Colors.VIBRANT_PURPLE));
         Pause.seconds(3);
     }
 }
