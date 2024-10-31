@@ -93,8 +93,25 @@ las cartas que se lanzan en cada turno.
 ---
 
 ## Descripción Técnica ⚙️
-***Arquitectura General del Proyecto***  
-Aquí puedes describir cómo se organiza el proyecto, el flujo de datos y las interacciones entre los componentes principales.
+***Arquitectura General del Proyecto***
+<p>El proyecto sigue una arquitectura en capas, separando la lógica en diferentes módulos para mejorar la organización, la mantenibilidad y la claridad del código.
+A continuación, se describe la función y las interacciones de cada módulo:</p><br>
+1.Módulo controller<br>
+  • Contiene el controlador principal (GameController.java), que orquesta el flujo del juego y coordina las interacciones entre los diferentes componentes.<br>
+  • GameController actúa como intermediario, gestionando el flujo de información y las llamadas entre la vista y la lógica del juego en el modelo.<br>
+  • Cada turno, el controlador toma decisiones y coordina la ejecución de las reglas del juego.<br>
+2.Módulo model:<br>
+  • model/Board: Gestiona el tablero de juego y el estado de los caballos en la carrera.<br>
+  • model/GameHorsesRace: Representa la lógica principal de la carrera de caballos, gestionando el estado general del juego, los turnos y la mecánica de movimiento.<br>
+  • model/deck: Este submódulo encapsula las clases relacionadas con las cartas:<br>
+    • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la relación con los caballos.<br>
+  • model/player: Gestiona la lógica relacionada con los jugadores y las apuestas, incluyendo clases para jugadores humanos (Human.java) y bots (Bot.java). Cada jugador puede realizar         apuestas en la carrera.<br>
+  3.Módulo utils:<br>
+    • Contiene utilidades de apoyo al proyecto, como ConsoleInOut para gestionar la entrada y salida por consola, Colors para el manejo de colores ANSI, y Pause para controlar las pausas        entre acciones.<br>
+  4.Módulo view:<br>
+    • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br>
+    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.<br>
+
 
 ### Diagramas de Clases
 ![Diagrama de Clases](ruta/a/diagrama_de_clases.png)
@@ -102,16 +119,46 @@ Aquí puedes describir cómo se organiza el proyecto, el flujo de datos y las in
 
 ### Estructura de Directorios
 
-<table align="center" border="6px"><td><pre>
-📦NombreDelProyecto
- ┣ 📂src
- ┃ ┣ 📜main.php
- ┃ ┗ 📜clases
- ┃   ┣ 📜jugador.php
- ┃   ┗ 📜juego.php
- ┗ 📜README.md
-</pre></td>
+<table align="center" border="6px">
+  <tr>
+    <td>
+      <pre>
+📦 Práctica UF4
+ ┣ 📂 src
+ ┃ ┣ 📜 Main.java
+ ┃ ┣ 📂 controller
+ ┃ ┃ ┣ 📜 GameController.java
+ ┃ ┣ 📂 model
+ ┃ ┃ ┣ 📜 Board.java
+ ┃ ┃ ┣ 📜 GameHorsesRace.java
+ ┃ ┃ ┣ 📜 PlayerManager.java
+ ┃ ┃ ┣ 📂 deck
+ ┃ ┃ ┃ ┣ 📜 Card.java
+ ┃ ┃ ┃ ┣ 📜 CardFace.java
+ ┃ ┃ ┃ ┣ 📜 CardsDeck.java
+ ┃ ┃ ┃ ┣ 📜 CardSuit.java
+ ┃ ┃ ┃ ┣ 📜 FacedCard.java
+ ┃ ┃ ┃ ┗ 📜 NumeredCard.java
+      </pre>
+    </td>
+    <td>
+      <pre>
+ ┃ ┃ ┣ 📂 player
+ ┃ ┃ ┃ ┣ 📜 Bet.java
+ ┃ ┃ ┃ ┣ 📜 Bot.java
+ ┃ ┃ ┃ ┣ 📜 Human.java
+ ┃ ┃ ┃ ┗ 📜 Player.java
+ ┃ ┣ 📂 utils
+ ┃ ┃ ┣ 📜 Colors.java
+ ┃ ┃ ┣ 📜 ConsoleInOut.java
+ ┃ ┃ ┗ 📜 Pause.java
+ ┃ ┗ 📂 view
+ ┃ ┃ ┗ 📜 ConsoleView.java
+      </pre>
+    </td>
+  </tr>
 </table>
+
 
 ### Tecnologías y Herramientas
 • **Lenguaje de programación:** PHP
