@@ -138,13 +138,13 @@ El proyecto está organizado en capas, donde cada módulo tiene una función cla
 
 <p align="center">
   
-**🕹 Módulo "controller"**<br><br>
+**🕹 Módulo controller**<br><br>
 Este módulo alberga el controlador principal (*GameController.java*), que se encarga de gestionar el flujo del juego y de coordinar la comunicación entre los componentes principales. GameController actúa como el puente entre la interfaz de usuario y la lógica del juego, manejando la información y las decisiones durante cada turno para aplicar las reglas de la partida.
 </p><br>
 
 <p align="center">
   
-**🗃 Módulo "model"**<br><br>
+**🗃 Módulo model**<br><br>
 • ***[Board]*** Lleva el control del tablero y de la posición de los caballos en la carrera.<br><br>
 • ***[GameHorsesRace]*** Contiene la lógica central del juego de carreras, gestionando el estado general, el avance por turnos y las reglas de movimiento.<br><br>
 • ***[model/deck]*** Este submódulo contiene las clases de las cartas:<br><br>
