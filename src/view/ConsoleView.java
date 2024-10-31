@@ -43,19 +43,7 @@ public class ConsoleView {
 
 
     public static void displayRaceWinner(Card winner) {
-        String suitColor;
-        switch (winner.getSuit()) {
-            case SWORDS -> suitColor = Colors.VIBRANT_BLUE;
-            case CUPS -> suitColor = Colors.VIBRANT_RED;
-            case CLUBS -> suitColor = Colors.VIBRANT_GREEN;
-            case GOLD -> suitColor = Colors.VIBRANT_YELLOW;
-            default -> suitColor = Colors.RESET;
-        }
-
-        // Definir el mensaje con el color del palo
-        String message = Colors.colorize("And the winner is... the mighty ", Colors.VIBRANT_YELLOW) +
-                Colors.colorize(winner.getDescription(), suitColor) +
-                Colors.colorize("! 🏆 Congratulations! 🏆", Colors.VIBRANT_YELLOW);
+        String message = getSuitColor(winner);
 
         // Definir un ancho fijo para el marco superior e inferior
         int borderWidth = 81; // Ajusta este valor según el ancho deseado para los bordes
@@ -74,7 +62,30 @@ public class ConsoleView {
         // Imprimir el marco con el mensaje
         System.out.println(topBorder);
         System.out.println(paddedMessage);
-        System.out.println(bottomBorder);
+        System.out.println(bottomBorder + "\n");
+    }
+
+    /**
+     * Generates a congratulatory message for the winning card, with the card's suit highlighted
+     * in its corresponding vibrant color.
+     *
+     * @param winner the winning card, whose suit color will be used to highlight the message
+     * @return a formatted message indicating the winner, with vibrant color styling based on suit
+     */
+    private static String getSuitColor(Card winner) {
+        String suitColor;
+        switch (winner.getSuit()) {
+            case SWORDS -> suitColor = Colors.VIBRANT_BLUE;
+            case CUPS -> suitColor = Colors.VIBRANT_RED;
+            case CLUBS -> suitColor = Colors.VIBRANT_GREEN;
+            case GOLD -> suitColor = Colors.VIBRANT_YELLOW;
+            default -> suitColor = Colors.RESET;
+        }
+
+        // Definir el mensaje con el color del palo
+        return Colors.colorize("And the winner is... the mighty ", Colors.VIBRANT_BLUE) +
+                Colors.colorize(winner.getDescription(), suitColor) +
+                Colors.colorize("! 🏆 Congratulations! 🏆", Colors.VIBRANT_BLUE);
     }
 
     /**
@@ -156,7 +167,7 @@ public class ConsoleView {
                     nameSet.add(name.toLowerCase());
                     break;
                 }
-                System.out.println("\"" + name + "\" has already been chosen, chose another name.");
+                System.out.println(Colors.colorize("\"" + name + "\" has already been chosen, chose another name.", Colors.RED));
             } while (true);
         }
 
@@ -174,7 +185,7 @@ public class ConsoleView {
     public int getNumberOfBots(int minBots, int maxBots) {
 
         if (maxBots <= 0) {
-            System.out.println("There is no room for bots, all players will be human");
+            System.out.println(Colors.colorize("There is no room for bots, all players will be human", Colors.RED));
             return 0;
         }
         return ConsoleInOut.getIntegerInRange(
@@ -329,7 +340,7 @@ public class ConsoleView {
      * @param pot int: the amount of chips in the pot that will stay for the next round.
      */
     public void displayNoWinningBets(int pot) {
-        System.out.println(Colors.colorize("Nobody guessed the winning Horse, that means that the pot of " + pot + " chips stays for the next round!!",Colors.BLUE));
+        System.out.println(Colors.colorize("Nobody guessed the winning Horse, that means that the pot of " + pot + " chips stays for the next round!!", Colors.BLUE));
         Pause.untilEnter();
     }
 
@@ -338,8 +349,8 @@ public class ConsoleView {
      * The message informs that the leaderboard will be updated accordingly.
      */
     public void displaySomePlayersLostMessage() {
-        System.out.println("It seems that at least one player doesn't have enough chips to bet in the next round.\n" +
-                "The leader board will be updated accordingly.");
+        System.out.println(Colors.colorize("It seems that at least one player doesn't have enough chips to bet in the next round.\n", Colors.BLUE) +
+                Colors.colorize("The leader board will be updated accordingly.", Colors.BLUE));
     }
 
     /**
@@ -348,18 +359,35 @@ public class ConsoleView {
      * that they had an enjoyable experience.
      */
     public void sayGoodBye() {
-        System.out.println("Thank you for playing.\n" +
-                "We hope you had fun. \n" +
-                "TJS:CS Team");
+        System.out.println(Colors.colorize("""
+                Thank you for playing!!.
+                We hope you had fun!!.\s
+                """, Colors.VIBRANT_PURPLE));
+
+        // Título final con delay de escritura
+        String title = """
+                      O                                                                     O
+                {o)xxx|===============-  "The Java Scroll: Code Assassins"  -===============|xxx(o}
+                      O                                                                     O""";
+        for (char c : title.toCharArray()) {
+            System.out.print(Colors.colorize(String.valueOf(c), Colors.VIBRANT_GREEN));
+            try {
+                Thread.sleep(20); // Ajusta el valor para cambiar la velocidad del delay
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Manejo de la excepción
+            }
+        }
+        System.out.println(); // Salto de línea final
     }
+
 
     /**
      * Announces that all human players have been eliminated and that the game is over.
      * Displays a farewell message to the players.
      */
     public void announceDefeatAndSayGoodbye() {
-        System.out.println("All human players have been eliminated!\n" +
-                "This is GAME OVER");
+        System.out.println(Colors.colorize("All human players have been eliminated!\n" +
+                "This is GAME OVER", Colors.BLUE));
         sayGoodBye();
     }
 
@@ -369,8 +397,8 @@ public class ConsoleView {
      * @param winner Human: the human player who won the game.
      */
     public void announceWinnerAndSayGoodbye(Human winner) {
-        System.out.println("Congratulations " + winner.getUserName() + "!!\n" +
-                "You defeated all your opponents and emerged victorious!!");
+        System.out.println(Colors.colorize("Congratulations " + winner.getUserName() + "!!\n", Colors.BLUE) +
+                Colors.colorize("You defeated all your opponents and emerged victorious!!", Colors.BLUE));
         sayGoodBye();
     }
 
@@ -441,13 +469,32 @@ public class ConsoleView {
         Pause.untilEnter();
     }
 
-    /***
-     *Display the current turn in the console.
+    /**
+     * Displays the current turn number along with the direction of movement (forward or backward).
      *
-     * @param currentTurn the number of the current turn to be displayed.
+     * @param currentTurn the current turn number to display
      */
     public void displayCurrentTurn(int currentTurn) {
-        System.out.println(Colors.GREEN + "|| RONDA: " + currentTurn + " ||" + Colors.RESET);
+        boolean movesForward = currentTurn % 5 != 0; // Avanza si no es múltiplo de 5
+
+        System.out.println(
+                Colors.colorize("|| RONDA: " + currentTurn + " ||", Colors.GREEN) + " " + getTurnDirectionText(movesForward)
+        );
+    }
+
+    /**
+     * Returns a formatted string indicating the direction of movement for the current turn.
+     *
+     * @param movesForward a boolean indicating the direction of movement;
+     *                     true if moving forward, false if moving backward
+     * @return a formatted string in vibrant green if moving forward ("Forward") or in vibrant red if moving backward ("Back")
+     */
+    public String getTurnDirectionText(boolean movesForward) {
+        if (movesForward) {
+            return Colors.colorize(">>> Forward", Colors.VIBRANT_GREEN);  // Texto en verde si avanza
+        } else {
+            return Colors.colorize("<<< Back", Colors.VIBRANT_RED);  // Texto en rojo si retrocede
+        }
     }
 
     /**
@@ -462,8 +509,8 @@ public class ConsoleView {
         Card[][] boardArray = board.getBoard();
 
         // checks if there is a card with the same suit in the first column
-        for (int row = 0; row < boardArray.length; row++) {
-            if (boardArray[row][0] != null && boardArray[row][0].getSuit() == suit) {
+        for (Card[] cards : boardArray) {
+            if (cards[0] != null && cards[0].getSuit() == suit) {
                 return true;  // the horse of the same suit as the las drawn card is in the first position
             }
         }
