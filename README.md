@@ -12,7 +12,7 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 </br>
 
 ## Integrantes del equipo
-## The Java Scrolls: Code Assasins 🗡️📜<br>
+## The Java Scrolls: Code Assassins 🗡️📜<br>
 <br>
 <div>
   <img src="resources/Readme-Images/TheJavaScrolls_CodeAssasins.png" alt="Logo Grupo The Java Scrolls: Code Assasins" width="300">
