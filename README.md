@@ -94,23 +94,63 @@ las cartas que se lanzan en cada turno.
 
 ## Descripción Técnica ⚙️
 ***Arquitectura General del Proyecto***
-<p>El proyecto sigue una arquitectura en capas, separando la lógica en diferentes módulos para mejorar la organización, la mantenibilidad y la claridad del código.
-A continuación, se describe la función y las interacciones de cada módulo:</p><br>
-1.Módulo controller<br>
-  • Contiene el controlador principal (GameController.java), que orquesta el flujo del juego y coordina las interacciones entre los diferentes componentes.<br>
-  • GameController actúa como intermediario, gestionando el flujo de información y las llamadas entre la vista y la lógica del juego en el modelo.<br>
-  • Cada turno, el controlador toma decisiones y coordina la ejecución de las reglas del juego.<br>
-2.Módulo model:<br>
+<p align="left">
+  El proyecto sigue una arquitectura en capas, separando la lógica en diferentes módulos para mejorar la 
+  organización, la mantenibilidad y la claridad del código.
+  A continuación, se describe la función y las interacciones de cada módulo:
+</p><br>
+
+<p align="left">
+  1.Módulo controller<br>
+  • Contiene el controlador principal (GameController.java), que orquesta el flujo del juego y coordina las              interacciones entre los diferentes componentes.<br>
+  • GameController actúa como intermediario, gestionando el flujo de información y las llamadas entre la vista y la      lógica del juego en el modelo.<br>
+  • Cada turno, el controlador toma decisiones y coordina la ejecución de las reglas del juego.
+</p><br>
+
+<p align="left">
+  2.Módulo model:<br>
   • model/Board: Gestiona el tablero de juego y el estado de los caballos en la carrera.<br>
-  • model/GameHorsesRace: Representa la lógica principal de la carrera de caballos, gestionando el estado general del juego, los turnos y la mecánica de movimiento.<br>
+  • model/GameHorsesRace: Representa la lógica principal de la carrera de caballos, gestionando el estado general        del juego, los turnos y la mecánica de movimiento.<br>
   • model/deck: Este submódulo encapsula las clases relacionadas con las cartas:<br>
-    • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la relación con los caballos.<br>
-  • model/player: Gestiona la lógica relacionada con los jugadores y las apuestas, incluyendo clases para jugadores humanos (Human.java) y bots (Bot.java). Cada jugador puede realizar         apuestas en la carrera.<br>
+    • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la         relación con los caballos.<br>
+  • model/player: Gestiona la lógica relacionada con los jugadores y las apuestas, incluyendo clases para jugadores      humanos (Human.java) y bots (Bot.java). Cada jugador puede realizar         apuestas en la carrera.
+</p><br>
+<p align="left">
   3.Módulo utils:<br>
-    • Contiene utilidades de apoyo al proyecto, como ConsoleInOut para gestionar la entrada y salida por consola, Colors para el manejo de colores ANSI, y Pause para controlar las pausas        entre acciones.<br>
+    • Contiene utilidades de apoyo al proyecto, como ConsoleInOut para gestionar la entrada y salida por consola,          Colors para el manejo de colores ANSI, y Pause para controlar las pausas entre acciones.
+</p><br>
+    
+<p align="left">
   4.Módulo view:<br>
-    • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br>
-    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.<br>
+    • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la                  información de los turnos y la dirección de movimiento de los caballos.<br>
+    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las               apuestas y los resultados.
+</p><br>
+
+***Flujo de datos y relaciones entre componentes***
+<p align="left">
+  1.Inicio del juego:<br>
+  • El controlador (GameController) inicia el juego configurando el tablero (Board) y el mazo de cartas (CardsDeck).
+  • La vista (ConsoleView) muestra un mensaje de bienvenida y el estado inicial de la carrera.
+</p><br>
+<p align="left">
+  2.Turnos de juego:<br>
+  • En cada turno, el GameController determina la carta que se extrae y ejecuta la acción correspondiente.
+  • Dependiendo de la carta, los caballos avanzan o retroceden en el tablero.
+  • La vista se actualiza tras cada turno para reflejar el nuevo estado.
+</p><br>
+<p align="left">
+  3.Apuestas y jugadores:<br>
+  • Los jugadores pueden realizar apuestas antes del inicio de la carrera.
+  • A lo largo del juego, GameController mantiene el estado de cada jugador y sus apuestas, actualizando los             resultados al final.
+</p><br>
+<p align="left">
+  4.Finalización del juego:
+  • Cuando un caballo llega a la meta, GameController determina el ganador y finaliza la partida.
+  • La vista muestra el ganador y el mensaje de despedida.
+</p><br>
+
+
+  
 
 
 ### Diagramas de Clases
