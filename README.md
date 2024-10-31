@@ -183,7 +183,7 @@ las cartas que se lanzan en cada turno.
    ┃ ┃ ┣ 📜 Bot.java
    ┃ ┃ ┣ 📜 Human.java
    ┃ ┃ ┗ 📜 Player.java
-   ┣ 📂 utilsgit
+   ┣ 📂 utils
    ┃ ┣ 📜 Colors.java
    ┃ ┣ 📜 ConsoleInOut.java
    ┃ ┗ 📜 Pause.java
