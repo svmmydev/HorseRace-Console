@@ -155,13 +155,13 @@ Este módulo alberga el controlador principal (*GameController.java*), que se en
 <p align="center">
   
 **🧰 Módulo utils:**<br><br>
-Este módulo agrupa utilidades que apoyan el funcionamiento general, como ConsoleInOut para gestionar la interacción en consola, Colors para aplicar colores, y Pause para controlar pausas y ritmos del juego.
+Este módulo agrupa utilidades que apoyan el funcionamiento general, como *ConsoleInOut* para gestionar la interacción en consola, *Colors* para aplicar colores, y Pause para controlar pausas y ritmos del juego.
 </p></br>
     
 <p align="center">
   
 **👀 Módulo view:**<br><br>
-ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br><br>
+ConsoleView proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br><br>
 La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.<br>
 </p></br>
 
