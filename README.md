@@ -29,13 +29,19 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
   </tr>
   <tr>
     <td>
-      <img src="https://img.shields.io/badge/Roger-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub" alt="Badge">
+      <a href="https://github.com/Roger486">
+        <img src="https://img.shields.io/badge/Roger-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub" alt="Badge">
+      </a>
     </td>
     <td>
+       <a href="https://github.com/SamuelStudying">
       <img src="https://img.shields.io/badge/Sammy-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub" alt="Badge">
+         </a>
     </td>
     <td>
-      <img src="https://img.shields.io/badge/Leandro-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub&link=https%3A%2F%2Fgithub.com%2FLeanEmanuel" alt="Badge">
+      <a href="https://github.com/LeanEmanuel">
+      <img src="https://img.shields.io/badge/Leandro-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub" alt="Badge">
+      </a>
     </td>
   </tr>
 </table>
