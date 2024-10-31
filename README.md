@@ -52,50 +52,49 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 
 </br>
 
-### 🎮 Descripción Funcional del Juego 🎮
+### **Descripción Funcional del Juego** 
 
 </br>
 
-### ***Objetivo:***<br>  
+### ***🏅 Objetivo:***<br>  
 En este juego de carreras de caballo, los jugadores apuestan por los caballos que creen que ganará la carrera.  
 La carrera esta representado por las cartas de la baraja española, donde los caballos se van moviendo por el tablero según las cartas que se lanzan en cada turno.
 
 </br>
 
-### ***Instrucciones Básicas:***
+### **🚀 Instrucciones Básicas:**
 
-🚀 Comenzar una partida 🚀<br>
-  <p align="center">
+<p align="center">
     
-  • ***[Inicio del juego]*** Ingresa la cantidad de jugadores totales, se ingresa el nombre de los jugadores humanos.<br><br>
-  • ***[Apuestas]*** Se selecciona el caballo a apostar y el número de la apuesta en fichas.<br><br>
-  • ***[Inicio de la carrera]*** Comienza el primer turno sacando la primera carta del mazo.<br><br>
-  </p>
+• ***[Inicio del juego]*** Ingresa la cantidad de jugadores totales, se ingresa el nombre de los jugadores humanos.<br><br>
+• ***[Apuestas]*** Se selecciona el caballo a apostar y el número de la apuesta en fichas.<br><br>
+• ***[Inicio de la carrera]*** Comienza el primer turno sacando la primera carta del mazo.<br><br>
+• ***[Trascurso]*** Se sacan cartas hasta encontrar un caballo ganador.<br><br>
+• ***[Final de la carrera]*** Se redistribuyen las ganancias y finaliza la partida.<br><br>
+• ***[Jugar de nuevo (Opcional)]*** Se inicia una nueva carrera.<br><br>
+</p>
   
-📝 Reglas principales del juego 📝<br>
+### **📝 Reglas del juego:**<br>
 <p align="center">
-  • Selección de jugadores humanos, mínimo un jugador humano y mínimo dos jugadores en total. El máximo de jugadores permitidos sumando humanos y bots es de 6.<br>
-  • Carrera por turnos: Cada ronda representa un turno en la carrera, donde se determina el caballo que se movera según el palo de la última carta tirada.<br>
-  • Movimiento de los caballos: El caballo que se corresponde con el palo de la última carta tirada avanza una casilla en el tablero. Si el turno es múltiplo de 5 se retrocede una casilla.<br>
-  • Ganador de la carrera: El primer caballo en llegar a la última casilla, se reparten las apuesta entre los jugadores que han ganado.<br>
   
-🎮 Explicación de los controles o comandos importantes 🎮<br>
-  <p align="center">
-    • Iniciar partida: Se indica el número de jugadores y sus nombres por consola.<br>
-    • Seleccionar caballo y apuesta: Cada jugador selecciona un caballo y una apuesta en fichas.<br>
-    • Continuar carrera: Despúes de cada turno se ejecuta una pausa, presionar Enter para continuar.<br>
-  </p>
+• ***Selección de jugadores humanos:*** mínimo un jugador humano y mínimo dos jugadores en total. El máximo de jugadores permitidos sumando humanos y bots es de 6.<br><br>
+• ***Carrera por turnos:*** Cada ronda representa un turno en la carrera, donde se determina el caballo que se movera según el palo de la última carta tirada.<br><br>
+• ***Movimiento de los caballos:*** El caballo que se corresponde con el palo de la última carta tirada avanza una casilla en el tablero. Si el turno es múltiplo de 5 se retrocede una casilla.<br><br>
+• ***Ganador de la carrera:*** El primer caballo en llegar a la última casilla, se reparten las apuesta entre los jugadores que han ganado.<br><br>
   
-### ***Características Principales:***
+### **✨ Características Principales:**<br>
 
 <p align="center">
-  • Multijugador: Permite entre 2 y 6 jugadores.<br>
-  • Apuestas por carrera: Los jugadores eligen sus apuestas antes de iniciar la carrera.<br>
-  • Clasificación de jugadores: Los jugadores se clasifican según el bankroll acumulado tras cada carrera.<br>
-  • Narración de la carrera: La consola muestra mensajes narrativos, detallando movimientos y posiciones de los caballos en el tablero.<br>
-  • Dinámica de eliminación: Los jugadores que pierden todas sus fichas quedan eliminados del juego.<br>
+  
+• ***Multijugador:*** Permite entre 2 y 6 jugadores.<br><br>
+• ***Apuestas por carrera:*** Los jugadores eligen sus apuestas antes de iniciar la carrera.<br><br>
+• ***Clasificación de jugadores:*** Los jugadores se clasifican según el bankroll acumulado tras cada carrera.<br><br>
+• ***Narración de la carrera:*** La consola muestra mensajes narrativos, detallando movimientos y posiciones de los caballos en el tablero.<br><br>
+ • ***Dinámica de eliminación:*** Los jugadores que pierden todas sus fichas quedan eliminados del juego.<br><br>
 </p>
 <br>
+
+#### Muestra de carrera
 
 <div align="center">
   <img src="resources/Readme-Images/game_horse_race.gif" alt="Gif Game Horse Race" width="800">
@@ -131,7 +130,7 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 </br>
 
 ### ⚙️ Descripción Técnica ⚙️
-### ***📏 Arquitectura General del Proyecto 📐***
+
 <p align="left">
   El proyecto está organizado en capas, donde cada módulo tiene una función clara para mantener el código ordenado y fácil de manejar.
   A continuación se detalla el papel de cada módulo y cómo interactúan entre sí:
