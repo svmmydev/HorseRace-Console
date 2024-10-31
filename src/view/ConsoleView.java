@@ -524,14 +524,9 @@ public class ConsoleView {
      */
     private StringBuilder narrateTurnResult(Card drawnCard, boolean movesForward, boolean isInFirstPosition) {
         StringBuilder narration = new StringBuilder();
-        String suitName = drawnCard.getSuit().name();  //Get the name of the suit
 
         if (movesForward) {
-            if (isInFirstPosition) {
-                narration.append(forwardFromFirstPosition());
-            } else {
-                narration.append(forwardNormal());
-            }
+            narration.append(forwardNormal());
         } else {
             if (isInFirstPosition) {
                 narration.append(backwardsFromFirstPosition());
@@ -540,27 +535,6 @@ public class ConsoleView {
             }
         }
         return narration;
-    }
-
-    /**
-     * Generates a narration indicating that a horse has moved forward from the first position on the board.
-     * The narration will be chosen randomly from a predefined set of phrases.
-     *
-     * @return StringBuilder containing a random narration about the horse's movement.
-     */
-    private StringBuilder forwardFromFirstPosition() {
-        String[] phrases = {
-                "The horse leaps forward from the starting line!",
-                "Off to a great start, the horse moves ahead!",
-                "The horse charges forward from its initial spot!",
-                "With a burst of speed, the horse races ahead from the first position!",
-                "The horse has broken free from the starting gate!"
-        };
-        String announcerEmoji = "\uD83C\uDF99";  //announcer emoji
-        Random random = new Random();
-        int index = random.nextInt(phrases.length);
-        String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
-        return new StringBuilder(coloredPhrase);
     }
 
     /**
