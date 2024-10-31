@@ -45,21 +45,19 @@ public class ConsoleView {
     public static void displayRaceWinner(Card winner) {
         String message = getSuitColor(winner);
 
-        // Definir un ancho fijo para el marco superior e inferior
-        int borderWidth = 81; // Ajusta este valor según el ancho deseado para los bordes
+        //Define a fixed width for the top and bottom frame
+        int borderWidth = 81; //Adjust this value according to the desired width of the borders
 
-        // Calcular el padding necesario para centrar el mensaje
-        int leftPaddingSize = 5; // Ajusta este valor para aumentar el desplazamiento hacia la derecha
+        int leftPaddingSize = 5; // Adjust this value to increase the shift to the right
 
         String leftPadding = " ".repeat(leftPaddingSize);
-        String paddedMessage = leftPadding + message; // Construye el mensaje final
+        String paddedMessage = leftPadding + message; //Build the final message
 
-        // Construir los bordes superior e inferior
+        //Build the top and bottom borders
         String topBorder = Colors.colorize("╔" + "═".repeat(borderWidth - 2) + "╗", Colors.VIBRANT_YELLOW);
         String bottomBorder = Colors.colorize("╚" + "═".repeat(borderWidth - 2) + "╝", Colors.VIBRANT_YELLOW);
 
 
-        // Imprimir el marco con el mensaje
         System.out.println(topBorder);
         System.out.println(paddedMessage);
         System.out.println(bottomBorder + "\n");
@@ -82,7 +80,7 @@ public class ConsoleView {
             default -> suitColor = Colors.RESET;
         }
 
-        // Definir el mensaje con el color del palo
+        // Define the message with the color of the suit
         return Colors.colorize("And the winner is... the mighty ", Colors.VIBRANT_BLUE) +
                 Colors.colorize(winner.getDescription(), suitColor) +
                 Colors.colorize("! 🏆 Congratulations! 🏆", Colors.VIBRANT_BLUE);
@@ -364,7 +362,7 @@ public class ConsoleView {
                 We hope you had fun!!.\s
                 """, Colors.VIBRANT_PURPLE));
 
-        // Título final con delay de escritura
+        //Final title with writing delay
         String title = """
                       O                                                                     O
                 {o)xxx|===============-  "The Java Scroll: Code Assassins"  -===============|xxx(o}
@@ -372,12 +370,12 @@ public class ConsoleView {
         for (char c : title.toCharArray()) {
             System.out.print(Colors.colorize(String.valueOf(c), Colors.VIBRANT_GREEN));
             try {
-                Thread.sleep(20); // Ajusta el valor para cambiar la velocidad del delay
+                Thread.sleep(20); //Adjust the value to change the delay speed
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Manejo de la excepción
+                Thread.currentThread().interrupt();
             }
         }
-        System.out.println(); // Salto de línea final
+        System.out.println();
     }
 
 
@@ -415,7 +413,7 @@ public class ConsoleView {
         boolean isInFirstPosition;
         StringBuilder boardToPrint = new StringBuilder();
 
-        // Definir caracteres de los bordes del recuadro
+        // Define box border characters
         String topLeftCorner = "┌";
         String topRightCorner = "┐";
         String bottomLeftCorner = "└";
@@ -423,19 +421,17 @@ public class ConsoleView {
         String horizontalLine = "─";
 
 
-        int borderWidth = trackLength * 6 + 22;  // 6 caracteres por casilla y 20 para el nombre del caballero
+        int borderWidth = trackLength * 6 + 22;  //Box width according to characters
         String borderLine = horizontalLine.repeat(borderWidth);
 
-        // Crear la parte superior del recuadro
+        //Create the top of the box
         boardToPrint.append(topLeftCorner).append(borderLine).append(topRightCorner).append("\n");
 
-        // Ajuste de ancho para incluir el texto y el tablero
-
-        // Crear cada fila del tablero con bordes laterales
+        // Create each row of the board
         for (int row = 0; row < boardArray.length; row++) {
             for (int col = 0; col < trackLength; col++) {
                 if (boardArray[row][col] != null) {
-                    boardToPrint.append("  ")  // Espacio al inicio para ajustar la alineación
+                    boardToPrint.append("  ")  // Space at start to adjust alignment
                             .append(getRow(boardArray[row][col], col, trackLength, row))
                             .append("\n");
                     break;
@@ -443,7 +439,7 @@ public class ConsoleView {
             }
         }
 
-        // Crear la parte inferior del recuadro
+        // Create the bottom of the box
         boardToPrint.append(bottomLeftCorner).append(borderLine).append(bottomRightCorner).append("\n");
 
 
@@ -528,7 +524,7 @@ public class ConsoleView {
      */
     private StringBuilder narrateTurnResult(Card drawnCard, boolean movesForward, boolean isInFirstPosition) {
         StringBuilder narration = new StringBuilder();
-        String suitName = drawnCard.getSuit().name();  // Get the name of the suit
+        String suitName = drawnCard.getSuit().name();  //Get the name of the suit
 
         if (movesForward) {
             if (isInFirstPosition) {
@@ -560,7 +556,7 @@ public class ConsoleView {
                 "With a burst of speed, the horse races ahead from the first position!",
                 "The horse has broken free from the starting gate!"
         };
-        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
+        String announcerEmoji = "\uD83C\uDF99";  //announcer emoji
         Random random = new Random();
         int index = random.nextInt(phrases.length);
         String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
@@ -581,7 +577,7 @@ public class ConsoleView {
                 "A smooth stride forward for the horse.",
                 "The horse picks up speed as it moves ahead."
         };
-        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
+        String announcerEmoji = "\uD83C\uDF99";  //announcer emoji
         Random random = new Random();
         int index = random.nextInt(phrases.length);
         String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
@@ -602,7 +598,7 @@ public class ConsoleView {
                 "The horse attempts to go backward, but it's already at the beginning of the track.",
                 "The horse realizes it can't move backward from the first position."
         };
-        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
+        String announcerEmoji = "\uD83C\uDF99";
         Random random = new Random();
         int index = random.nextInt(phrases.length);
         String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
@@ -617,7 +613,7 @@ public class ConsoleView {
                 "The horse gracefully backs away, looking for a better angle.",
                 "In a tactical maneuver, the horse retreats to gain an advantage."
         };
-        String announcerEmoji = "\uD83C\uDF99";  // Emoji de locutor
+        String announcerEmoji = "\uD83C\uDF99";
         Random random = new Random();
         int index = random.nextInt(phrases.length);
         String coloredPhrase = Colors.colorize(announcerEmoji + announcerEmoji + " " + phrases[index] + " " + announcerEmoji + announcerEmoji, Colors.VIBRANT_PURPLE);
