@@ -52,7 +52,7 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 
 </br>
 
-### **Descripción Funcional del Juego** 
+### **Descripción funcional del juego** 
 
 </br>
 
@@ -94,7 +94,7 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 </p>
 <br>
 
-#### Muestra de carrera
+#### 🏁 Muestra de carrera 🏁
 
 <div align="center">
   <img src="resources/Readme-Images/game_horse_race.gif" alt="Gif Game Horse Race" width="800">
@@ -106,7 +106,7 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 
 </br>
 
-### Diagramas de Clases
+### **📊 Diagramas de Clases**
 
 </br>
 
@@ -129,37 +129,40 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 
 </br>
 
-### ⚙️ Descripción Técnica ⚙️
+### **⚙️ Descripción Técnica:**
 
-<p align="left">
-  El proyecto está organizado en capas, donde cada módulo tiene una función clara para mantener el código ordenado y fácil de manejar.
-  A continuación se detalla el papel de cada módulo y cómo interactúan entre sí:
+<p align="center">
+  
+El proyecto está organizado en capas, donde cada módulo tiene una función clara para mantener el código ordenado y fácil de manejar. A continuación se detalla el papel de cada módulo y cómo interactúan entre sí:
 </p><br>
 
-<p align="left">
-  1.Módulo "controller"<br>
-  • Este módulo alberga el controlador principal (GameController.java), que se encarga de gestionar el flujo del juego y de coordinar la comunicación entre los componentes principales.<br>
-  • GameController actúa como el puente entre la interfaz de usuario y la lógica del juego, manejando la información y las decisiones durante cada turno para aplicar las reglas de la partida..<br>
-  • Cada turno, el controlador toma decisiones y coordina la ejecución de las reglas del juego.
+<p align="center">
+  
+**🕹 Módulo "controller"**<br><br>
+Este módulo alberga el controlador principal (*GameController.java*), que se encarga de gestionar el flujo del juego y de coordinar la comunicación entre los componentes principales. GameController actúa como el puente entre la interfaz de usuario y la lógica del juego, manejando la información y las decisiones durante cada turno para aplicar las reglas de la partida.
 </p><br>
 
-<p align="left">
-  2.Módulo "model":<br>
-  • Board: Lleva el control del tablero y de la posición de los caballos en la carrera.<br>
-  • GameHorsesRace: Contiene la lógica central del juego de carreras, gestionando el estado general, el avance por turnos y las reglas de movimiento.<br>
-  • model/deck: Este submódulo contiene las clases de las cartas:<br>
-    • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la relación con los caballos.<br>
-  • model/player:  Incluye las clases relacionadas con los jugadores y sus apuestas, ya sean humanos (Human.java) o bots (Bot.java), que interactúan durante la carrera.
+<p align="center">
+  
+**🗃 Módulo "model"**<br><br>
+• ***[Board]*** Lleva el control del tablero y de la posición de los caballos en la carrera.<br><br>
+• ***[GameHorsesRace]*** Contiene la lógica central del juego de carreras, gestionando el estado general, el avance por turnos y las reglas de movimiento.<br><br>
+• ***[model/deck]*** Este submódulo contiene las clases de las cartas:<br><br>
+• ***[Card, CardFace, CardSuit, y FacedCard]*** Definen los aspectos de las cartas del juego, como su valor, tipo y la relación con los caballos.<br><br>
+• ***[model/player]***  Incluye las clases relacionadas con los jugadores y sus apuestas, ya sean humanos (*Human.java*) o bots (*Bot.java*), que interactúan durante la carrera.
 </p><br>
-<p align="left">
-  3.Módulo utils:<br>
-    • Este módulo agrupa utilidades que apoyan el funcionamiento general, como ConsoleInOut para gestionar la interacción en consola, Colors para aplicar colores, y Pause para controlar pausas y ritmos del juego.
+
+<p align="center">
+  
+**🧰 Módulo utils:**<br><br>
+Este módulo agrupa utilidades que apoyan el funcionamiento general, como ConsoleInOut para gestionar la interacción en consola, Colors para aplicar colores, y Pause para controlar pausas y ritmos del juego.
 </p></br>
     
-<p align="left">
-  4.Módulo view:<br>
-    • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br>
-    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.<br>
+<p align="center">
+  
+**👀 Módulo view:**<br><br>
+ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br><br>
+La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.<br>
 </p></br>
 
 ### 📁 Estructura de Directorios 📁
