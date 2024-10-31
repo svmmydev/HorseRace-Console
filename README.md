@@ -122,35 +122,8 @@ las cartas que se lanzan en cada turno.
     • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.
 </p><br>
 
-***Flujo de datos y relaciones entre componentes***
-<p align="left">
-  1.Inicio del juego:<br>
-  • El controlador (GameController) inicia el juego configurando el tablero (Board) y el mazo de cartas (CardsDeck).
-  • La vista (ConsoleView) muestra un mensaje de bienvenida y el estado inicial de la carrera.
-</p><br>
-<p align="left">
-  2.Turnos de juego:<br>
-  • En cada turno, el GameController determina la carta que se extrae y ejecuta la acción correspondiente.
-  • Dependiendo de la carta, los caballos avanzan o retroceden en el tablero.
-  • La vista se actualiza tras cada turno para reflejar el nuevo estado.
-</p><br>
-<p align="left">
-  3.Apuestas y jugadores:<br>
-  • Los jugadores pueden realizar apuestas antes del inicio de la carrera.
-  • A lo largo del juego, GameController mantiene el estado de cada jugador y sus apuestas, actualizando los resultados al final.
-</p><br>
-<p align="left">
-  4.Finalización del juego:
-  • Cuando un caballo llega a la meta, GameController determina el ganador y finaliza la partida.
-  • La vista muestra el ganador y el mensaje de despedida.
-</p><br>
-
-
-  
-
-
 ### Diagramas de Clases
-![Diagrama de Clases](ruta/a/diagrama_de_clases.png)
+![Diagrama de Clases]("resources/class-diagrams/MVC.png")
 - **Descripción:** Explica brevemente cómo se relacionan las clases principales, destacando sus roles en el juego y cualquier patrón de diseño relevante.
 
 ### Estructura de Directorios
