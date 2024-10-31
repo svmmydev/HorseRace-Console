@@ -253,14 +253,22 @@ public class ConsoleView {
      * @param trackLength int: the total length of the track.
      * @return StringBuilder: contains the formatted row representation ready to be printed.
      */
-    private StringBuilder getRow(Card card, int col, int trackLength) {
+    private StringBuilder getRow(Card card, int col, int trackLength, int knightIndex) {
 
-        StringBuilder rowToPrint = new StringBuilder(String.format("%-20s", card.getDescription()));
+        String[] knightColors = {Colors.VIBRANT_BLUE, Colors.VIBRANT_RED, Colors.VIBRANT_GREEN, Colors.VIBRANT_YELLOW};
+        String[] horseColors = {Colors.BLUE, Colors.RED, Colors.GREEN, Colors.YELLOW};
+
+        String knightColor = knightColors[knightIndex % knightColors.length];
+        String horseColor = horseColors[knightIndex % horseColors.length];
+
+        StringBuilder rowToPrint = new StringBuilder(Colors.colorize(String.format("%-20s", card.getDescription()), knightColor));
+        String horseSymbol = Colors.colorize("[ ♞ ]", horseColor);
+        String emptyCell = "[    ]";
         for (int i = 0; i < trackLength; i++) {
             if (i == col) {
-                rowToPrint.append(" [X]");
+                rowToPrint.append(horseSymbol);
             } else {
-                rowToPrint.append(" [ ]");
+                rowToPrint.append(emptyCell);
             }
 
         }
@@ -348,27 +356,59 @@ public class ConsoleView {
         boolean isInFirstPosition;
         StringBuilder boardToPrint = new StringBuilder();
 
+        // Definir caracteres de los bordes del recuadro
+        String topLeftCorner = "┌";
+        String topRightCorner = "┐";
+        String bottomLeftCorner = "└";
+        String bottomRightCorner = "┘";
+        String horizontalLine = "─";
+        String verticalSeparator = "│";
+
+        int borderWidth = trackLength * 6 + 22;  // 6 caracteres por casilla y 20 para el nombre del caballero
+        String borderLine = horizontalLine.repeat(borderWidth);
+
+        // Crear la parte superior del recuadro
+        boardToPrint.append(topLeftCorner).append(borderLine).append(topRightCorner).append("\n");
+
+        // Ajuste de ancho para incluir el texto y el tablero
+
+        // Crear cada fila del tablero con bordes laterales
         for (int row = 0; row < boardArray.length; row++) {
             for (int col = 0; col < trackLength; col++) {
                 if (boardArray[row][col] != null) {
-                    boardToPrint.append(
-                            getRow(boardArray[row][col], col, trackLength)
-                    ).append("\n");
+                    boardToPrint.append(verticalSeparator) // Borde izquierdo
+                            .append(" ")
+                            .append(getRow(boardArray[row][col], col, trackLength, row))
+                            .append(" ")
+                            .append(verticalSeparator) // Borde derecho
+                            .append("\n");
                     break;
                 }
             }
         }
 
+        // Crear la parte inferior del recuadro
+        boardToPrint.append(bottomLeftCorner).append(borderLine).append(bottomRightCorner).append("\n");
+
+
         // If a drawn card is provided, display a message indicating what it was
         if (drawnCard != null) {
-            boardToPrint.append("The crupier draws the ").append(drawnCard.getDescription()).append("!!\n");
+            String suitColor = switch (drawnCard.getSuit()) {
+                case SWORDS -> Colors.VIBRANT_BLUE;
+                case CUPS -> Colors.VIBRANT_RED;
+                case CLUBS -> Colors.VIBRANT_GREEN;
+                case GOLD -> Colors.VIBRANT_YELLOW;
+            };
+            boardToPrint.append(Colors.colorize("The crupier draws the ", Colors.VIBRANT_PURPLE))
+                    .append(Colors.colorize(drawnCard.getDescription(), suitColor))
+                    .append(Colors.colorize("!!\n", Colors.VIBRANT_PURPLE));
             isInFirstPosition = isHorseInFirstPosition(drawnCard, board);
             boardToPrint.append(narrateTurnResult(drawnCard, movesForward, isInFirstPosition)).append("\n");
         }
 
         System.out.println(boardToPrint);
 
-        Pause.untilEnter();  // Pauses until the user presses Enter
+        Pause.untilEnter();
     }
 
     /***
