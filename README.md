@@ -130,41 +130,40 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 
 </br>
 
-##⚙️ Descripción Técnica ⚙️
+### ⚙️ Descripción Técnica ⚙️
 ### ***📏 Arquitectura General del Proyecto 📐***
 <p align="left">
-  El proyecto sigue una arquitectura en capas, separando la lógica en diferentes módulos para mejorar la 
-  organización, la mantenibilidad y la claridad del código.
-  A continuación, se describe la función y las interacciones de cada módulo:
+  El proyecto está organizado en capas, donde cada módulo tiene una función clara para mantener el código ordenado y fácil de manejar.
+  A continuación se detalla el papel de cada módulo y cómo interactúan entre sí:
 </p><br>
 
 <p align="left">
   1.Módulo "controller"<br>
-  • Contiene el controlador principal (GameController.java), que orquesta el flujo del juego y coordina las interacciones entre los diferentes componentes.<br>
-  • GameController actúa como intermediario, gestionando el flujo de información y las llamadas entre la vista y la lógica del juego en el modelo.<br>
+  • Este módulo alberga el controlador principal (GameController.java), que se encarga de gestionar el flujo del juego y de coordinar la comunicación entre los componentes principales.<br>
+  • GameController actúa como el puente entre la interfaz de usuario y la lógica del juego, manejando la información y las decisiones durante cada turno para aplicar las reglas de la partida..<br>
   • Cada turno, el controlador toma decisiones y coordina la ejecución de las reglas del juego.
 </p><br>
 
 <p align="left">
   2.Módulo "model":<br>
-  • Board: Gestiona el tablero de juego y el estado de los caballos en la carrera.<br>
-  • GameHorsesRace: Representa la lógica principal de la carrera de caballos, gestionando el estado general del juego, los turnos y la mecánica de movimiento.<br>
-  • model/deck: Este submódulo encapsula las clases relacionadas con las cartas:<br>
-  • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la relación con los caballos.<br>
-  • model/player: Gestiona la lógica relacionada con los jugadores y las apuestas, incluyendo clases para jugadores humanos (Human.java) y bots (Bot.java). Cada jugador puede realizar apuestas en la carrera.
+  • Board: Lleva el control del tablero y de la posición de los caballos en la carrera.<br>
+  • GameHorsesRace: Contiene la lógica central del juego de carreras, gestionando el estado general, el avance por turnos y las reglas de movimiento.<br>
+  • model/deck: Este submódulo contiene las clases de las cartas:<br>
+    • Card, CardFace, CardSuit, y FacedCard definen los aspectos de las cartas del juego, como su valor, tipo y la relación con los caballos.<br>
+  • model/player:  Incluye las clases relacionadas con los jugadores y sus apuestas, ya sean humanos (Human.java) o bots (Bot.java), que interactúan durante la carrera.
 </p><br>
 <p align="left">
   3.Módulo utils:<br>
-    • Contiene utilidades de apoyo al proyecto, como ConsoleInOut para gestionar la entrada y salida por consola, Colors para el manejo de colores ANSI, y Pause para controlar las pausas entre acciones.
+    • Este módulo agrupa utilidades que apoyan el funcionamiento general, como ConsoleInOut para gestionar la interacción en consola, Colors para aplicar colores, y Pause para controlar pausas y ritmos del juego.
 </p></br>
     
 <p align="left">
   4.Módulo view:<br>
     • ConsoleView: Proporciona una interfaz de usuario en consola para la visualización de la carrera, la información de los turnos y la dirección de movimiento de los caballos.<br>
-    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.
+    • La vista interactúa principalmente con el GameController y permite visualizar el estado del juego, las apuestas y los resultados.<br>
 </p></br>
 
-### Estructura de Directorios
+### 📁 Estructura de Directorios 📁
 
 <table align="center" border="6px">
   <tr>
@@ -204,7 +203,7 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 
 </br>
 
-### Tecnologías y Herramientas
+### 🛠️ Tecnologías y Herramientas 🛠️
 
 </br>
 
