@@ -212,4 +212,10 @@ La vista interactúa principalmente con el GameController y permite visualizar e
 <img alt="java" src="https://user-images.githubusercontent.com/25181517/117201156-9a724800-adec-11eb-9a9d-3cd0f67da4bc.png" width="80"/>  
 <img alt="java" src="https://user-images.githubusercontent.com/25181517/192108890-200809d1-439c-4e23-90d3-b090cf9a4eea.png" width="80"/><br><br><br>
 
+<p>
+  Integrantes:
+  Roger Navarro, 
+  Samuel Mateos, 
+  Leandro Struni</br>
+</p>
 </div>
