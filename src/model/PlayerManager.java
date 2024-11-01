@@ -7,6 +7,7 @@ import model.player.Human;
 import model.player.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Manages the players involved in the game, including Humans and Bots, their bankrolls, bets,
@@ -197,11 +198,12 @@ public class PlayerManager {
      * @param winner The winner card of the game.
      * @return bool If pot has been distributed or not.
      */
-    public boolean distributeBetsAfterRace(Card winner) {
+    public HashMap<String, Integer> distributeBetsAfterRace(Card winner) {
         int totalWinningBetsAmount = getWinningBetsAmount(winner); // Calculates the total bets amount
+        HashMap<String, Integer> playerEarnings = new HashMap<>(); // Creates a Hash to stores the userName and the earnings
         int totalEarnings = 0;
 
-        if (totalWinningBetsAmount == 0) return false;
+        if (totalWinningBetsAmount == 0) return playerEarnings;
 
         // Calculates each earning depending on each bet
         for(Player player : players) {
@@ -210,12 +212,14 @@ public class PlayerManager {
                 int winnings = (playerBet * pot) / totalWinningBetsAmount;
                 player.addToBankroll(winnings);
                 totalEarnings += winnings; // Accumulates the winnings
+
+                playerEarnings.put(player.getUserName(),winnings); // Stores the amount winnings for each player by its userName
             }
         }
         pot -= totalEarnings; // Adjust the pot
         if (pot < 0) pot = 0; // Taking care of possible errors/truncated values
 
-        return true;
+        return playerEarnings;
     }
 
     /**

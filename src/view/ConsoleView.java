@@ -9,10 +9,7 @@ import utils.Colors;
 import utils.ConsoleInOut;
 import utils.Pause;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.*;
 
 /**
  * This class represents the console view for the Horse Race Betting game.
@@ -625,5 +622,12 @@ public class ConsoleView {
         System.out.println(Colors.colorize(". \n",Colors.ORANGE));
         Pause.milliseconds(1500);
     }
-}
 
+    public void displayEarnings(HashMap<String, Integer> playerEarnings) {
+        System.out.println(Colors.colorize("Winners:", Colors.BLUE));
+        playerEarnings.forEach((playerName, earnings) ->
+                        System.out.println(
+                                (Colors.colorize("🐴 "+playerName,Colors.ORANGE)+
+                                Colors.colorize(" won "+ earnings + " \uD83C\uDF6A chips.", Colors.BLUE))));
+    }
+}

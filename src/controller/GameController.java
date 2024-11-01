@@ -7,6 +7,8 @@ import view.ConsoleView;
 import model.GameHorsesRace;
 import model.deck.Card;
 
+import java.util.HashMap;
+
 /**
  * The GameController class serves as the main controller for the horses racing game.
  * It coordinates interactions between the model classes (PlayerManager, GameHorsesRace) and the view classes (ConsoleView).
@@ -130,9 +132,11 @@ public class GameController {
      */
     private void handleWinnerHorseRepercussions(Card winner) {
         consoleView.displayRaceWinner(winner); // Display the winning horse to the players.
+        HashMap<String, Integer> playerEarnings = playerManager.distributeBetsAfterRace(winner);
 
         // Distribute bets based on the winner, also display if there are no winning bets.
-        if (!playerManager.distributeBetsAfterRace(winner)) consoleView.displayNoWinningBets(playerManager.getPot());
+        if (playerEarnings.isEmpty()) consoleView.displayNoWinningBets(playerManager.getPot());
+        consoleView.displayEarnings(playerEarnings);
         // removes players with not enough bankroll to keep playing and display remaining players.
         if (playerManager.removeLosers()) consoleView.displaySomePlayersLostMessage();
         if (playerManager.isGameOver()) concludeGame();
