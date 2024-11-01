@@ -23,6 +23,7 @@ public class GameHorsesRace {
     private CardsDeck cardsDeck;
     private int currentTurn;
     private ArrayList<Card> cardsKnight;
+    final int RACE_LENGTH = 9;
 
 
     /**
@@ -31,7 +32,6 @@ public class GameHorsesRace {
      * sets up the board for the game, and starts the first turn at 1.
      */
     public void getReady() {
-        final int RACE_LENGTH = 9;
         board = new Board(cardsKnight, RACE_LENGTH);
         currentTurn = 1;
     }
