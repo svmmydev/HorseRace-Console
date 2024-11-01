@@ -196,7 +196,7 @@ public class PlayerManager {
      * If there ir any winner, it redistribute the earnings depending on each player's bet. It also updates the pot.
      *
      * @param winner The winner card of the game.
-     * @return bool If pot has been distributed or not.
+     * @return HashMap Empty if the pot has been distributed or the current HashMap with the playerNames and his earnings.
      */
     public HashMap<String, Integer> distributeBetsAfterRace(Card winner) {
         int totalWinningBetsAmount = getWinningBetsAmount(winner); // Calculates the total bets amount

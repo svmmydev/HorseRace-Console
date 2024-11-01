@@ -576,6 +576,11 @@ public class ConsoleView {
         return new StringBuilder(coloredPhrase);
     }
 
+    /**
+     * Creates a list where there are defined a few random phrases.
+     *
+     * @return StringBuilder The message to show on the console
+     */
     private StringBuilder backwardsNormal() {
         String[] phrases = {
                 "The horse gallops backward, making strategic moves.",
@@ -623,6 +628,11 @@ public class ConsoleView {
         Pause.milliseconds(1500);
     }
 
+    /**
+     * Displays the message to show each player and his earnings
+     *
+     * @param playerEarnings The HashMap to iterate
+     */
     public void displayEarnings(HashMap<String, Integer> playerEarnings) {
         System.out.println(Colors.colorize("Winners:", Colors.BLUE));
         playerEarnings.forEach((playerName, earnings) ->
