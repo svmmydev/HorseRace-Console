@@ -356,8 +356,8 @@ public class ConsoleView {
      */
     public void sayGoodBye() {
         System.out.println(Colors.colorize("""
-                Thank you for playing!!.
-                We hope you had fun!!.\s
+                \nThank you for playing!!
+                We hope you had fun!!\s
                 """, Colors.VIBRANT_PURPLE));
 
         //Final title with writing delay
@@ -367,11 +367,7 @@ public class ConsoleView {
                       O                                                                     O""";
         for (char c : title.toCharArray()) {
             System.out.print(Colors.colorize(String.valueOf(c), Colors.VIBRANT_GREEN));
-            try {
-                Thread.sleep(20); //Adjust the value to change the delay speed
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            Pause.milliseconds(20);
         }
         System.out.println();
     }
