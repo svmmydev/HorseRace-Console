@@ -14,18 +14,18 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
 ### The Java Scrolls: Code Assassins 🗡️📜<br>
 <br>
 <div>
-  <img src="resources/Readme-Images/TheJavaScrolls_CodeAssasins.png" alt="Logo Grupo The Java Scrolls: Code Assasins" width="300">
+  <img src="extraResources/Readme-Images/TheJavaScrolls_CodeAssasins.png" alt="Logo Grupo The Java Scrolls: Code Assasins" width="300">
 </div>
 <br>
 
 <table>
   <tr>
     <td align="center">
-        <img src= "resources/Readme-Images/Roger.png" alt="Mini Roger" width="80"></td>
+        <img src= "extraResources/Readme-Images/Roger.png" alt="Mini Roger" width="80"></td>
       <td align="center">
-        <img src= "resources/Readme-Images/Sammy.png" alt="Mini Sammy" width="80"></td>
+        <img src= "extraResources/Readme-Images/Sammy.png" alt="Mini Sammy" width="80"></td>
       <td align="center">
-        <img src= "resources/Readme-Images/Leandro.png" alt="Mini Leandro" width="80"></td>
+        <img src= "extraResources/Readme-Images/Leandro.png" alt="Mini Leandro" width="80"></td>
   </tr>
   <tr>
     <td>
@@ -97,7 +97,7 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 #### 🏁 Muestra de carrera 🏁
 
 <div align="center">
-  <img src="resources/Readme-Images/game_horse_race.gif" alt="Gif Game Horse Race" width="800">
+  <img src="extraResources/Readme-Images/game_horse_race.gif" alt="Gif Game Horse Race" width="800">
 </div>
 
 </br>
@@ -111,17 +111,17 @@ La carrera esta representado por las cartas de la baraja española, donde los ca
 </br>
 
 #### Main + MVC
-![MVC](resources/class-diagrams/MVC.png)
+![MVC](extraResources/class-diagrams/MVC.png)
 
 </br>
 
 #### CardsDeck
-![CardsDeck](resources/class-diagrams/CardsDeck.png)
+![CardsDeck](extraResources/class-diagrams/CardsDeck.png)
 
 </br>
 
 #### PlayerManager
-![PlauerManager](resources/class-diagrams/PlayerManager.png)
+![PlauerManager](extraResources/class-diagrams/PlayerManager.png)
 
 </br>
 
