@@ -1,13 +1,9 @@
 
-import controllers.GameController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.GameHorsesRace;
-import model.PlayerManager;
-import view.ConsoleView;
 
 import java.util.Objects;
 
@@ -15,9 +11,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        VBox root = FXMLLoader.load(getClass().getResource("/view/gui/WelcomeView.fxml"));
+        VBox root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/WelcomeView.fxml")));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Bienvenida");
+        primaryStage.setTitle("Welcome");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
