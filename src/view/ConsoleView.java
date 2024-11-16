@@ -34,7 +34,7 @@ import java.util.*;
  *     consoleView.displayPlayersRanking(players);
  * </pre>
  *
- * @see controller.GameController
+ * @see controllers.GameController
  */
 public class ConsoleView {
 

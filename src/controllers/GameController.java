@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import model.PlayerManager;
 import model.player.Human;

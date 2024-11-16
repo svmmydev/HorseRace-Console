@@ -138,7 +138,7 @@ El proyecto está organizado en capas, donde cada módulo tiene una función cla
 
 <p align="center">
   
-**🕹 Módulo controller**<br><br>
+**🕹 Módulo controllers**<br><br>
 Este módulo alberga el controlador principal (*GameController.java*), que se encarga de gestionar el flujo del juego y de coordinar la comunicación entre los componentes principales. GameController actúa como el puente entre la interfaz de usuario y la lógica del juego, manejando la información y las decisiones durante cada turno para aplicar las reglas de la partida.
 </p><br>
 
@@ -174,7 +174,7 @@ La vista interactúa principalmente con el GameController y permite visualizar e
 📦 Práctica UF4
  ┣ 📂 src
    ┣ 📜 Main.java
-   ┣ 📂 controller
+   ┣ 📂 controllers
    ┃ ┣ 📜 GameController.java
    ┣ 📂 model
    ┃ ┣ 📜 Board.java
