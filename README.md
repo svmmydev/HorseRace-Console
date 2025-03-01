@@ -34,7 +34,7 @@ Lo que nació siendo un trabajo de clase, se ha convertido en todo un desafió g
       </a>
     </td>
     <td>
-       <a href="https://github.com/SamuelStudying">
+       <a href="https://github.com/svmmydev">
       <img src="https://img.shields.io/badge/Sammy-Git?style=flat&logo=github&logoColor=white&labelColor=black&color=50e520&label=GitHub" alt="Badge">
          </a>
     </td>
